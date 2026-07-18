@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueFuture | Page Editor - Student 4</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Page Editor styles - simple and clean */
+        .editor-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .editor-header {
+            background: #003b73;
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px 12px 0 0;
+            margin: -40px -20px 30px -20px;
+        }
+
+        .editor-header h1 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .editor-header p {
+            color: #b8d2e8;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .editor-section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #eaf2f8;
+        }
+
+        .editor-section:last-child {
+            border-bottom: none;
+        }
+
+        .editor-section h2 {
+            color: #003b73;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            border-left: 5px solid #00a6c8;
+            padding-left: 15px;
+        }
+
+        .editor-section h3 {
+            color: #00a6c8;
+            font-size: 1.15rem;
+            margin: 18px 0 10px;
+        }
+
+        .editor-section p {
+            color: #5f6b7a;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .editor-section ul {
+            color: #5f6b7a;
+            line-height: 1.7;
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+
+        .editor-section ul li {
+            margin-bottom: 4px;
+        }
+
+        .editor-section a {
+            color: #00a6c8;
+            text-decoration: none;
+        }
+
+        .editor-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Meeting log table */
+        .meeting-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .meeting-table th {
+            background: #003b73;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            border: 1px solid #003b73;
+        }
+
+        .meeting-table td {
+            padding: 10px;
+            border: 1px solid #dcecf5;
+            vertical-align: top;
+        }
+
+        .meeting-table tr:nth-child(even) {
+            background: #f8fcff;
+        }
+
+        .meeting-table .absent {
+            color: #e76f51;
+            font-weight: bold;
+        }
+
+        .meeting-table .present {
+            color: #2a9d8f;
+            font-weight: bold;
+        }
+
+        /* References */
+        .ref-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ref-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #eaf2f8;
+            font-size: 0.9rem;
+        }
+
+        .ref-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ref-list a {
+            color: #00a6c8;
+            text-decoration: none;
+        }
+
+        .ref-list a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .editor-header {
+                padding: 20px;
+                margin: -20px -20px 20px -20px;
+            }
+            .editor-header h1 {
+                font-size: 1.5rem;
+            }
+            .meeting-table {
+                font-size: 0.78rem;
+            }
+            .meeting-table th,
+            .meeting-table td {
+                padding: 6px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER (shared template) ===== -->
+    <header>
+        <a href="home.html" class="logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo">
+            <span>BlueFuture</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="ais.html">AIS</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <section style="padding:40px 8%;">
+            <div class="editor-container">
+
+                <!-- HEADER -->
+                <div class="editor-header">
+                    <h1>Page Editor</h1>
+                    <p>Student 4 | Team CORAL | SDG 14: Life Below Water</p>
+                </div>
+
+                <!-- ===== STUDENT INFO ===== -->
+                <div class="editor-section">
+                    <h2>Student Information</h2>
+                    <p><strong>Name:</strong> Godage Pahandi Pabasara Wickramanayake</p>
+                    <p><strong>Student ID:</strong> 20250102</p>
+                    <p><strong>Role in Team:</strong> User Profile, Sitemap, Content Page (Student 4)</p>
+                    <p><strong>Pages I Created:</strong></p>
+                    <ul>
+                        <li><a href="profile.html">Profile Page</a> — User Profile Builder</li>
+                        <li><a href="sitemap.html">Sitemap Page</a> — Interactive SVG Sitemap</li>
+                        <li><a href="content_ST4.html">Content Page</a> — Sustainable Fishing and Marine Conservation</li>
+                        <li><a href="pageEditor_ST4.html">Page Editor</a> — This page (individual report)</li>
+                        <li><a href="validation_ST4.html">Validation Page</a> — Validation evidence</li>
+                    </ul>
+                </div>
+
+                <!-- ===== PROFILE PAGE ===== -->
+                <div class="editor-section">
+                    <h2>1. Profile Page</h2>
+                    <p><a href="profile.html">View Profile Page</a> | <a href="validation_ST4.html#profile-validation">View Validation</a></p>
+
+                    <h3>HTML Structure</h3>
+                    <p>I used a simple structure for the profile page. The main layout has two columns:
+                    the left side shows the steps, and the right side displays the user's profile.
+                    I used the shared template from Student 1, so the header, navigation and the footer
+                    are consistent with the rest of the website.</p>
+
+                    <p>Key HTML elements I used:</p>
+                    <ul>
+                        <li><strong>&lt;header&gt;</strong> — for the navigation bar (shared template)</li>
+                        <li><strong>&lt;main&gt;</strong> — contains the main content of the page</li>
+                        <li><strong>&lt;section&gt;</strong> — groups the profile layout together</li>
+                        <li><strong>&lt;div&gt;</strong> — for layout containers and step items</li>
+                        <li><strong>&lt;button&gt;</strong> — for user interactions (Start and Skip)</li>
+                        <li><strong>&lt;footer&gt;</strong> — shared footer with links</li>
+                    </ul>
+
+                    <h3>CSS Techniques</h3>
+                    <p>I used Flexbox to arrange the two columns side by side. The <code>display: flex</code>
+                    property makes the children sit in a row, and <code>gap: 30px</code> adds spacing
+                    between the columns. This was a simple way to make the layout responsive — when
+                    the screen gets smaller (<code>@media (max-width: 900px)</code>), the columns stack
+                    on top of each other using <code>flex-direction: column</code>.</p>
+
+                    <p>I also used CSS classes like <code>.step-complete</code> and <code>.step-skipped</code>
+                    to change the appearance of steps based on their status, which helps users see their
+                    progress. For the progress bar, I used a simple <code>&lt;div&gt;</code> inside another
+                    <code>&lt;div&gt;</code> and changed the width using JavaScript. The colours match
+                    the website's colour palette (blue and green).</p>
+
+                    <h3>JavaScript Implementation</h3>
+                    <p>The profile builder uses the <code>prompt()</code> function to collect data,
+                    just like we learned in the lectures. I created a <code>profile</code> object
+                    to store all the user's answers. Each step has 3 prompts, and there are 3 steps
+                    in total.</p>
+
+                    <p>The main functions I wrote are:</p>
+                    <ul>
+                        <li><strong>startStep(stepNum)</strong> — runs the prompts for a step and stores answers.
+                        Each answer is checked with <code>if (name !== null && name.trim() !== "")</code>
+                        to handle cases where the user cancels or enters only spaces.</li>
+
+                        <li><strong>skipStep(stepNum)</strong> — skips a whole step without asking prompts.
+                        All fields in that step are set to empty strings, so they won't appear in the profile.</li>
+
+                        <li><strong>updateDisplay()</strong> — updates the profile card on the right side.
+                        It checks each field and only shows the ones that have been answered.
+                        I used variables like <code>fullNameField</code>, <code>userNameField</code>
+                        and <code>actionField</code> to store the DOM elements.</li>
+
+                        <li><strong>updateProgress()</strong> — updates the progress bar and step counter.
+                        It counts how many fields have answers and calculates the percentage.</li>
+
+                        <li><strong>enableNext(stepNum)</strong> — unlocks the next step's buttons.
+                         It finds the buttons using <code>document.getElementById("startBtn" + next)</code>
+                        and <code>document.getElementById("skipBtn" + next)</code>.</li>
+                    </ul>
+
+                    <p>When the user skips a question or a whole step, the data is set to an empty string.
+                    This means it won't appear in the profile display and the progress bar won't count
+                    it as answered. The user can always come back to skipped steps later. The buttons
+                    for each step are always enabled once the step has been unlocked.</p>
+
+                    <p>I used DOM manipulation (<code>document.getElementById()</code> and
+                    <code>innerHTML</code>) to update the profile display without refreshing the page.
+                    This was covered in the lecture notes about JavaScript and DOM.</p>
+
+                    <p><strong>Variable naming:</strong> I used descriptive variable names like
+                    <code>startBtn1</code>, <code>skipBtn1</code>, <code>fullNameField</code>,
+                    <code>userNameField</code>, <code>actionField</code>, and <code>personalGoalField</code>
+                    to make the code easier to understand.</p>
+                </div>
+
+                <!-- ===== SITEMAP PAGE ===== -->
+                <div class="editor-section">
+                    <h2>2. Sitemap Page</h2>
+                    <p><a href="sitemap.html">View Sitemap Page</a> | <a href="validation_ST4.html#sitemap-validation">View Validation</a></p>
+
+                    <h3>HTML Structure</h3>
+                    <p>
+                        The sitemap is built using SVG (Scalable Vector Graphics), which we learned
+                        about in the lecture notes. I used the shared template for the header and footer.
+                    </p>
+                    <p>
+                        Key HTML elements I used:
+                    </p>
+                    <ul>
+                        <li><strong>&lt;svg&gt;</strong> — the main container for the sitemap diagram</li>
+                        <li><strong>&lt;g&gt;</strong> — groups elements together</li>
+                        <li><strong>&lt;rect&gt;</strong> — creates the boxes for each page</li>
+                        <li><strong>&lt;text&gt;</strong> — adds the page names inside the boxes</li>
+                        <li><strong>&lt;path&gt;</strong> — draws the lines connecting pages</li>
+                        <li><strong>&lt;a&gt;</strong> — makes each box clickable and links to the page</li>
+                        <li><strong>&lt;title&gt;</strong> — provides accessible names for screen readers</li>
+                    </ul>
+
+                    <h3>SVG Design</h3>
+                    <p>I designed the sitemap to show the website hierarchy. The Splash Screen is at
+                    the top, leading to the Home page. From Home, there are branches to all the
+                    main pages. The Content Pages group then branches out to the four individual
+                    content pages.</p>
+
+                    <p>I used different colours for different levels:</p>
+                    <ul>
+                        <li><strong>Dark blue (#003b73)</strong> — Entry pages (Splash, Home)</li>
+                        <li><strong>Light blue (#00a6c8)</strong> — Main navigation pages</li>
+                        <li><strong>Green (#2a9d8f)</strong> — Content group</li>
+                        <li><strong>White with green border</strong> — Individual content articles</li>
+                    </ul>
+
+                    <h3>Interactivity</h3>
+                    <p>Each node in the sitemap is a clickable link that takes the user to the
+                    corresponding page. I wrapped each SVG node in an <code>&lt;a&gt;</code> tag with the <code>href</code> attribute pointing to the correct page.</p>
+                    
+                    <p>I added hover effects using CSS. When you hover over a box, it changes to
+                    coral red (<code>#ff6b6b</code>) and the text turns white. This was done
+                     using the <code>:hover</code> selector in CSS:</p>
+                    <pre style="background:#f5f5f5; padding:10px; border-radius:6px; font-size:0.85rem; overflow-x:auto;">
+                    .sitemap-svg .node:hover rect {
+                    fill: #ff6b6b;
+                    stroke: #ff6b6b;
+                    stroke-width: 3;}
+
+                    .sitemap-svg .node:hover text {
+                    fill: white;
+                    }
+                    </pre>
+
+                    <p>For accessibility, I added <code>tabindex="0"</code> to each link so users
+                    can navigate using the keyboard. I also added <code>&lt;title&gt;</code>
+                    elements inside each link to provide tooltips and information for screen
+                    readers. The visible text on each node already shows the page name, so
+                    users can easily see what each link does.</p>
+
+                    <p>I used the <code>viewBox</code> attribute on the SVG to make it responsive.
+                    The <code>viewBox</code> defines the coordinate system of the SVG and
+                    combined with <code>width: 100%</code> and <code>height: auto</code> in
+                    CSS, the sitemap scales properly on different screen sizes. I also added
+                    <code>min-width: 700px</code> to prevent the text from becoming too small
+                    on very narrow screens.</p>
+                </div>
+
+                <!-- ===== CONTENT PAGE ===== -->
+                <div class="editor-section">
+                    <h2>3. Content Page</h2>
+                    <p><a href="content_ST4.html">View Content Page</a> | <a href="validation_ST4.html#content-validation">View Validation</a></p>
+
+                    <h3>HTML Structure</h3>
+                    <p>
+                        My content page is about "Sustainable Fishing &amp; Marine Conservation"
+                        which relates to SDG 14 (Life Below Water). I used the shared template
+                        for the header and footer and used the <code>.content-layout</code> class
+                        from the global CSS for the two-column layout (sidebar + main content).
+                    </p>
+                    <p>
+                        Key HTML elements I used:
+                    </p>
+                    <ul>
+                        <li><strong>&lt;aside&gt;</strong> — for the sidebar with internal links</li>
+                        <li><strong>&lt;section&gt;</strong> — for each article section</li>
+                        <li><strong>&lt;h2&gt;</strong> — for section headings</li>
+                        <li><strong>&lt;img&gt;</strong> — for images with alt text</li>
+                        <li><strong>&lt;a href="#section"&gt;</strong> — for internal navigation links</li>
+                        <li><strong>&lt;a href="#top"&gt;</strong> — for the "Go to Top" button</li>
+                    </ul>
+
+                    <h3>Internal Navigation</h3>
+                    <p>
+                        I added a sidebar on the left side of the page with links to each section.
+                        When you click a link, the page scrolls to that section. I used anchor links
+                        like <code>#section1</code>, <code>#section2</code>, etc. and added
+                        <code>scroll-margin-top</code> in CSS so the heading doesn't hide behind the
+                        sticky header.
+                    </p>
+                    <p>
+                        I also added a "Go to Top" button that stays in the bottom-right corner of
+                        the screen using <code>position: fixed</code>. This was covered in the
+                        lecture notes about CSS positioning.
+                    </p>
+
+                    <h3>Images and Alt Text</h3>
+                    <p>I included 6 images on my content page, each with descriptive alt text.</p>
+
+                    <p>All images use the <code>.article-image</code> class from the global CSS,
+                        which adds rounded corners and a shadow.</p>
+                </div>
+
+                <!-- ===== CHALLENGES AND LESSONS ===== -->
+                <div class="editor-section">
+                    <h2>4. Challenges and Lessons Learned</h2>
+
+                    <h3>Challenge 1: Making the SVG Sitemap Accessible</h3>
+                    <p>
+                        When I first created the SVG sitemap, I didn't think about accessibility.
+                        I realised that screen readers wouldn't be able to read the text inside the
+                        SVG and keyboard users couldn't navigate through the links.
+                    </p>
+                    <p>
+                        <strong>How I fixed it:</strong> I added <code>tabindex="0"</code> to each
+                        link so they could be tabbed through. I also added <code>&lt;title&gt;</code> 
+                        elements to describe each link. For keyboard focus, I used the 
+                        <code>:focus-visible</code> CSS selector to show a visible outline when a link is focused.
+                    </p>
+                    <p>
+                        <strong>What I learned:</strong> Accessibility is important and should be
+                        considered from the start, not as an afterthought. Small changes can make a
+                        big difference for users with disabilities.
+                    </p>
+
+                    <h3>Challenge 2: Managing Profile Data with JavaScript</h3>
+                    <p>
+                        Storing the user's answers and updating the display was tricky at first.
+                        I had to think about how to handle skipped questions and make sure the
+                        progress bar updated correctly.
+                    </p>
+                    <p>
+                        <strong>How I fixed it:</strong> I created a <code>profile</code> object
+                        to store all the data. Each field starts as an empty string. When a question
+                        is answered, the value is stored. When a question is skipped, the value stays
+                        empty. The <code>updateDisplay()</code> function checks each field and only
+                        shows the ones with data.
+                    </p>
+                    <p>
+                        <strong>What I learned:</strong> Planning the data structure before writing
+                        the code makes it much easier. Using a simple object to store data and
+                        separate functions to update the display helped keep the code organised.
+                    </p>
+
+                    <h3>Challenge 3: Validating HTML</h3>
+                    <p>
+                        When I first validated my pages, I got errors about heading structure
+                        (skipping heading levels) and a section without a heading. I didn't realise
+                        that heading order mattered for accessibility.
+                    </p>
+                    <p>
+                        <strong>How I fixed it:</strong> I fixed the heading structure so it goes
+                        <code>h1 → h2 → h3</code> in order. I also changed a section without a
+                        heading to a <code>&lt;div&gt;</code> instead.
+                    </p>
+                    <p>
+                        <strong>What I learned:</strong> Valid HTML is important for accessibility
+                        and SEO. I should validate my pages regularly as I work, not just at the end.
+                    </p>
+                </div>
+
+                <!-- ===== ACCESSIBILITY ===== -->
+                <div class="editor-section">
+                    <h2>5. Accessibility Considerations</h2>
+                    <p>
+                        I made sure to follow accessibility principles on all my pages:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Semantic HTML:</strong> I used proper heading levels (<code>h1</code>,
+                            <code>h2</code>, <code>h3</code>) and semantic elements like
+                            <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
+                            <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, and
+                            <code>&lt;footer&gt;</code>.
+                        </li>
+                        <li>
+                            <strong>Alt Text:</strong> All images have descriptive alt text that
+                            explains what the image shows.
+                        </li>
+                        <li>
+                            <strong>Keyboard Navigation:</strong> The SVG sitemap can be navigated
+                            using the Tab key, with a visible focus state.
+                        </li>
+                        <li>
+                            <strong>Readable Text:</strong> I used good contrast between text and
+                            backgrounds (dark blue on white, white on dark blue).
+                        </li>
+                        <li>
+                            <strong>Focus Indicators:</strong> I used the <code>:focus-visible</code>
+                            selector to show a visible outline on focused elements.
+                        </li>
+                    </ul>
+                    <p>
+                        These choices make the website more usable for everyone, including people
+                        who use screen readers or who can't use a mouse.
+                    </p>
+                </div>
+
+                <!-- ===== COMPLIANCE WITH JANET REGULATIONS ===== -->
+                <div class="editor-section">
+                    <h2>6. Compliance with JANET Regulations</h2>
+                    <p>
+                        JANET regulations govern the publication of web pages on the UK academic
+                        network. I made sure my pages comply with these regulations by:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Appropriate Content:</strong> All content on my pages is
+                            educational and relevant to SDG 14 (Life Below Water). I did not include
+                            any offensive, inappropriate, or misleading content.
+                        </li>
+                        <li>
+                            <strong>Ethical Use of Resources:</strong> All images are placeholders
+                            for now, but I will use royalty-free images (like from iStockPhoto)
+                            and properly reference them. I did not copy content from the UN SDG
+                            website — all text is original.
+                        </li>
+                        <li>
+                            <strong>Professional Conduct:</strong> I worked collaboratively with my
+                            team, attended meetings, and contributed fairly to the project. My
+                            contributions are documented in the meeting log below.
+                        </li>
+                        <li>
+                            <strong>Academic Integrity:</strong> I did not plagiarise any content.
+                            Any external resources I use will be properly referenced in the
+                            References section.
+                        </li>
+                    </ul>
+                    <p>
+                        By following these guidelines, I ensure that my work meets the standards
+                        expected by the University of Westminster.
+                    </p>
+                </div>
+
+                <!-- ===== MEETING LOG ===== -->
+                <div class="editor-section">
+                    <h2>7. Group Meetings and Contribution Log</h2>
+                    <p>
+                        Below is a record of the group meetings I attended (or missed) during the
+                        coursework. Each meeting focused on progress updates, task delegation, or
+                        resolving challenges.
+                    </p>
+
+                    <table class="meeting-table">
+                        <thead>
+                            <tr>
+                                <th>Date &amp; Time</th>
+                                <th>Format</th>
+                                <th>Objective</th>
+                                <th>Attended</th>
+                                <th>My Individual Contribution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1st June 2026, 2:00 PM</td>
+                                <td>Face-to-face</td>
+                                <td>Choose SDG and assign roles</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Suggested SDG 14 (Life Below Water) and volunteered for User Profile, Sitemap, and Content Page (Student 4).</td>
+                            </tr>
+                            <tr>
+                                <td>8th June 2026, 3:30 PM</td>
+                                <td>Online (Teams)</td>
+                                <td>Review template design and colour scheme</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Reviewed Student 1's template and suggested using a coral accent colour (#ff6b6b) for highlights and hover effects. Agreed on the final design.</td>
+                            </tr>
+                            <tr>
+                                <td>15th June 2026, 2:00 PM</td>
+                                <td>Hybrid</td>
+                                <td>Profile page planning and SVG sitemap ideas</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Demonstrated a prototype of the prompt-based profile builder to the group. Got feedback to add skip functionality.</td>
+                            </tr>
+                            <tr>
+                                <td>22nd June 2026, 4:00 PM</td>
+                                <td>Online (Teams)</td>
+                                <td>Content page progress and image sourcing</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Shared my content page draft with the group and discussed image ideas. Agreed to use royalty-free images from iStockPhoto.</td>
+                            </tr>
+                            <tr>
+                                <td>29th June 2026, 1:30 PM</td>
+                                <td>Face-to-face</td>
+                                <td>Integration testing and navigation</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Tested all my pages to make sure links work. Helped fix a broken link on the home page and confirmed all pages connect properly.</td>
+                            </tr>
+                            <tr>
+                                <td>6th July 2026, 3:00 PM</td>
+                                <td>Online (Teams)</td>
+                                <td>Validation and accessibility review</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Ran the W3C validator on all my pages and fixed heading structure errors. Updated my Validation Page with screenshots.</td>
+                            </tr>
+                            <tr>
+                                <td>13th July 2026, 2:00 PM</td>
+                                <td>Hybrid</td>
+                                <td>Final review and submission preparation</td>
+                                <td><span class="present">Yes</span></td>
+                                <td>Reviewed the entire website with the team. Checked all my pages work correctly and confirmed my Page Editor and Validation pages are complete.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:0.85rem; color:#8a9baa; margin-top:10px;">
+                        <strong>Note:</strong> I attended all 7 meetings and contributed actively to each one.
+                    </p>
+                </div>
+
+                <!-- ===== REFERENCES ===== -->
+                <div class="editor-section" style="border-bottom: none;">
+                    <h2>8. References</h2>
+                    <p>
+                        Below are the resources I consulted while working on my pages:
+                    </p>
+                    <ul class="ref-list">
+                        <li>
+                            <strong>Lecture Notes:</strong> "JavaScript and DOM Manipulation" —
+                            Used for the profile page JavaScript (<code>document.getElementById</code>,
+                            <code>innerHTML</code>).
+                        </li>
+                        <li>
+                            <strong>Lecture Notes:</strong> "Introduction to SVG" —
+                            Used for creating the interactive sitemap (<code>&lt;svg&gt;</code>,
+                            <code>&lt;rect&gt;</code>, <code>&lt;text&gt;</code>).
+                        </li>
+                        <li>
+                            <strong>Lecture Notes:</strong> "Functions and Forms" —
+                            Used for understanding <code>prompt()</code> and form validation.
+                        </li>
+                        <li>
+                            <strong>W3C Schools:</strong> "CSS Positioning" —
+                            Used for the "Go to Top" button and sticky sidebar.
+                            <br><a href="https://www.w3schools.com/css/css_positioning.asp" target="_blank">https://www.w3schools.com/css/css_positioning.asp</a>
+                        </li>
+                        <li>
+                            <strong>W3C Schools:</strong> "SVG Tutorial" —
+                            Used for SVG shapes, links, and accessibility.
+                            <br><a href="https://www.w3schools.com/graphics/svg_intro.asp" target="_blank">https://www.w3schools.com/graphics/svg_intro.asp</a>
+                        </li>
+                        <li>
+                            <strong>MDN Web Docs:</strong> "ARIA Attributes" —
+                            Used for adding accessible labels to SVG links.
+                            <br><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA</a>
+                        </li>
+                        <li>
+                            <strong>United Nations:</strong> "SDG 14: Life Below Water" —
+                            Used for understanding the SDG 14 topic.
+                            <br><a href="https://sdgs.un.org/goals/goal14" target="_blank">https://sdgs.un.org/goals/goal14</a>
+                        </li>
+                        <li>
+                            <strong>W3C Validator:</strong> Used to validate all my HTML pages.
+                            <br><a href="https://validator.w3.org/" target="_blank">https://validator.w3.org/</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== GO TO TOP BUTTON ===== -->
+    <a href="#top" class="go-top">Back to Top</a>
+
+    <!-- ===== FOOTER (shared template) ===== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-column footer-brand">
+                <a href="home.html" class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="BlueFuture logo">
+                    <span>BlueFuture</span>
+                </a>
+                <p>
+                    Protect marine ecosystems, reduce pollution,
+                    conserve biodiversity and promote sustainable
+                    use of oceans.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Coursework Links</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                    <a href="validation_ST1.html">ST1: Validation</a>
+                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                    <a href="validation_ST2.html">ST2: Validation</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Team CORAL</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                    <a href="validation_ST3.html">ST3: Validation</a>
+                    <a href="pageEditor_ST4.html" class="active">ST4: Page Editor</a>
+                    <a href="validation_ST4.html">ST4: Validation</a>
+                    <a href="accessibility.html" class="accessibility-link">
+                        Accessibility / Compliance
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
