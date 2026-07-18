@@ -519,7 +519,7 @@ select:focus-visible {
   padding: 20px;
 }
 
-.article-menu h3 {
+.article-menu h2 {
   color: var(--primary-blue);
   margin-bottom: 15px;
   font-size: 1rem;
@@ -583,23 +583,24 @@ select:focus-visible {
 }
 
             /* "GO TO TOP" BUTTON STYLING (No JS required) */
-.go-top{
-  position:fixed;
-  bottom:32px;
-  right:32px;
-  background-color:#0d2b4e;
-  color:#ffffff;
-  font-size:13px;
-  font-weight:700;
-  text-decoration:none;
-  padding:10px 16px;
-  border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.20);
-  transition:background-color 0.2s ease;               
-  }
+.go-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--secondary-blue);
+  color: var(--white);
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
 
-.go-top:hover{
-  background-color:#1565a8;
+.go-to-top:hover {
+  background-color: var(--accent-green);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 800px) {
@@ -610,4 +611,3 @@ select:focus-visible {
   .article-sidebar { position: static; }
   .article-menu { width: 100%; }
 }
-
