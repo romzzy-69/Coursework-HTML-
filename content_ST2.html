@@ -5,274 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean Pollution & Plastic Waste | BlueFuture</title>
     <link rel="stylesheet" href="style.css">
-    <style>
 
-            *{
-                scroll-behavior: smooth;
-            }
-            body{
-                margin:0;
-                font-family:Arial, Helvetica, sans-serif;
-                background-color:#f5f7fa;
-            }
-
-            .content-hero{
-                background-color:#003b73;;
-                padding: 48px 60px;
-            }
-
-            .eyebrow{
-                font-size:11px;
-                font-weight:700;
-                letter-spacing:2px;
-                text-transform:uppercase;
-                color:#00cfff;
-                margin: 0 0 12px;
-            }
-
-            .content-hero h1{
-                font-size:42px;
-                font-weight:700;
-                color:#ffffff;
-                margin:0;
-                line-height:1.2;    
-            }
-
-            .content-wrapper{
-                    display:grid;
-                    grid-template-columns:220px 1fr;
-                    gap: 40px;
-                    max-width:1100px;
-                    margin:48px auto;
-                    padding:0 40px;
-                    box-sizing:border-box;
-                    align-items:start;
-            }
-
-            .content-main{
-                background-color:#ffffff;
-                border-radius:12px;
-                padding: 48px 60px;
-                box-shadow:0 2px 12px rgba(0,0,0,0.06);
-            }
-
-            .content-main h2{
-                font-size:26px;
-                font-weight:700;
-                color:#0d2b4e;
-                margin:48px 0 12px;
-                border-bottom:2px solid #eaf4fb;
-                padding-bottom:10px;
-            }
-
-            .first-section{
-                margin-top:0;
-            }
-
-            .contnet-main p{
-                font-size:15px;
-                color:#3a4a5a;
-                line-height:1.75;
-                margin:0 0 16px;
-            }
-
-            .content-main ul li{
-                font-size:15px;
-                color:#3a4a5a;
-                line-height:1.75;
-                margin-bottom:6px;
-            }
-
-            .content-main img{
-                width:100%;
-                height:280px;
-                object-fit:cover;
-                border-radius:10px;
-                display:block;
-                margin:20px 0 8px;
-                box-shadow:0 4px 16px rgba(0,0,0,0.10);
-            }
-
-            .caption{
-                font-size:12px;
-                color:#7a8a9a;
-                text-align:center;
-                font-style:italic;
-                margin:0 0 32px;
-            }
-
-            .callout{
-                background-color:#eaf4fb;
-                border-left:4px solid #0d2b4e;
-                border-radius:6px;
-                padding:16px 20px;
-                margin:20px 0;
-            }
-
-            .callout p{
-                margin:0;
-                font-size:14px;
-                color:#0d2b4e;
-                font-weight:600;
-            }
-            
-    </style>
 </head>
 <body>
     <header id="Top">
-        <a href="index.html" class="logo">
-            <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
-            BlueFuture
-        </a>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="ais.html">AIS</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="sitemap.html">Sitemap</a></li>
-            </ul>
-        </nav>
-    </header>
+    <a href="home.html" class="logo">
+        <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+        BlueFuture
+    </a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="ais.html">AIS</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <div class="content-hero">
-        <p class="eyebrow">SDG 14 Educational Resource • Student 2</p>
+    <main class="student-content">
+      
+      <!-- Page title section -->
+      <section class="content-hero">
+        <!-- TEAM: Update your Student Number and Topic -->
+        <p>SDG 14 EDUCATIONAL RESOURCE • [STUDENT X]</p>
         <h1>Ocean Pollution & Plastic Waste</h1>
-    </div>
+      </section>
 
-    <div class="content-layout">
+      <!-- Sidebar + article -->
+      <div class="content-layout">
+        
+        <aside class="article-sidebar">
+          <div class="article-menu">
+            <h2>In this article</h2>
+            <!-- TEAM: Update these anchor links to match your section IDs -->
+            <ol>
+              <li><a href="#section-1">What is ocean pollution?</a></li>
+              <li><a href="#section-2">Plastic waste and microplastics</a></li>
+              <li><a href="#section-3">Oil spills and chemical waste</a></li>
+              <li><a href="#section-4">Effects on marine animals</a></li>
+              <li><a href="#section-5">What students and communities can do</a></li>
+            </ol>
+          </div>
+        </aside>
 
-        <div class="article-sidebar">
-            <div class="article-menu">
-                <h3>In this article</h3>
-                <ol>
-                    <li><a href="#section1">What is ocean pollution?</a></li>
-                    <li><a href="#section2">Plastic waste and microplastics</a></li>
-                    <li><a href="#section3">Oil spills and chemical waste</a></li>
-                    <li><a href="#section4">Effects on marine animals</a></li>
-                    <li><a href="#section5">What students and communities can do</a></li>
-                </ol>
+        <article class="article-content">
+          
+          <!-- SECTION 1 -->
+          <section id="section-1">
+            <h2>1. What is ocean pollution?</h2>
+            
+            <p>Ocean pollution is the introduction of toxic materials and harmful pollutants such as agricultural and industrial waste, chemicals, oil spills, and plastic waste into the ocean waters.</p>
+                </p>
+            
+            <ul>
+             <li>Agricultural runoff carrying fertilisers and pesticides</li>
+             <li>Industrial discharge of chemicals and heavy metals</li>
+             <li>Plastic litter carried into the sea via rivers</li>
+            </ul>
+            
+            <!-- Optional Callout Box -->
+            <div class="callout">
+              <p>Over 8 million tonnes of plastic enter the ocean every year — equivalent to dumping a rubbish truck full of plastic into the sea every minute.</p>
             </div>
-        </div>
+            
+            <img src="./assets/images/BeachCleaning.jfif" alt="Plastic waste washed up on a beach"
+              class="article-image"
+            />
+            <p class="image-caption">Figure: Plastic waste washed up on a beach (Ref: Royalty-free image placeholder)</p>
+          </section>
 
-        <article class="content-main">
+          <!-- SECTION 2 -->
+          <section id="section-2">
+            <h2>2. Plastic Waste and Microplastics</h2>
+            <p>Plastics do not fully degrade. Instead they break down into smaller pieces called microplastics, which are ingested by marine life and enter the food chain.</p>
+            <ul>
+                <li>Plastic takes 400 to 1,000 years to break down</li>
+                <li>Microplastics have been found in human blood and lungs</li>
+                <li>Marine animals mistake plastic bags for jellyfish</li>
+            </ul> 
+            <div class="callout">
+              <p>By 2050 there will be more plastic in the ocean by weight than fish if current trends continue.</p></div>
+            <img
+              src="./assets/images/LocalFishing.jfif"
+              alt="Locals Fishing at a beach"
+              class="article-image"
+            />
+            <p class="image-caption">Figure: Locals Fishing on a beach (Ref: Royalty-free image placeholder)</p>
+          </section>
 
-            <div id="section1" class="first-section">
-                <h2>1. What is ocean pollution?</h2>
-                <p>Ocean pollution is the introduction of toxic materials and harmful pollutants such as agricultural and industrial waste, chemicals, oil spills, and plastic waste into the ocean waters.</p>
-                <ul>
-                    <li>Agricultural runoff carrying fertilisers and pesticides</li>
-                    <li>Industrial discharge of chemicals and heavy metals</li>
-                    <li>Plastic litter carried into the sea via rivers</li>
-                </ul>
-                <div class="callout">
-                    <p>Over 8 million tonnes of plastic enter the ocean every year equivalent to dumping a rubbish truck full of plastic into the sea every minute.</p>
-                </div>
-                <img src="./assets/images/BeachCleaning.jfif" alt="Plastic waste washed up on a beach">
-                <p class="caption">Figure: Plastic waste washed up on a beach (Ref: Royalty-free image placeholder)</p>
+          <!-- SECTION 3 -->
+          <section id="section-3">
+            <h2>3. Ocean Acidification</h2>
+            <p>Accidental oil spills from tankers and offshore drilling severely impact marine birds, mammals, and fish.</p>
+                </p>
+            <ul>
+                <li>Suffocates fish by coating their gills</li>
+                <li>Destroys coral reefs and seagrass beds</li>
+                <li>Contaminates food supply for coastal communities</li>
+            </ul>
+            <div class="callout">
+              <p>The 1989 Exxon Valdez spill released 11 million gallons of oil, killing 250,000 seabirds and billions of fish eggs.</p>
             </div>
+            <img src="./assets/images/BoatOcean.jfif" alt="Dark ocean waves representing polluted waters"
+              class="article-image"
+            />
+            <p class="image-caption">Figure: Dark ocean waves representing polluted waters (Ref: Royalty-free image placeholder)</p>
+          </section>
 
-            <div id="section2">
-                <h2>2. Plastic waste and microplastics</h2>
-                <p>Plastics do not fully degrade. Instead they break down into smaller pieces called microplastics, which are ingested by marine life and enter the food chain.</p>
-                <ul>
-                    <li>Plastic takes 400 to 1,000 years to break down</li>
-                    <li>Microplastics have been found in human blood and lungs</li>
-                    <li>Marine animals mistake plastic bags for jellyfish</li>
-                </ul>
-                <div class="callout">
-                    <p>By 2050 there will be more plastic in the ocean by weight than fish if current trends continue.</p>
-                </div>
-                <img src="./assets/images/LocalFishing.jfif" alt="Locals Fishing at a beach">
-                <p class="caption">Figure: Locals Fishing on a beach (Ref: Royalty-free image placeholder)</p>
-            </div>
-
-            <div id="section3">
-                <h2>3. Oil spills and chemical waste</h2>
-                <p>Accidental oil spills from tankers and offshore drilling severely impact marine birds, mammals, and fish.</p>
-                <ul>
-                    <li>Suffocates fish by coating their gills</li>
-                    <li>Destroys coral reefs and seagrass beds</li>
-                    <li>Contaminates food supply for coastal communities</li>
-                </ul>
-                <div class="callout">
-                    <p>The 1989 Exxon Valdez spill released 11 million gallons of oil, killing 250,000 seabirds and billions of fish eggs.</p>
-                </div>
-                <img src="./assets/images/BoatOcean.jfif" alt="Dark ocean waves representing polluted waters">
-                <p class="caption">Figure: Dark ocean waves representing polluted waters (Ref: Royalty-free image placeholder)</p>
-            </div>
-
-            <div id="section4">
-                <h2>4. Effects on marine animals</h2>
-                <p>Animals can become entangled in debris or mistake plastic for food, causing starvation, suffocation, and death.</p>
+          <!-- SECTION 4 -->
+          <section id="section-4">
+            <h2>4. Effects on Marine Animals</h2>
+            <p>Animals can become entangled in debris or mistake plastic for food, causing starvation, suffocation, and death.</p>
                 <ul>
                     <li>Sea turtles mistake plastic bags for jellyfish</li>
                     <li>Seabirds feed plastic fragments to their chicks</li>
                     <li>Whales become entangled in abandoned fishing gear</li>
                 </ul>
                 <div class="callout">
-                    <p>Over 700 marine species are known to be affected by plastic pollution and 100,000 marine mammals die from entanglement every year.</p>
+                  <p>Over 700 marine species are known to be affected by plastic pollution and 100,000 marine mammals die from entanglement every year.</p>
                 </div>
-                <img src="./assets/images/Turtle.jfif" alt="Sea turtle swimming underwater vulnerable to plastic debris">
-                <p class="caption">Figure: Sea turtle swimming, vulnerable to plastic bags (Ref: Royalty-free image placeholder)</p>
-            </div>
+            
+            <img
+              src="./assets/images/Turtle.jfif"
+              alt="Sea turtle swimming underwater vulnerable to plastic debris"
+              class="article-image"
+            />
+            <p class="image-caption">Figure: Sea turtle swimming, vulnerable to plastic bags (Ref: Royalty-free image placeholder)</p>
+          </section>
 
-            <div id="section5">
-                <h2>5. What students and communities can do</h2>
-                <p>Reduce single-use plastics, participate in beach cleanups, recycle correctly, and support legislation against ocean dumping.</p>
+          <!-- SECTION 5 -->
+          <section id="section-5">
+            <h2>5. What students and communities can do</h2>
+            <p>Reduce single-use plastics, participate in beach cleanups, recycle correctly, and support legislation against ocean dumping.</p>
                 <ul>
                     <li>Switch to a reusable water bottle and coffee cup</li>
                     <li>Join or organise a local beach cleanup</li>
                     <li>Spread awareness on social media using facts</li>
                 </ul>
                 <div class="callout">
-                    <p>If every person in the UK gave up just one single-use plastic item per day it would prevent over 66 billion plastic items from entering the waste stream each year.</p>
-                </div>
-                <img src="./assets/images/BeachCleaning.jfif" alt="Plastic waste washed up on a beach">
-                <p class="caption">Figure: Community volunteers organising a beach cleanup (Ref: Royalty-free image placeholder)</p>
-            </div>
+        <p>If every person in the UK gave up just one single-use plastic item per day it would prevent over 66 billion plastic items from entering the waste stream each year.</p>
+    </div>
+            
+            <img
+              src="./assets/images/BeachCleaning.jfif"
+              alt=""Plastic waste washed up on a beach""
+              class="article-image"
+            />
+            <p class="image-caption">Figure: Community volunteers organising a beach cleanup (Ref: Royalty-free image placeholder)</p>
+          </section>
 
         </article>
-
-    </div>
-
+      </div>
+    </main>
     <a href="#top" class="go-top">Back to Top</a>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-column footer-brand">
-                <a href="index.html" class="footer-logo">
-                    <img src="assets/images/logo.svg" alt="BlueFuture logo">
-                    BlueFuture
-                </a>
-                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Coursework Links</h3>
-                <div class="footer-links">
-                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
-                    <a href="validation_ST1.html">ST1: Validation</a>
-                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
-                    <a href="validation_ST2.html">ST2: Validation</a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Team CORAL</h3>
-                <div class="footer-links">
-                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
-                    <a href="validation_ST3.html">ST3: Validation</a>
-                    <a href="pageEditor_ST4.html">ST4: Page Editor</a>
-                    <a href="validation_ST4.html">ST4: Validation</a>
-                    <a href="accessibility.html" class="accessibility-link">Accessibility / Compliance</a>
-                </div>
+   <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-column footer-brand">
+            <a href="index.html" class="footer-logo">
+                <img src="assets/images/logo.svg" alt="BlueFuture logo">
+                BlueFuture
+            </a>
+            <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+        </div>
+        <div class="footer-column">
+            <h3>Coursework Links</h3>
+            <div class="footer-links">
+                <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                <a href="validation_ST1.html">ST1: Validation</a>
+                <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                <a href="validation_ST2.html">ST2: Validation</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+        <div class="footer-column">
+            <h3>Team CORAL</h3>
+            <div class="footer-links">
+                <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                <a href="validation_ST3.html">ST3: Validation</a>
+                <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+                <a href="validation_ST4.html">ST4: Validation</a>
+                <a href="accessibility.html" class="accessibility-link">Accessibility / Compliance</a>
+            </div>
         </div>
-    </footer>
-
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+    </div>
+</footer>
+    
 </body>
 </html>

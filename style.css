@@ -547,7 +547,12 @@
     color: var(--secondary-blue);
     }
 
-    .article-content { min-width: 0; }
+    .article-content { 
+      min-width: 0;
+    background-color: var(--white); /* Added from ST2 */
+        border-radius: 12px; /* Added from ST2 */
+        padding: 48px 60px; /* Added from ST2 */
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06); /* Added from ST2 */ }
                 
     .article-content section {
     margin-bottom: 55px;
@@ -558,12 +563,19 @@
     color: var(--primary-blue);
     margin-bottom: 18px;
     font-size: 1.55rem;
+    border-bottom: 2px solid #eaf4fb; /* Added from ST2 */
+    padding-bottom: 10px; /* Added from ST2 */
     }
 
     .article-content p {
-    color: var(--muted-text);
+    color: var(--dark-text);
     line-height: 1.8;
     margin-bottom: 24px;
+    }
+    /* Added from ST2 to space out the bullet points */
+    .article-content ul li {
+        margin-bottom: 6px;
+        color: var(--muted-text); 
     }
 
     .article-image {
@@ -581,28 +593,43 @@
     margin-top: 8px;
     color: var(--muted-text);
     }
+    .callout{
+      background-color:#eaf4fb;
+      border-left:4px solid #0d2b4e;
+      border-radius:6px;
+      padding:16px 20px;
+      margin:20px 0;
+    }
 
-  /* "GO TO TOP" BUTTON STYLING (No JS required) */
-.go-top{
-position:fixed;
-bottom:32px;
-right:32px;
-background-color:#0d2b4e;
-color:#ffffff;
-font-size:13px;
-font-weight:700;
-text-decoration:none;
-padding:10px 16px;
-border-radius:8px;
-box-shadow:0 4px 12px rgba(0,0,0,0.20);
-transition:background-color 0.2s ease;
-}
+    .callout p{
+      margin:0;
+      font-size:14px;
+      color:#0d2b4e;
+      font-weight:600;
+    }
 
-.go-top:hover{
-background-color:#1565a8;
-}
+                /* "GO TO TOP" BUTTON STYLING (No JS required) */
+    .go-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--secondary-blue);
+    color: var(--white);
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    }
 
-@media (max-width: 800px) {
+    .go-top:hover {
+    background-color: var(--accent-green);
+    transform: translateY(-3px);
+    }
+
+    @media (max-width: 800px) {
     .content-layout {
         grid-template-columns: 1fr;
         gap: 30px;
