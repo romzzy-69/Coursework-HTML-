@@ -519,7 +519,7 @@ select:focus-visible {
   padding: 20px;
 }
 
-.article-menu h3 {
+.article-menu h2 {
   color: var(--primary-blue);
   margin-bottom: 15px;
   font-size: 1rem;
