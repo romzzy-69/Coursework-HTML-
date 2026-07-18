@@ -8,6 +8,25 @@
 
     <style>
         /* Profile page styles - only for this page */
+        .go-top{
+            position:fixed;
+            bottom:32px;
+            right:32px;
+            background-color:#0d2b4e;
+            color:#ffffff;
+            font-size:13px;
+            font-weight:700;
+            text-decoration:none;
+            padding:10px 16px;
+            border-radius:8px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.20);
+            transition:background-color 0.2s ease;
+        }
+
+        .go-top:hover{
+            background-color:#1565a8;
+        }
+        
         .profile-layout {
             max-width: 1000px;
             margin: 0 auto;
@@ -148,8 +167,8 @@
                         <h3>2. Ocean Interests</h3>
                         <p id="status1">Not started</p>
                         <div class="step-buttons">
-                            <button onclick="startStep(1)" id="startBtn1" disabled>Start</button>
-                            <button class="btn-skip" onclick="skipStep(1)" id="skipBtn1" disabled>Skip step</button>
+                            <button onclick="startStep(1)" id="btn1" disabled>Start</button>
+                            <button class="btn-skip" onclick="skipStep(1)" id="skip1" disabled>Skip step</button>
                         </div>
                     </div>
 
@@ -157,8 +176,8 @@
                         <h3>3. Actions &amp; Goals</h3>
                         <p id="status2">Not started</p>
                         <div class="step-buttons">
-                            <button onclick="startStep(2)" id="startBtn2" disabled>Start</button>
-                            <button class="btn-skip" onclick="skipStep(2)" id="skipBtn2" disabled>Skip step</button>
+                            <button onclick="startStep(2)" id="btn2" disabled>Start</button>
+                            <button class="btn-skip" onclick="skipStep(2)" id="skip2" disabled>Skip step</button>
                         </div>
                     </div>
 
@@ -178,7 +197,7 @@
                     <div class="profile-section" id="section0">
                         <h3>Personal Details</h3>
                         <p class="profile-field" id="field-fullName"></p>
-                        <p class="profile-field" id="field-userName"></p>
+                        <p class="profile-field" id="field-username"></p>
                         <p class="profile-field" id="field-role"></p>
                     </div>
 
@@ -191,8 +210,8 @@
 
                     <div class="profile-section" id="section2">
                         <h3>Actions &amp; Goals</h3>
-                        <p class="profile-field" id="field-actionField"></p>
-                        <p class="profile-field" id="field-personalGoal"></p>
+                        <p class="profile-field" id="field-pledge"></p>
+                        <p class="profile-field" id="field-goal"></p>
                         <p class="profile-field" id="field-frequency"></p>
                     </div>
                 </div>
@@ -201,6 +220,9 @@
         </section>
     </main>
 
+    <!-- ===== GO TO TOP BUTTON ===== -->
+    <a href="#top" class="go-top">Back to Top</a>
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-column footer-brand">
@@ -208,7 +230,7 @@
                     <img src="assets/images/logo.svg" alt="BlueFuture logo">
                     <span>BlueFuture</span>
                 </a>
-                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity and promote sustainable use of oceans.</p>
+                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
             </div>
             <div class="footer-column">
                 <h3>Coursework Links</h3>
@@ -239,13 +261,13 @@
         // Store profile data
         var profile = {
             fullName: "",
-            userName: "",
+            username: "",
             role: "",
             species: "",
             focus: "",
             activity: "",
-            actionField: "",      // changed from "actionPledge"
-            personalGoal: "",
+            pledge: "",
+            goal: "",
             frequency: ""
         };
 
@@ -261,7 +283,7 @@
                 }
                 var user = prompt("Choose a username for your profile:");
                 if (user !== null && user.trim() !== "") {
-                    profile.userName = user.trim();
+                    profile.username = user.trim();
                 }
                 var role = prompt("What is your role (e.g. Student, Ocean Advocate)?");
                 if (role !== null && role.trim() !== "") {
@@ -281,13 +303,13 @@
                     profile.activity = activity.trim();
                 }
             } else if (stepNum === 2) {
-                var action = prompt("What is one action you pledge for ocean conservation?");
-                if (action !== null && action.trim() !== "") {
-                    profile.actionField = action.trim();
+                var pledge = prompt("What is one action you pledge for ocean conservation?");
+                if (pledge !== null && pledge.trim() !== "") {
+                    profile.pledge = pledge.trim();
                 }
                 var goal = prompt("What is a personal goal related to SDG 14?");
                 if (goal !== null && goal.trim() !== "") {
-                    profile.personalGoal = goal.trim();
+                    profile.goal = goal.trim();
                 }
                 var frequency = prompt("How often will you take action? (e.g. weekly, monthly)");
                 if (frequency !== null && frequency.trim() !== "") {
@@ -307,15 +329,15 @@
             stepDone[stepNum] = true;
             if (stepNum === 0) {
                 profile.fullName = "";
-                profile.userName = "";
+                profile.username = "";
                 profile.role = "";
             } else if (stepNum === 1) {
                 profile.species = "";
                 profile.focus = "";
                 profile.activity = "";
             } else if (stepNum === 2) {
-                profile.actionField = "";
-                profile.personalGoal = "";
+                profile.pledge = "";
+                profile.goal = "";
                 profile.frequency = "";
             }
             updateStatus(stepNum);
@@ -328,8 +350,8 @@
         function enableNext(stepNum) {
             var next = stepNum + 1;
             if (next < 3) {
-                document.getElementById("startBtn" + next).disabled = false;
-                document.getElementById("skipBtn" + next).disabled = false;
+                document.getElementById("btn" + next).disabled = false;
+                document.getElementById("skip" + next).disabled = false;
             }
         }
 
@@ -340,9 +362,9 @@
 
             // Count answered questions in this step
             var keys = [];
-            if (stepNum === 0) keys = ["fullName", "userName", "role"];
+            if (stepNum === 0) keys = ["fullName", "username", "role"];
             else if (stepNum === 1) keys = ["species", "focus", "activity"];
-            else if (stepNum === 2) keys = ["actionField", "personalGoal", "frequency"];
+            else if (stepNum === 2) keys = ["pledge", "goal", "frequency"];
 
             var count = 0;
             for (var i = 0; i < keys.length; i++) {
@@ -371,33 +393,33 @@
 
             // Step 0 fields
             var sec0 = document.getElementById("section0");
-            var fullNameField = document.getElementById("field-fullName");
-            var userNameField = document.getElementById("field-userName");
-            var roleField = document.getElementById("field-role");
+            var f1 = document.getElementById("field-fullName");
+            var f2 = document.getElementById("field-username");
+            var f3 = document.getElementById("field-role");
 
             if (profile.fullName !== "") {
-                fullNameField.innerHTML = "<strong>Name:</strong> " + profile.fullName;
-                fullNameField.style.display = "block";
+                f1.innerHTML = "<strong>Name:</strong> " + profile.fullName;
+                f1.style.display = "block";
             } else {
-                fullNameField.innerHTML = "";
-                fullNameField.style.display = "none";
+                f1.innerHTML = "";
+                f1.style.display = "none";
             }
-            if (profile.userName !== "") {
-                userNameField.innerHTML = "<strong>Username:</strong> " + profile.userName;
-                userNameField.style.display = "block";
+            if (profile.username !== "") {
+                f2.innerHTML = "<strong>Username:</strong> " + profile.username;
+                f2.style.display = "block";
             } else {
-                userNameField.innerHTML = "";
-                userNameField.style.display = "none";
+                f2.innerHTML = "";
+                f2.style.display = "none";
             }
             if (profile.role !== "") {
-                roleField.innerHTML = "<strong>Role:</strong> " + profile.role;
-                roleField.style.display = "block";
+                f3.innerHTML = "<strong>Role:</strong> " + profile.role;
+                f3.style.display = "block";
             } else {
-                roleField.innerHTML = "";
-                roleField.style.display = "none";
+                f3.innerHTML = "";
+                f3.style.display = "none";
             }
 
-            if (profile.fullName !== "" || profile.userName !== "" || profile.role !== "") {
+            if (profile.fullName !== "" || profile.username !== "" || profile.role !== "") {
                 sec0.classList.add("revealed");
                 anyShown = true;
             } else {
@@ -406,30 +428,30 @@
 
             // Step 1 fields
             var sec1 = document.getElementById("section1");
-            var speciesField = document.getElementById("field-species");
-            var focusField = document.getElementById("field-focus");
-            var activityField = document.getElementById("field-activity");
+            var f4 = document.getElementById("field-species");
+            var f5 = document.getElementById("field-focus");
+            var f6 = document.getElementById("field-activity");
 
             if (profile.species !== "") {
-                speciesField.innerHTML = "<strong>Species:</strong> " + profile.species;
-                speciesField.style.display = "block";
+                f4.innerHTML = "<strong>Species:</strong> " + profile.species;
+                f4.style.display = "block";
             } else {
-                speciesField.innerHTML = "";
-                speciesField.style.display = "none";
+                f4.innerHTML = "";
+                f4.style.display = "none";
             }
             if (profile.focus !== "") {
-                focusField.innerHTML = "<strong>Focus:</strong> " + profile.focus;
-                focusField.style.display = "block";
+                f5.innerHTML = "<strong>Focus:</strong> " + profile.focus;
+                f5.style.display = "block";
             } else {
-                focusField.innerHTML = "";
-                focusField.style.display = "none";
+                f5.innerHTML = "";
+                f5.style.display = "none";
             }
             if (profile.activity !== "") {
-                activityField.innerHTML = "<strong>Activity:</strong> " + profile.activity;
-                activityField.style.display = "block";
+                f6.innerHTML = "<strong>Activity:</strong> " + profile.activity;
+                f6.style.display = "block";
             } else {
-                activityField.innerHTML = "";
-                activityField.style.display = "none";
+                f6.innerHTML = "";
+                f6.style.display = "none";
             }
 
             if (profile.species !== "" || profile.focus !== "" || profile.activity !== "") {
@@ -441,33 +463,33 @@
 
             // Step 2 fields
             var sec2 = document.getElementById("section2");
-            var actionField = document.getElementById("field-actionField");
-            var personalGoalField = document.getElementById("field-personalGoal");
-            var frequencyField = document.getElementById("field-frequency");
+            var f7 = document.getElementById("field-pledge");
+            var f8 = document.getElementById("field-goal");
+            var f9 = document.getElementById("field-frequency");
 
-            if (profile.actionField !== "") {
-                actionField.innerHTML = "<strong>Action Pledge:</strong> " + profile.actionField;
-                actionField.style.display = "block";
+            if (profile.pledge !== "") {
+                f7.innerHTML = "<strong>Pledge:</strong> " + profile.pledge;
+                f7.style.display = "block";
             } else {
-                actionField.innerHTML = "";
-                actionField.style.display = "none";
+                f7.innerHTML = "";
+                f7.style.display = "none";
             }
-            if (profile.personalGoal !== "") {
-                personalGoalField.innerHTML = "<strong>Personal Goal:</strong> " + profile.personalGoal;
-                personalGoalField.style.display = "block";
+            if (profile.goal !== "") {
+                f8.innerHTML = "<strong>Goal:</strong> " + profile.goal;
+                f8.style.display = "block";
             } else {
-                personalGoalField.innerHTML = "";
-                personalGoalField.style.display = "none";
+                f8.innerHTML = "";
+                f8.style.display = "none";
             }
             if (profile.frequency !== "") {
-                frequencyField.innerHTML = "<strong>Frequency:</strong> " + profile.frequency;
-                frequencyField.style.display = "block";
+                f9.innerHTML = "<strong>Frequency:</strong> " + profile.frequency;
+                f9.style.display = "block";
             } else {
-                frequencyField.innerHTML = "";
-                frequencyField.style.display = "none";
+                f9.innerHTML = "";
+                f9.style.display = "none";
             }
 
-            if (profile.actionField !== "" || profile.personalGoal !== "" || profile.frequency !== "") {
+            if (profile.pledge !== "" || profile.goal !== "" || profile.frequency !== "") {
                 sec2.classList.add("revealed");
                 anyShown = true;
             } else {
@@ -486,13 +508,13 @@
         function updateProgress() {
             var answered = 0;
             if (profile.fullName !== "") answered++;
-            if (profile.userName !== "") answered++;
+            if (profile.username !== "") answered++;
             if (profile.role !== "") answered++;
             if (profile.species !== "") answered++;
             if (profile.focus !== "") answered++;
             if (profile.activity !== "") answered++;
-            if (profile.actionField !== "") answered++;
-            if (profile.personalGoal !== "") answered++;
+            if (profile.pledge !== "") answered++;
+            if (profile.goal !== "") answered++;
             if (profile.frequency !== "") answered++;
 
             var percent = Math.round((answered / totalQuestions) * 100);

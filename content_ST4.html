@@ -6,7 +6,7 @@
     <title>BlueFuture | Sustainable Fishing & Marine Conservation</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Page-specific styles (only what's not in global CSS) -->
+    <!-- Page-specific styles -->
     <style>
         /* Hero header for this page */
         .content-hero {
@@ -34,29 +34,24 @@
             margin-bottom: 0;
         }
 
-        .go-top {
-            position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #00a6c8;
-        color: white;
-        border: none;
-        border-radius: 30px;        
-        padding: 12px 20px;         
-        font-size: 0.9rem;          
-        font-weight: 600;           
-        cursor: pointer;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        transition: background-color 0.3s, transform 0.3s;
-    }
+        .go-top{
+            position:fixed;
+            bottom:32px;
+            right:32px;
+            background-color:#0d2b4e;
+            color:#ffffff;
+            font-size:13px;
+            font-weight:700;
+            text-decoration:none;
+            padding:10px 16px;
+            border-radius:8px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.20);
+            transition:background-color 0.2s ease;
+                
+        }
 
-        .go-top:hover {
-            background-color: #003b73;
-            transform: translateY(-3px);
+        .go-top:hover{
+            background-color:#1565a8;
         }
 
         /* Make images fit better in content */
@@ -74,7 +69,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER (shared template) ===== -->
+    <!--HEADER-->
     <header>
         <a href="home.html" class="logo">
             <img src="assets/images/logo.svg" alt="BlueFuture logo">
@@ -93,7 +88,7 @@
         </nav>
     </header>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!--MAIN CONTENT-->
     <main>
 
         <!-- Page header -->
@@ -103,13 +98,12 @@
             <p class="subtitle">Understanding overfishing, sustainable practices and protecting our oceans</p>
         </div>
 
-        <!-- Content layout (uses global CSS classes) -->
+        <!-- Content layout -->
         <div class="content-layout">
 
-            <!-- ===== SIDEBAR ===== -->
+            <!-- SIDEBAR  -->
             <aside class="article-sidebar">
                 <div class="article-menu">
-                    <!-- FIXED: Changed from h3 to h2 to fix heading structure (h1 -> h2) -->
                     <h2 style="font-size:1rem; color:#003b73; margin-bottom:15px;">In this article</h2>
                     <ol>
                         <li><a href="#section1">What is overfishing?</a></li>
@@ -122,8 +116,8 @@
                 </div>
             </aside>
 
-            <!-- ===== ARTICLE CONTENT ===== -->
-            <div class="article-content">
+            <!--  ARTICLE CONTENT  -->
+            <article class="article-content">
 
                 <!-- Section 1 -->
                 <section id="section1">
@@ -234,27 +228,26 @@
                     <p class="image-caption">Figure: The future of ocean protection depends on sustainable practices and global cooperation (Ref: Royalty-free image placeholder)</p>
                 </section>
 
-                <div>
+                <section style="text-align:center; margin-top:30px;">
                     <p>
                         Innovation, sustainable aquaculture and global cooperation are key to
                         ensuring our oceans continue to thrive for future generations. By taking
                         action now, we can protect marine biodiversity and support sustainable
                         development for all.
                     </p>
-                </div>
+                </section>
 
-            </div>
-            <!-- end article-content -->
+            </article>
+           
 
         </div>
-        <!-- end content-layout -->
 
     </main>
 
-    <!-- ===== GO TO TOP BUTTON ===== -->
+    <!--  GO TO TOP BUTTON  -->
     <a href="#top" class="go-top">Back to Top</a>
 
-    <!-- ===== FOOTER (shared template) ===== -->
+    <!--  FOOTER  -->
     <footer class="site-footer">
         <div class="footer-container">
 
