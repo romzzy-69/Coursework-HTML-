@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    BlueFuture - SDG 14: Life Below Water
    Global stylesheet
    Team: CORAL
@@ -472,44 +472,47 @@ select:focus-visible {
 }
 
 /*------Content page styling------*/
-.student-content { background-color: var(--white); }
+.student-content { background-color: #f5f7fa; }
 
+/* Hero banner */
 .content-hero {
-  background-color: var(--primary-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 55px 20px;
+  background-color: #003b73;
+  padding: 48px 60px;
 }
 
 .content-hero p {
-  margin-bottom: 12px;
-  color: var(--secondary-blue);
-  font-size: 0.75rem;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: #00cfff;
+  margin: 0 0 12px;
 }
 
 .content-hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
   line-height: 1.2;
-  color: var(--white);
 }
 
+/* Main layout grid */
 .content-layout {
-  width: min(1150px, 90%);
-  margin: 0 auto;
-  padding: 45px 0 80px;
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 45px;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 40px;
+  box-sizing: border-box;
   align-items: start;
 }
 
+/* Sidebar */
 .article-sidebar {
   position: sticky;
   top: 130px;
-  margin-top: 35px;
 }
 
 .article-menu {
@@ -547,84 +550,105 @@ select:focus-visible {
   color: var(--secondary-blue);
 }
 
-.article-content { min-width: 0; }
-            
+/* Article content card */
+.article-content {
+  min-width: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 48px 60px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
 .article-content section {
   margin-bottom: 55px;
   scroll-margin-top: 120px;
 }
 
+.article-content section:first-child {
+  margin-top: 0;
+}
+
 .article-content h2 {
-  color: var(--primary-blue);
-  margin-bottom: 18px;
-  font-size: 1.55rem;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0d2b4e;
+  margin: 48px 0 12px;
+  border-bottom: 2px solid #eaf4fb;
+  padding-bottom: 10px;
+}
+
+.article-content section:first-child h2 {
+  margin-top: 0;
 }
 
 .article-content p {
-  color: var(--dark-text);
-  line-height: 1.8;
-  margin-bottom: 24px;
+  font-size: 15px;
+  color: #3a4a5a;
+  line-height: 1.75;
+  margin: 0 0 16px;
 }
 
-.article-content ul li{
-  color: var(--muted-text);
-  font-size:15px;
-  line-height:1.75;
-  margin-bottom:6px;
-
+.article-content ul li {
+  font-size: 15px;
+  color: #3a4a5a;
+  line-height: 1.75;
+  margin-bottom: 6px;
 }
 
+/* Article images */
 .article-image {
-  display: block;
   width: 100%;
-  max-height: 430px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 12px;
-                box-shadow: var(--shadow);
-            }
+  border-radius: 10px;
+  display: block;
+  margin: 20px 0 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
 
 .image-caption {
+  font-size: 12px;
+  color: #7a8a9a;
   text-align: center;
-  font-size: 0.75rem;
-  margin-top: 8px;
-  color: var(--muted-text);
+  font-style: italic;
+  margin: 0 0 32px;
 }
 
-.callout{
-  background-color:#eaf4fb;
-  border-left:4px solid #0d2b4e;
-  border-radius:6px;
-  padding:16px 20px;
-  margin:20px 0;
+/* Callout box */
+.callout {
+  background-color: #eaf4fb;
+  border-left: 4px solid #0d2b4e;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 20px 0;
 }
 
-.callout p{
-  margin:0;
-  font-size:14px;
-  color:#0d2b4e;
-  font-weight:600;
+.callout p {
+  margin: 0;
+  font-size: 14px;
+  color: #0d2b4e;
+  font-weight: 600;
 }
 
-            /* "GO TO TOP" BUTTON STYLING (No JS required) */
-.go-top{
-  position:fixed;
-  bottom:32px;
-  right:32px;
-  background-color:#0d2b4e;
-  color:#ffffff;
-  font-size:13px;
-  font-weight:700;
-  text-decoration:none;
-  padding:10px 16px;
-  border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.20);
-  transition:background-color 0.2s ease;
-                
-  }
+/* "GO TO TOP" BUTTON STYLING (No JS required) */
+.go-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: #0d2b4e;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+  transition: background-color 0.2s ease;
+}
 
-  .go-top:hover{
-    background-color:#1565a8;
-  }
+.go-top:hover {
+  background-color: #1565a8;
+}
 
 @media (max-width: 800px) {
   .content-layout {
