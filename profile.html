@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueFuture | User Profile</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Profile page styles - only for this page */
+        .profile-layout {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+        }
+
+        .profile-steps {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .profile-card {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .step-item {
+            border: 2px solid #dcecf5;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        .step-complete {
+            border-color: #2a9d8f;
+            background: #edf9f5;
+        }
+
+        .step-skipped {
+            border-color: #ff6b6b;
+            background: #fff2f2;
+        }
+
+        .step-buttons button {
+            margin-right: 5px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+        }
+
+        .btn-skip {
+            background: transparent;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .btn-skip:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 14px;
+            background: #e4eef6;
+            border-radius: 20px;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #00a6c8;
+            border-radius: 20px;
+        }
+
+        .profile-section {
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .profile-section.revealed {
+            display: block;
+        }
+
+        .profile-field {
+            margin: 4px 0;
+        }
+
+        @media (max-width: 800px) {
+            .profile-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo">
+            <span>BlueFuture</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="ais.html">AIS</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1 style="text-align:center;">Build Your Ocean Advocate Profile</h1>
+            <p style="text-align:center; max-width:750px; margin:0 auto 30px;">
+                Answer some questions to build your profile. You can skip questions
+                and come back to them later.
+            </p>
+
+            <div class="profile-layout">
+
+                <!-- Left side: Steps -->
+                <div class="profile-steps">
+                    <h2>Profile Steps</h2>
+
+                    <div class="step-item" id="stepItem0">
+                        <h3>1. Personal Details</h3>
+                        <p id="status0">Not started</p>
+                        <div class="step-buttons">
+                            <button onclick="startStep(0)">Start</button>
+                            <button class="btn-skip" onclick="skipStep(0)">Skip step</button>
+                        </div>
+                    </div>
+
+                    <div class="step-item" id="stepItem1">
+                        <h3>2. Ocean Interests</h3>
+                        <p id="status1">Not started</p>
+                        <div class="step-buttons">
+                            <button onclick="startStep(1)" id="startBtn1" disabled>Start</button>
+                            <button class="btn-skip" onclick="skipStep(1)" id="skipBtn1" disabled>Skip step</button>
+                        </div>
+                    </div>
+
+                    <div class="step-item" id="stepItem2">
+                        <h3>3. Actions &amp; Goals</h3>
+                        <p id="status2">Not started</p>
+                        <div class="step-buttons">
+                            <button onclick="startStep(2)" id="startBtn2" disabled>Start</button>
+                            <button class="btn-skip" onclick="skipStep(2)" id="skipBtn2" disabled>Skip step</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:15px;">
+                        <p><span id="stepCounter">Step 0 of 3 attempted</span>  <span id="percentText">0%</span></p>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side: Profile display -->
+                <div class="profile-card">
+                    <h2>Your Profile</h2>
+                    <p id="emptyMsg">Nothing here yet — start Step 1.</p>
+
+                    <div class="profile-section" id="section0">
+                        <h3>Personal Details</h3>
+                        <p class="profile-field" id="field-fullName"></p>
+                        <p class="profile-field" id="field-userName"></p>
+                        <p class="profile-field" id="field-role"></p>
+                    </div>
+
+                    <div class="profile-section" id="section1">
+                        <h3>Ocean Interests</h3>
+                        <p class="profile-field" id="field-species"></p>
+                        <p class="profile-field" id="field-focus"></p>
+                        <p class="profile-field" id="field-activity"></p>
+                    </div>
+
+                    <div class="profile-section" id="section2">
+                        <h3>Actions &amp; Goals</h3>
+                        <p class="profile-field" id="field-actionField"></p>
+                        <p class="profile-field" id="field-personalGoal"></p>
+                        <p class="profile-field" id="field-frequency"></p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="home.html" class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="BlueFuture logo">
+                    <span>BlueFuture</span>
+                </a>
+                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Coursework Links</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                    <a href="validation_ST1.html">ST1: Validation</a>
+                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                    <a href="validation_ST2.html">ST2: Validation</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Team CORAL</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                    <a href="validation_ST3.html">ST3: Validation</a>
+                    <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+                    <a href="validation_ST4.html">ST4: Validation</a>
+                    <a href="accessibility.html">Accessibility / Compliance</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Store profile data
+        var profile = {
+            fullName: "",
+            userName: "",
+            role: "",
+            species: "",
+            focus: "",
+            activity: "",
+            actionField: "",      // changed from "actionPledge"
+            personalGoal: "",
+            frequency: ""
+        };
+
+        var stepDone = [false, false, false];
+        var totalQuestions = 9;
+
+        // Function to start a step - uses prompt() just like lecture examples
+        function startStep(stepNum) {
+            if (stepNum === 0) {
+                var name = prompt("What is your full name?");
+                if (name !== null && name.trim() !== "") {
+                    profile.fullName = name.trim();
+                }
+                var user = prompt("Choose a username for your profile:");
+                if (user !== null && user.trim() !== "") {
+                    profile.userName = user.trim();
+                }
+                var role = prompt("What is your role (e.g. Student, Ocean Advocate)?");
+                if (role !== null && role.trim() !== "") {
+                    profile.role = role.trim();
+                }
+            } else if (stepNum === 1) {
+                var species = prompt("What is your favourite marine species?");
+                if (species !== null && species.trim() !== "") {
+                    profile.species = species.trim();
+                }
+                var focus = prompt("Which conservation focus interests you most?");
+                if (focus !== null && focus.trim() !== "") {
+                    profile.focus = focus.trim();
+                }
+                var activity = prompt("What ocean-related activity do you enjoy most?");
+                if (activity !== null && activity.trim() !== "") {
+                    profile.activity = activity.trim();
+                }
+            } else if (stepNum === 2) {
+                var action = prompt("What is one action you pledge for ocean conservation?");
+                if (action !== null && action.trim() !== "") {
+                    profile.actionField = action.trim();
+                }
+                var goal = prompt("What is a personal goal related to SDG 14?");
+                if (goal !== null && goal.trim() !== "") {
+                    profile.personalGoal = goal.trim();
+                }
+                var frequency = prompt("How often will you take action? (e.g. weekly, monthly)");
+                if (frequency !== null && frequency.trim() !== "") {
+                    profile.frequency = frequency.trim();
+                }
+            }
+
+            stepDone[stepNum] = true;
+            updateStatus(stepNum);
+            updateDisplay();
+            updateProgress();
+            enableNext(stepNum);
+        }
+
+        // Skip a whole step
+        function skipStep(stepNum) {
+            stepDone[stepNum] = true;
+            if (stepNum === 0) {
+                profile.fullName = "";
+                profile.userName = "";
+                profile.role = "";
+            } else if (stepNum === 1) {
+                profile.species = "";
+                profile.focus = "";
+                profile.activity = "";
+            } else if (stepNum === 2) {
+                profile.actionField = "";
+                profile.personalGoal = "";
+                profile.frequency = "";
+            }
+            updateStatus(stepNum);
+            updateDisplay();
+            updateProgress();
+            enableNext(stepNum);
+        }
+
+        // Enable next step buttons
+        function enableNext(stepNum) {
+            var next = stepNum + 1;
+            if (next < 3) {
+                document.getElementById("startBtn" + next).disabled = false;
+                document.getElementById("skipBtn" + next).disabled = false;
+            }
+        }
+
+        // Update status text for a step
+        function updateStatus(stepNum) {
+            var statusEl = document.getElementById("status" + stepNum);
+            var itemEl = document.getElementById("stepItem" + stepNum);
+
+            // Count answered questions in this step
+            var keys = [];
+            if (stepNum === 0) keys = ["fullName", "userName", "role"];
+            else if (stepNum === 1) keys = ["species", "focus", "activity"];
+            else if (stepNum === 2) keys = ["actionField", "personalGoal", "frequency"];
+
+            var count = 0;
+            for (var i = 0; i < keys.length; i++) {
+                if (profile[keys[i]] !== "") {
+                    count++;
+                }
+            }
+
+            itemEl.classList.remove("step-complete", "step-skipped");
+
+            if (count === 3) {
+                statusEl.textContent = "Completed";
+                itemEl.classList.add("step-complete");
+            } else if (count === 0) {
+                statusEl.textContent = "Skipped — return anytime";
+                itemEl.classList.add("step-skipped");
+            } else {
+                statusEl.textContent = count + "/3 answered — finish later";
+                itemEl.classList.add("step-skipped");
+            }
+        }
+
+        // Update the profile display on the right
+        function updateDisplay() {
+            var anyShown = false;
+
+            // Step 0 fields
+            var sec0 = document.getElementById("section0");
+            var fullNameField = document.getElementById("field-fullName");
+            var userNameField = document.getElementById("field-userName");
+            var roleField = document.getElementById("field-role");
+
+            if (profile.fullName !== "") {
+                fullNameField.innerHTML = "<strong>Name:</strong> " + profile.fullName;
+                fullNameField.style.display = "block";
+            } else {
+                fullNameField.innerHTML = "";
+                fullNameField.style.display = "none";
+            }
+            if (profile.userName !== "") {
+                userNameField.innerHTML = "<strong>Username:</strong> " + profile.userName;
+                userNameField.style.display = "block";
+            } else {
+                userNameField.innerHTML = "";
+                userNameField.style.display = "none";
+            }
+            if (profile.role !== "") {
+                roleField.innerHTML = "<strong>Role:</strong> " + profile.role;
+                roleField.style.display = "block";
+            } else {
+                roleField.innerHTML = "";
+                roleField.style.display = "none";
+            }
+
+            if (profile.fullName !== "" || profile.userName !== "" || profile.role !== "") {
+                sec0.classList.add("revealed");
+                anyShown = true;
+            } else {
+                sec0.classList.remove("revealed");
+            }
+
+            // Step 1 fields
+            var sec1 = document.getElementById("section1");
+            var speciesField = document.getElementById("field-species");
+            var focusField = document.getElementById("field-focus");
+            var activityField = document.getElementById("field-activity");
+
+            if (profile.species !== "") {
+                speciesField.innerHTML = "<strong>Species:</strong> " + profile.species;
+                speciesField.style.display = "block";
+            } else {
+                speciesField.innerHTML = "";
+                speciesField.style.display = "none";
+            }
+            if (profile.focus !== "") {
+                focusField.innerHTML = "<strong>Focus:</strong> " + profile.focus;
+                focusField.style.display = "block";
+            } else {
+                focusField.innerHTML = "";
+                focusField.style.display = "none";
+            }
+            if (profile.activity !== "") {
+                activityField.innerHTML = "<strong>Activity:</strong> " + profile.activity;
+                activityField.style.display = "block";
+            } else {
+                activityField.innerHTML = "";
+                activityField.style.display = "none";
+            }
+
+            if (profile.species !== "" || profile.focus !== "" || profile.activity !== "") {
+                sec1.classList.add("revealed");
+                anyShown = true;
+            } else {
+                sec1.classList.remove("revealed");
+            }
+
+            // Step 2 fields
+            var sec2 = document.getElementById("section2");
+            var actionField = document.getElementById("field-actionField");
+            var personalGoalField = document.getElementById("field-personalGoal");
+            var frequencyField = document.getElementById("field-frequency");
+
+            if (profile.actionField !== "") {
+                actionField.innerHTML = "<strong>Action Pledge:</strong> " + profile.actionField;
+                actionField.style.display = "block";
+            } else {
+                actionField.innerHTML = "";
+                actionField.style.display = "none";
+            }
+            if (profile.personalGoal !== "") {
+                personalGoalField.innerHTML = "<strong>Personal Goal:</strong> " + profile.personalGoal;
+                personalGoalField.style.display = "block";
+            } else {
+                personalGoalField.innerHTML = "";
+                personalGoalField.style.display = "none";
+            }
+            if (profile.frequency !== "") {
+                frequencyField.innerHTML = "<strong>Frequency:</strong> " + profile.frequency;
+                frequencyField.style.display = "block";
+            } else {
+                frequencyField.innerHTML = "";
+                frequencyField.style.display = "none";
+            }
+
+            if (profile.actionField !== "" || profile.personalGoal !== "" || profile.frequency !== "") {
+                sec2.classList.add("revealed");
+                anyShown = true;
+            } else {
+                sec2.classList.remove("revealed");
+            }
+
+            // Hide empty message if anything shown
+            if (anyShown) {
+                document.getElementById("emptyMsg").style.display = "none";
+            } else {
+                document.getElementById("emptyMsg").style.display = "block";
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            var answered = 0;
+            if (profile.fullName !== "") answered++;
+            if (profile.userName !== "") answered++;
+            if (profile.role !== "") answered++;
+            if (profile.species !== "") answered++;
+            if (profile.focus !== "") answered++;
+            if (profile.activity !== "") answered++;
+            if (profile.actionField !== "") answered++;
+            if (profile.personalGoal !== "") answered++;
+            if (profile.frequency !== "") answered++;
+
+            var percent = Math.round((answered / totalQuestions) * 100);
+            document.getElementById("progressFill").style.width = percent + "%";
+            document.getElementById("percentText").textContent = percent + "%";
+
+            var attempted = 0;
+            if (stepDone[0]) attempted++;
+            if (stepDone[1]) attempted++;
+            if (stepDone[2]) attempted++;
+            document.getElementById("stepCounter").textContent = "Step " + attempted + " of 3 attempted";
+        }
+    </script>
+
+</body>
+</html>
