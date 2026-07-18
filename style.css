@@ -561,9 +561,17 @@ select:focus-visible {
 }
 
 .article-content p {
-  color: var(--muted-text);
+  color: var(--dark-text);
   line-height: 1.8;
   margin-bottom: 24px;
+}
+
+.article-content ul li{
+  color: var(--muted-text);
+  font-size:15px;
+  line-height:1.75;
+  margin-bottom:6px;
+
 }
 
 .article-image {
