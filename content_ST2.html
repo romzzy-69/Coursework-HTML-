@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean Pollution & Plastic Waste | BlueFuture</title>
+    <link rel="stylesheet" href="style.css">
     <style>
 
             *{
@@ -50,47 +51,6 @@
                     box-sizing:border-box;
                     align-items:start;
 
-            }
-
-            .content-sidebar{
-                background-color:#eaf4fb;
-                border-left:4px solid #00cfff;
-                border-radius:8px;
-                padding:20px;
-                position:sticky;
-                top:24px;
-            }
-
-            .content-sidebar h2{
-                font-size:13px;
-                font-weight:700;
-                color:#0d2b4e;
-                margin:0 0 14px;
-
-            }
-
-            .content-sidebar ul{
-                list-style:none;
-                margin:0;
-                padding:0;
-            }
-
-            .content-sidebar ul li{
-                margin-bottom:10px;
-
-            }
-
-            .content-sidebar ul li a{
-                font-size:13px;
-                color:#1565a8;
-                text-decoration:none;
-                display:block;
-                line-height:1.4;
-            }
-
-            .content-sidebar ul li a:hover{
-                text-decoration:underline;
-                color:#0d2b4e;
             }
 
             .content-main{
@@ -182,129 +142,11 @@
                 color:#0d2b4e;
                 font-weight:600;
             }
-            /* Header */
-header {
-    background-color: #003b73;
-    min-height: 72px;
-    padding: 0 4%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.logo:hover { color: #00a6c8; }
-
-nav { display: flex; align-items: center; }
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 24px 0 8px;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover { color: #00a6c8; }
-
-.nav-links a.active {
-    color: #00a6c8;
-    border-bottom: 2px solid #00a6c8;
-}
-
-/* Footer */
-footer {
-    background-color: #003b73;
-    color: #ffffff;
-    padding: 0;
-    margin-top: 60px;
-}
-
-.footer-container {
-    max-width: 1050px;
-    margin: 0 auto;
-    padding: 42px 8%;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 70px;
-    align-items: start;
-}
-
-.footer-column h3 {
-    color: #ffffff;
-    font-size: 16px;
-    margin-bottom: 16px;
-}
-
-.footer-brand p {
-    max-width: 230px;
-    margin-top: 14px;
-    color: #c5d9eb;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.footer-links a {
-    color: #b8d2e8;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover { color: #ffffff; }
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 18px 8%;
-    text-align: center;
-}
-
-.footer-bottom p {
-    margin: 0;
-    color: #8fb3d1;
-    font-size: 13px;
-}
+            
     </style>
 </head>
 <body>
-    <div id="top"></div>
-    <header>
+    <header id="Top">
     <a href="index.html" class="logo">
         <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
         BlueFuture
@@ -327,19 +169,19 @@ footer {
         <h1>Ocean Pollution & Plastic Waste</h1>
     </div>
     <!--Left-->
-    <div class="content-wrapper">
-        <div class="content-sidebar">
-            <h2>In this article</h2>
-
-            <ul>
-                <li><a href="#section1" >1. What is ocean pollution?</a></li>
-                <li><a href="#section2" >2. Plastic waste and microplastics </a></li>
-                <li><a href="#section3" >3. Oil spills and chemical waste</a></li>
-                <li><a href="#section4" >4. Effects on marine animals</a></li>
-                <li><a href="#section5" >5. What students and communities can do</a></li>
-            </ul>
-
-        </div>
+    <div class="content-layout">
+        <div class="article-sidebar">
+    <div class="article-menu">
+        <h2>In this article</h2>
+        <ol>
+            <li><a href="#section1">What is ocean pollution?</a></li>
+            <li><a href="#section2">Plastic waste and microplastics</a></li>
+            <li><a href="#section3">Oil spills and chemical waste</a></li>
+            <li><a href="#section4">Effects on marine animals</a></li>
+            <li><a href="#section5">What students and communities can do</a></li>
+        </ol>
+    </div>
+</div>
         <!--Right-->
         <div class="content-main">
             <div id="section1" class="first-section">
@@ -420,11 +262,11 @@ footer {
         </div>
     </div>
     <a href="#top" class="go-top">Top</a>
-    <footer>
+   <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-column footer-brand">
             <a href="index.html" class="footer-logo">
-                <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+                <img src="assets/images/logo.svg" alt="BlueFuture logo">
                 BlueFuture
             </a>
             <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
@@ -445,7 +287,7 @@ footer {
                 <a href="validation_ST3.html">ST3: Validation</a>
                 <a href="pageEditor_ST4.html">ST4: Page Editor</a>
                 <a href="validation_ST4.html">ST4: Validation</a>
-                <a href="accessibility.html">Accessibility / Compliance</a>
+                <a href="accessibility.html" class="accessibility-link">Accessibility / Compliance</a>
             </div>
         </div>
     </div>
