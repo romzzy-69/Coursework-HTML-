@@ -1,283 +1,516 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlueFuture</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <!-- 
+      =========================================
+      PAGE-SPECIFIC STYLES FOR HOME PAGE
+      These styles format the hero section, mission cards, 
+      and learn more grid exclusively for this page.
+      ========================================= 
+    -->
+    <style>
+      /* 1. Hero Section Layout and Background */
+      .hero {
+        background-image:
+          linear-gradient(rgba(0, 59, 115, 0.55), rgba(0, 59, 115, 0.55)),
+          url("assets/images/Turtle.jfif");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
 
+      /* 2. Hero Typography */
+      .hero h1 {
+        color: white;
+        font-size: 72px;
+      }
+
+      /* 3. Hero Subtext */
+      .hero p {
+        color: white;
+        font-size: 24px;
+      }
+
+      /* 4. Hero Call-to-Action Button */
+      .hero-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+        padding: 12px 24px;
+        background-color: var(--secondary-blue);
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 30px;
+        transition:
+          background-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      /* 5. Hero Button Hover State */
+      .hero-button:hover {
+        background-color: var(--accent-green);
+        transform: translateY(-3px);
+      }
+
+      /* 6. Core Missions Section Styling */
+      .missions-section {
+        background-color: var(--white);
+        padding: 60px 8%;
+      }
+
+      .missions-section .section-title {
+        color: var(--primary-blue);
+        margin-bottom: 8px;
+      }
+
+      .title-line {
+        width: 100px;
+        height: 3px;
+        margin: 0 auto 38px;
+        background-color: var(--secondary-blue);
+        border-radius: 10px;
+      }
+
+      .mission-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .mission-card {
+        overflow: hidden;
+        background-color: #edf8fc;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0, 59, 115, 0.18);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .mission-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 22px rgba(0, 59, 115, 0.22);
+      }
+
+      .mission-card > img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .mission-content {
+        padding: 22px;
+      }
+
+      .mission-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .mission-heading h3 {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      .mission-content p {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        line-height: 1.55;
+        margin-bottom: 18px;
+      }
+
+      .mission-content ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .mission-content li {
+        position: relative;
+        margin-bottom: 10px;
+        padding-left: 24px;
+        color: var(--muted-text);
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
+      .mission-content li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent-green);
+        font-weight: bold;
+      }
+
+      /* Learn More Section */
+      .learn-more-section {
+        background-color: #eef9fd;
+        padding: 70px 8%;
+      }
+
+      .learn-more-section .section-title {
+        margin-bottom: 8px;
+      }
+
+      .learn-more-section .section-description {
+        margin-bottom: 36px;
+      }
+
+      .article-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .article-card {
+        padding: 26px;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+        border-color: var(--secondary-blue);
+      }
+
+      .article-icon {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        border-radius: 50%;
+      }
+
+      .article-icon img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+
+      .coral-icon {
+        background-color: #dff6f2;
+      }
+      .pollution-article-icon {
+        background-color: #ffe7e7;
+      }
+      .biodiversity-article-icon {
+        background-color: #e4f1ff;
+      }
+      .fishing-article-icon {
+        background-color: #dff6fc;
+      }
+
+      .article-card h3 {
+        margin-bottom: 8px;
+        color: var(--primary-blue);
+        font-size: 1.05rem;
+        line-height: 1.4;
+      }
+
+      .article-card p {
+        margin-bottom: 14px;
+        color: var(--muted-text);
+        font-size: 0.85rem;
+      }
+
+      .article-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--secondary-blue);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition:
+          color 0.3s ease,
+          gap 0.3s ease;
+      }
+
+      .article-link:hover {
+        color: var(--accent-green);
+        gap: 10px;
+      }
+
+      /* Responsive overrides for Home Page */
+      @media (max-width: 900px) {
+        .mission-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .mission-cards {
+          grid-template-columns: 1fr;
+        }
+        .mission-card > img {
+          height: 210px;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <header>
-        <a href="home.html" class="logo">
-            <img src="assets/images/logo.svg" alt="BlueFuture logo">
-            <span>BlueFuture</span>
-        </a>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="home.html" class="active">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="ais.html">AIS</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="sitemap.html">Sitemap</a></li>
-            </ul>
-        </nav>
+      <a href="home.html" class="logo">
+        <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+        <span>BlueFuture</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="home.html" class="active">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="ais.html">AIS</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h1><center>BlueFuture</center></h1>
-            <p>Protect Our Oceans for Future Generations</p>
-            <a href="#missions" class="btn hero-button">
-                Explore SDG14
+      <section class="hero">
+        <h1>BlueFuture</h1>
+        <p>Protect Our Oceans for Future Generations</p>
+        <a href="#missions" class="btn hero-button">
+          Explore SDG14
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section id="missions" class="missions-section">
+        <div class="container">
+          <h2 class="section-title">Our Core Missions</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="mission-cards">
+          <article class="mission-card">
+            <img
+              src="assets/images/WasteBeach.jfif"
+              alt="Plastic pollution along an ocean shoreline"
+            />
+
+            <div class="mission-content">
+              <div class="mission-heading">
+                <h3>Ocean<br />Pollution</h3>
+              </div>
+
+              <p>
+                Millions of tons of plastic enter our oceans yearly. We must
+                reduce waste and support cleanup efforts to save marine life.
+              </p>
+
+              <ul>
+                <li>Eliminate single-use plastics</li>
+                <li>Support beach cleanups</li>
+                <li>Promote recycling policies</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Marine Biodiversity card -->
+          <article class="mission-card">
+            <img
+              src="assets/images/CoralReef.jfif"
+              alt="Colourful coral reef and fish underwater"
+            />
+
+            <div class="mission-content">
+              <div class="mission-heading">
+                <h3>Marine<br />Biodiversity</h3>
+              </div>
+
+              <p>
+                Coral reefs and endangered species are at risk due to climate
+                change. Protecting their habitats is crucial for ocean health.
+              </p>
+
+              <ul>
+                <li>Protect coral reef ecosystems</li>
+                <li>Establish marine sanctuaries</li>
+                <li>Save endangered species</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Sustainable Fishing card -->
+          <article class="mission-card">
+            <img
+              src="assets/images/BoatOcean.jfif"
+              alt="Fishing boat travelling across the ocean"
+            />
+
+            <div class="mission-content">
+              <div class="mission-heading">
+                <h3>Sustainable<br />Fishing</h3>
+              </div>
+
+              <p>
+                Overfishing depletes fish stocks faster than they can replenish.
+                Sustainable practices ensure food security and ocean balance.
+              </p>
+
+              <ul>
+                <li>End illegal and overfishing</li>
+                <li>Support local fishing communities</li>
+                <li>Choose sustainable seafood</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Learn More section -->
+      <section class="learn-more-section">
+        <div class="container">
+          <h2 class="section-title">Learn More About SDG 14</h2>
+
+          <p class="section-description">
+            Explore our dedicated topics researched and created by Team CORAL.
+          </p>
+
+          <div class="article-grid">
+            <!-- Student 1 -->
+            <article class="article-card">
+              <div class="article-icon coral-icon">
+                <img src="assets/icons/coral-reef.png" alt="" />
+              </div>
+
+              <h3>Coral Reefs &amp; Coastal Ecosystems</h3>
+
+              <p>Student 1 Content Page</p>
+
+              <a href="content_ST1.html" class="article-link">
+                Read article
                 <span aria-hidden="true">→</span>
-            </a>
-        </section>
+              </a>
+            </article>
 
-        <section id="missions" class="missions-section">
-            <div class="container">
-                <h2 class="section-title">Our Core Missions</h2>
-                <div class="title-line"></div>
-            </div>
+            <!-- Student 2 -->
+            <article class="article-card">
+              <div class="article-icon pollution-article-icon">
+                <img src="assets/icons/icons8-marine-pollution-64.png" alt="" />
+              </div>
 
-            <div class="mission-cards">
+              <h3>Ocean Pollution &amp; Plastic Waste</h3>
 
-                <article class="mission-card">
-                    <img
-                        src="assets/images/WasteBeach.jfif"
-                        alt="Plastic pollution along an ocean shoreline"
-                    >
+              <p>Student 2 Content Page</p>
 
-                    <div class="mission-content">
+              <a href="content_ST2.html" class="article-link">
+                Read article
+                <span aria-hidden="true">→</span>
+              </a>
+            </article>
 
-                        <div class="mission-heading">
-                            <h3>Ocean<br>Pollution</h3>
-                        </div>
+            <!-- Student 3 -->
+            <article class="article-card">
+              <div class="article-icon biodiversity-article-icon">
+                <img src="assets/icons/icons8-biodiversity-64.png" alt="" />
+              </div>
 
-                        <p>
-                            Millions of tons of plastic enter our oceans yearly.
-                            We must reduce waste and support cleanup efforts to
-                            save marine life.
-                        </p>
+              <h3>Marine Biodiversity &amp; Endangered Species</h3>
 
-                        <ul>
-                            <li>Eliminate single-use plastics</li>
-                            <li>Support beach cleanups</li>
-                            <li>Promote recycling policies</li>
-                        </ul>
+              <p>Student 3 Content Page</p>
 
-                    </div>
-                </article>
+              <a href="content_ST3.html" class="article-link">
+                Read article
+                <span aria-hidden="true">→</span>
+              </a>
+            </article>
 
-                <!-- Marine Biodiversity card -->
-                <article class="mission-card">
-                    <img
-                        src="assets/images/Coral Reef.jfif"
-                        alt="Colourful coral reef and fish underwater"
-                    >
+            <!-- Student 4 -->
+            <article class="article-card">
+              <div class="article-icon fishing-article-icon">
+                <img src="assets/icons/icons8-fish-64.png" alt="" />
+              </div>
 
-                    <div class="mission-content">
+              <h3>Sustainable Fishing & Marine Conservation</h3>
 
-                        <div class="mission-heading">
-                            <h3>Marine<br>Biodiversity</h3>
-                        </div>
+              <p>Student 4 Content Page</p>
 
-                        <p>
-                            Coral reefs and endangered species are at risk due to
-                            climate change. Protecting their habitats is crucial
-                            for ocean health.
-                        </p>
-
-                        <ul>
-                            <li>Protect coral reef ecosystems</li>
-                            <li>Establish marine sanctuaries</li>
-                            <li>Save endangered species</li>
-                        </ul>
-
-                    </div>
-                </article>
-
-                <!-- Sustainable Fishing card -->
-                <article class="mission-card">
-                    <img
-                        src="assets/images/BoatOcean.jfif"
-                        alt="Fishing boat travelling across the ocean"
-                    >
-
-                    <div class="mission-content">
-
-                        <div class="mission-heading">
-                            <h3>Sustainable<br>Fishing</h3>
-                        </div>
-
-                        <p>
-                            Overfishing depletes fish stocks faster than they can
-                            replenish. Sustainable practices ensure food security
-                            and ocean balance.
-                        </p>
-
-                        <ul>
-                            <li>End illegal and overfishing</li>
-                            <li>Support local fishing communities</li>
-                            <li>Choose sustainable seafood</li>
-                        </ul>
-
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Learn More section -->
-        <section class="learn-more-section">
-            <div class="container">
-
-                <h2 class="section-title">Learn More About SDG 14</h2>
-
-                <p class="section-description">
-                    Explore our dedicated topics researched and created by Team CORAL.
-                </p>
-
-                <div class="article-grid">
-
-                    <!-- Student 1 -->
-                    <article class="article-card">
-                        <div class="article-icon coral-icon">
-                            <img
-                                src="assets/icons/coral-reef.png"
-                                alt=""
-                            >
-                        </div>
-
-                        <h3>Coral Reefs &amp; Coastal Ecosystems</h3>
-
-                        <p>Student 1 Content Page</p>
-
-                        <a href="content_ST1.html" class="article-link">
-                            Read article
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </article>
-
-                    <!-- Student 2 -->
-                    <article class="article-card">
-                        <div class="article-icon pollution-article-icon">
-                            <img
-                                src="assets/icons/icons8-marine-pollution-64.png"
-                                alt=""
-                            >
-                        </div>
-
-                        <h3>Ocean Pollution &amp; Plastic Waste</h3>
-
-                        <p>Student 2 Content Page</p>
-
-                        <a href="content_ST2.html" class="article-link">
-                            Read article
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </article>
-
-                    <!-- Student 3 -->
-                    <article class="article-card">
-                        <div class="article-icon biodiversity-article-icon">
-                            <img
-                                src="assets/icons/icons8-biodiversity-64.png"
-                                alt=""
-                            >
-                        </div>
-
-                        <h3>Marine Biodiversity &amp; Endangered Species</h3>
-
-                        <p>Student 3 Content Page</p>
-
-                        <a href="content_ST3.html" class="article-link">
-                            Read article
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </article>
-
-                    <!-- Student 4 -->
-                    <article class="article-card">
-                        <div class="article-icon fishing-article-icon">
-                            <img
-                                src="assets/icons/icons8-fish-64.png"
-                                alt=""
-                            >
-                        </div>
-
-                        <h3>Sustainable Fishing & Marine Conservation</h3>
-
-                        <p>Student 4 Content Page</p>
-
-                        <a href="content_ST4.html" class="article-link">
-                            Read article
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </article>
-
-                </div>
-            </div>
-        </section>
+              <a href="content_ST4.html" class="article-link">
+                Read article
+                <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-container">
+      <div class="footer-container">
+        <!-- Website information -->
+        <div class="footer-column footer-brand">
+          <a href="home.html" class="footer-logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+            <span>BlueFuture</span>
+          </a>
 
-            <!-- Website information -->
-            <div class="footer-column footer-brand">
-                <a href="home.html" class="footer-logo">
-                    <img src="assets/images/logo.svg" alt="BlueFuture logo">
-                    <span>BlueFuture</span>
-                </a>
-
-                <p>
-                    Protect marine ecosystems, reduce pollution,
-                    conserve biodiversity, and promote sustainable
-                    use of oceans.
-                </p>
-            </div>
-
-            <!-- Coursework links -->
-            <div class="footer-column">
-                <h3>Coursework Links</h3>
-
-                <div class="footer-links">
-                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
-                    <a href="validation_ST1.html">ST1: Validation</a>
-
-                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
-                    <a href="validation_ST2.html">ST2: Validation</a>
-                </div>
-            </div>
-
-            <!-- Team links -->
-            <div class="footer-column">
-                <h3>Team CORAL</h3>
-
-                <div class="footer-links">
-                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
-                    <a href="validation_ST3.html">ST3: Validation</a>
-
-                    <a href="pageEditor_ST4.html">ST4: Page Editor</a>
-                    <a href="validation_ST4.html">ST4: Validation</a>
-
-                    <a href="accessibility.html" class="accessibility-link">
-                        Accessibility / Compliance
-                    </a>
-                </div>
-            </div>
-
+          <p>
+            Protect marine ecosystems, reduce pollution, conserve biodiversity,
+            and promote sustainable use of oceans.
+          </p>
         </div>
 
-        <div class="footer-bottom">
-            <p>
-                &copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.
-            </p>
+        <!-- Coursework links -->
+        <div class="footer-column">
+          <h3>Coursework Links</h3>
+
+          <div class="footer-links">
+            <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+            <a href="validation_ST1.html">ST1: Validation</a>
+
+            <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+            <a href="validation_ST2.html">ST2: Validation</a>
+          </div>
         </div>
+
+        <!-- Team links -->
+        <div class="footer-column">
+          <h3>Team CORAL</h3>
+
+          <div class="footer-links">
+            <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+            <a href="validation_ST3.html">ST3: Validation</a>
+
+            <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+            <a href="validation_ST4.html">ST4: Validation</a>
+
+            <a href="accessibility.html" class="accessibility-link">
+              Accessibility / Compliance
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+      </div>
     </footer>
-
-</body>
+  </body>
 </html>

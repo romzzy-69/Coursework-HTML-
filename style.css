@@ -130,6 +130,7 @@ nav {
   font-weight: 500;
 
   padding: 24px 0 8px;
+  border-bottom: 2px solid transparent;
 
   transition:
     color 0.3s ease,
@@ -433,9 +434,7 @@ select:focus-visible {
     padding: 6px 0;
   }
 
-  .mission-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  
 }
 
 
@@ -465,338 +464,15 @@ select:focus-visible {
     text-align: center;
   }
 
-  .footer-links {
+  .footer-links {   
     justify-content: center;
   }
 
-  .mission-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .mission-card > img {
-    height: 210px;
-  }
+  
 }
 
-.hero{
-    background-image:
-        linear-gradient(
-            rgba(0, 59, 115, 0.55),
-            rgba(0, 59, 115, 0.55)
-        ),
-        url("assets/images/Turtle.jfif");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-}
-.hero h1 {
-  color: white;
-  font-size: 72px;
-}
-.hero p {
-  color: white;
-  font-size: 24px;
-}
-.hero-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  margin-top: 8px;
-  padding: 12px 24px;
-
-  background-color: var(--secondary-blue);
-  color: var(--white);
-
-  text-decoration: none;
-  font-weight: 700;
-
-  border-radius: 30px;
-
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.hero-button:hover {
-  background-color: var(--accent-green);
-  transform: translateY(-3px);
-}
-/* ---------- CORE MISSIONS SECTION ---------- */
-
-.missions-section {
-  background-color: var(--white);
-  padding: 60px 8%;
-}
-
-.missions-section .section-title {
-  color: var(--primary-blue);
-  margin-bottom: 8px;
-}
-
-.title-line {
-  width: 100px;
-  height: 3px;
-
-  margin: 0 auto 38px;
-
-  background-color: var(--secondary-blue);
-  border-radius: 10px;
-}
-
-.mission-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.mission-card {
-  overflow: hidden;
-
-  background-color: #edf8fc;
-
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 59, 115, 0.18);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.mission-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(0, 59, 115, 0.22);
-}
-
-.mission-card > img {
-  width: 100%;
-  height: 220px;
-
-  object-fit: cover;
-}
-
-.mission-content {
-  padding: 22px;
-}
-
-.mission-heading {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.mission-icon {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-  overflow: hidden;
-
-  border-radius: 8px;
-}
-
-.mission-icon img {
-  width: 22px;
-  height: 22px;
-
-  object-fit: contain;
-  display: block;
-}
-
-.mission-heading h3 {
-  margin: 0;
-  line-height: 1.15;
-}
-
-.pollution-icon {
-  background-color: #ffe7e7;
-  color: var(--coral-accent);
-}
-
-.biodiversity-icon {
-  background-color: #dff7f2;
-  color: var(--accent-green);
-}
-
-.fishing-icon {
-  background-color: #dff6fc;
-  color: var(--secondary-blue);
-}
-
-.mission-content p {
-  color: var(--muted-text);
-  font-size: 0.9rem;
-  line-height: 1.55;
-
-  margin-bottom: 18px;
-}
-
-.mission-content ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.mission-content li {
-  position: relative;
-
-  margin-bottom: 10px;
-  padding-left: 24px;
-
-  color: var(--muted-text);
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-.mission-content li::before {
-  content: "✓";
-
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  color: var(--accent-green);
-  font-weight: bold;
-}
-
-/* ---------- LEARN MORE SECTION ---------- */
-
-.learn-more-section {
-  background-color: #eef9fd;
-  padding: 70px 8%;
-}
-
-.learn-more-section .section-title {
-  margin-bottom: 8px;
-}
-
-.learn-more-section .section-description {
-  margin-bottom: 36px;
-}
-
-.article-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.article-card {
-  padding: 26px;
-
-  border: 2px solid transparent;
-  border-radius: 12px;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.article-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow);
-  border-color: var(--secondary-blue);
-}
-
-.article-icon {
-  width: 42px;
-  height: 42px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 18px;
-
-  border-radius: 50%;
-}
-
-.article-icon img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
-.coral-icon {
-  background-color: #dff6f2;
-}
-
-.pollution-article-icon {
-  background-color: #ffe7e7;
-}
-
-.biodiversity-article-icon {
-  background-color: #e4f1ff;
-}
-
-.fishing-article-icon {
-  background-color: #dff6fc;
-}
-
-.article-card h3 {
-  margin-bottom: 8px;
-
-  color: var(--primary-blue);
-  font-size: 1.05rem;
-  line-height: 1.4;
-}
-
-.article-card p {
-  margin-bottom: 14px;
-
-  color: var(--muted-text);
-  font-size: 0.85rem;
-}
-
-.article-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  color: var(--secondary-blue);
-
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-
-  transition:
-    color 0.3s ease,
-    gap 0.3s ease;
-}
-
-.article-link:hover {
-  color: var(--accent-green);
-  gap: 10px;
-}
-
-
-/* =========================================
-   STUDENT 1 CONTENT PAGE
-   ========================================= */
-
-.student-content {
-  background-color: var(--white);
-}
-
-/* ---------- PAGE TITLE ---------- */
+/*------Content page styling------*/
+.student-content { background-color: var(--white); }
 
 .content-hero {
   background-color: var(--primary-blue);
@@ -820,25 +496,15 @@ select:focus-visible {
   color: var(--white);
 }
 
-/* ---------- SIDEBAR + ARTICLE LAYOUT ---------- */
-
 .content-layout {
   width: min(1150px, 90%);
   margin: 0 auto;
   padding: 45px 0 80px;
-
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 45px;
-
-  /*
-    The sticky sidebar will stop when this container ends,
-    so it will not overlap the footer.
-  */
   align-items: start;
 }
-
-/* ---------- STICKY SIDEBAR ---------- */
 
 .article-sidebar {
   position: sticky;
@@ -881,19 +547,10 @@ select:focus-visible {
   color: var(--secondary-blue);
 }
 
-/* ---------- ARTICLE ---------- */
-
-.article-content {
-  min-width: 0;
-}
-
+.article-content { min-width: 0; }
+            
 .article-content section {
   margin-bottom: 55px;
-
-  /*
-    Prevents headings from hiding underneath a fixed header
-    when sidebar links are clicked.
-  */
   scroll-margin-top: 120px;
 }
 
@@ -915,8 +572,8 @@ select:focus-visible {
   max-height: 430px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: var(--shadow);
-}
+                box-shadow: var(--shadow);
+            }
 
 .image-caption {
   text-align: center;
@@ -925,20 +582,33 @@ select:focus-visible {
   color: var(--muted-text);
 }
 
-/* ---------- TABLET AND MOBILE ---------- */
+            /* "GO TO TOP" BUTTON STYLING (No JS required) */
+.go-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--secondary-blue);
+  color: var(--white);
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.go-to-top:hover {
+  background-color: var(--accent-green);
+  transform: translateY(-3px);
+}
 
 @media (max-width: 800px) {
   .content-layout {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-
-  .article-sidebar {
-    position: static;
-
-  }
-
-  .article-menu {
-    width: 100%;
-  }
+  .article-sidebar { position: static; }
+  .article-menu { width: 100%; }
 }
+
