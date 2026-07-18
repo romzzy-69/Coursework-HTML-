@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Action Impact Simulator</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("./assets/images/Coastline.jfif");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        transition: background-image 0.5s ease;
+      }
+
+      .ais-overlay {
+        min-height: 100vh;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 48px 60px;
+        box-sizing: border-box;
+      }
+
+      .ais-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+        margin: 36px 0;
+      }
+
+      .ais-card {
+        background-color: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+        border: 2px solid transparent;
+      }
+
+      .ais-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .ais-card-img-wrap {
+        position: relative;
+      }
+
+      .ais-card-img-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(
+          13,
+          42,
+          78,
+          0.12
+        ); /* Subtle blue tint overlay on image */
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .ais-card.selected .ais-card-img-wrap::after {
+        opacity: 1;
+      }
+
+      .ais-card-img-wrap img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .points {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        background-color: rgba(30, 30, 30, 0.75);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 12px;
+        border-radius: 6px;
+        z-index: 2; /* Make sure points overlay is on top of image overlay */
+      }
+
+      .ais-card-body {
+        padding: 18px 20px 22px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .ais-radio {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        border-radius: 50%;
+        border: 2px solid #b0bec5;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        margin-top: 3px;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .ais-card-text h2 {
+        color: #0d2b4e;
+        font-size: 17px;
+        font-weight: 700;
+        margin: 0 0 6px;
+      }
+
+      .ais-card-text p {
+        color: #6b7c8d;
+        font-size: 14px;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .ais-hero {
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .ais-hero h1 {
+        font-size: 32px;
+        color: #0d2b4e;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .ais-hero p {
+        color: #4a6070;
+        font-size: 16px;
+        margin: 0 auto;
+        max-width: 560px;
+      }
+
+      .ais-summary {
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px 32px;
+        text-align: center;
+      }
+
+      .ais-summary h2 {
+        font-size: 21px;
+        font-weight: 700;
+        color: #0d2b4e;
+        margin-bottom: 16px;
+      }
+      .score-number {
+        font-size: 64px;
+        font-weight: 700;
+        color: #0d2b4e;
+        line-height: 1;
+      }
+
+      .score-total {
+        font-size: 21px;
+        color: #6b7c8d;
+      }
+
+      .score-bar-fill {
+        background-color: #b0bec5;
+        height: 100%;
+        width: 0%;
+        border-radius: 99px;
+      }
+
+      .score-bar-track {
+        background-color: #e0e0e0;
+        border-radius: 99px;
+        height: 10px;
+        margin: 20px auto;
+        max-width: 600px;
+        overflow: hidden;
+      }
+
+      .impact-label {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #6b7c8d;
+        margin-bottom: 6px;
+      }
+
+      .impact-level {
+        font-size: 32px;
+        font-weight: 700;
+        color: #e05555;
+        margin: 0;
+      }
+      .impact-hint {
+        color: #6b7c8d;
+        font-size: 14px;
+        margin-top: 16px;
+      }
+
+      .ais-card.selected {
+        border: 2px solid #0d2b4e;
+        box-shadow: 0 0 0 3px rgba(13, 42, 78, 0.15);
+        background-color: #eaf4fb; /* Highlight background */
+      }
+
+      .ais-card.selected .ais-radio {
+        background-color: #0d2b4e;
+        border-color: #0d2b4e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .ais-card.selected .ais-radio::after {
+        content: "";
+        width: 5px;
+        height: 9px;
+        border: solid #ffffff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="home.html" class="logo">
+        <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+        <span>BlueFuture</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="ais.html" class="active">AIS</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="ais-overlay">
+      <div class="ais-hero">
+        <h1>SDG 14 Action Impact Simulator</h1>
+        <p>
+          Choose the actions you are willing to take and see how your choices
+          help protect our oceans.
+        </p>
+      </div>
+
+      <div class="ais-grid">
+        <!-- First Card-->
+        <div class="ais-card" data-points="25">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/BeachCleaning.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+25 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Join a beach cleanup</h2>
+              <p>Directly remove waste from coastal ecosystems.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Card-->
+        <div class="ais-card" data-points="20">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/Dolphin.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+20 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Choose sustainable seafood</h2>
+              <p>Support fisheries that don't overfish.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Third Card-->
+        <div class="ais-card" data-points="15">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/BoatOcean.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+15 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Avoid single-use plastics</h2>
+              <p>Cut out straws, bags, and disposable packaging daily.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth Card-->
+        <div class="ais-card" data-points="15">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/Whale.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+15 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Use a reusable water bottle</h2>
+              <p>Saves around 156 plastic bottles from the ocean every year.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth Card-->
+        <div class="ais-card" data-points="20">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/Turtle.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+20 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Support coral reef protection</h2>
+              <p>Donate to or advocate for marine protected areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sixth Card-->
+        <div class="ais-card" data-points="5">
+          <div class="ais-card-img-wrap">
+            <img
+              src="./assets/images/CoralReef.jfif"
+              alt="People Cleaning a Beach"
+            />
+            <span class="points">+5 points</span>
+          </div>
+          <div class="ais-card-body">
+            <div class="ais-radio"></div>
+            <div class="ais-card-text">
+              <h2>Spread awareness</h2>
+              <p>Educate others about marine life and SDG 14.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ais-summary">
+        <h2>Your Impact Score</h2>
+        <div>
+          <span class="score-number">0</span>
+          <span class="score-total"> / 100</span>
+        </div>
+        <div class="score-bar-track">
+          <div class="score-bar-fill"></div>
+        </div>
+
+        <p class="impact-label">Current Impact Level</p>
+        <p class="impact-level">Low</p>
+        <p class="impact-hint">
+          Select actions to see how you can help save our oceans.
+        </p>
+      </div>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <!-- Website information -->
+        <div class="footer-column footer-brand">
+          <a href="home.html" class="footer-logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+            <span>BlueFuture</span>
+          </a>
+
+          <p>
+            Protect marine ecosystems, reduce pollution, conserve biodiversity,
+            and promote sustainable use of oceans.
+          </p>
+        </div>
+
+        <!-- Coursework links -->
+        <div class="footer-column">
+          <h3>Coursework Links</h3>
+
+          <div class="footer-links">
+            <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+            <a href="validation_ST1.html">ST1: Validation</a>
+
+            <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+            <a href="validation_ST2.html">ST2: Validation</a>
+          </div>
+        </div>
+
+        <!-- Team links -->
+        <div class="footer-column">
+          <h3>Team CORAL</h3>
+
+          <div class="footer-links">
+            <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+            <a href="validation_ST3.html">ST3: Validation</a>
+
+            <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+            <a href="validation_ST4.html">ST4: Validation</a>
+
+            <a href="accessibility.html" class="accessibility-link">
+              Accessibility / Compliance
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+      </div>
+    </footer>
+
+    <script>
+      const cards = document.querySelectorAll(".ais-card");
+
+      const scoreNumber = document.querySelector(".score-number");
+      const scoreBarFill = document.querySelector(".score-bar-fill");
+      const impactLevel = document.querySelector(".impact-level");
+      const impactHint = document.querySelector(".impact-hint");
+
+      const max_score = 100;
+
+      function updateScore() {
+        let total = 0;
+        cards.forEach(function (card) {
+          if (card.classList.contains("selected")) {
+            total = total + parseInt(card.dataset.points);
+          }
+        });
+
+        scoreNumber.textContent = total;
+
+        scoreBarFill.style.width = (total / max_score) * 100 + "%";
+
+        if (total === 0) {
+          impactLevel.textContent = "Low";
+          impactLevel.style.color = "#e05555";
+          scoreBarFill.style.backgroundColor = "#b0bec5";
+          impactHint.textContent =
+            "Select actions to see how you can help save our oceans.";
+          document.body.style.backgroundImage =
+            "url(assets/images/Coastline.jfif)";
+        } else if (total <= 33) {
+          impactLevel.textContent = "Low";
+          impactLevel.style.color = "#e05555";
+          scoreBarFill.style.backgroundColor = "#e05555";
+          impactHint.textContent = "Good start! Every action counts.";
+          document.body.style.backgroundImage =
+            "url(assets/images/Coastline.jfif)";
+        } else if (total <= 66) {
+          impactLevel.textContent = "Medium";
+          impactLevel.style.color = "#e8a020";
+          scoreBarFill.style.backgroundColor = "#e8a020";
+          impactHint.textContent =
+            "Great effort! You are making a real difference.";
+          document.body.style.backgroundImage =
+            "url(assets/images/Mangrove.jfif)";
+        } else {
+          impactLevel.textContent = "High";
+          impactLevel.style.color = "#2eab6e";
+          scoreBarFill.style.backgroundColor = "#2eab6e";
+          impactHint.textContent =
+            "Outstanding! You are a true ocean champion.";
+          document.body.style.backgroundImage =
+            "url(assets/images/HealthyCoralReef.jfif)";
+        }
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          card.classList.toggle("selected");
+          updateScore();
+        });
+      });
+    </script>
+  </body>
+</html>
