@@ -5,6 +5,296 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlueFuture</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+      .gallery-intro {
+        text-align: center;
+        padding: 40px 8% 20px;
+      }
+      
+      .gallery-intro h1 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        width: min(1200px, 90%);
+        margin: 0 auto 60px;
+      }
+
+      .gallery-card {
+        position: relative;
+        background-color: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+      }
+
+      .card-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 240px;
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* JavaScript Driven Hover Overlay System */
+      .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 59, 115, 0.65);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+      }
+
+      /* Triggered solely by JavaScript event listeners */
+      .card-overlay.overlay-visible {
+        opacity: 1;
+      }
+
+      .view-details-btn {
+        background-color: transparent;
+        color: var(--white);
+        border: 2px solid var(--white);
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        pointer-events: none; /* Let the card handle the click */
+      }
+
+      .card-label {
+        padding: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: var(--primary-blue);
+        font-size: 1.15rem;
+        background-color: var(--white);
+      }
+
+      /* =========================================
+         EXTENDED VIEW MODAL (SIDE-BY-SIDE LAYOUT)
+         ========================================= */
+      .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-backdrop.modal-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .extended-modal {
+        background-color: var(--white);
+        width: min(900px, 90%);
+        height: 550px;
+        max-height: 90vh;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        transform: translateY(-20px);
+        transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .modal-backdrop.modal-open .extended-modal {
+        transform: translateY(0);
+      }
+
+      /* Left Side: Image */
+      .modal-left {
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Right Side: Content */
+      .modal-right {
+        padding: 40px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+
+      .close-modal-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--dark-text);
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .modal-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        padding-right: 30px; /* space for close button */
+        color: inherit;
+      }
+
+      .modal-eyebrow {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted-text);
+        margin-bottom: 8px;
+      }
+
+      .modal-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      /* Relevance Callout Box */
+      .modal-callout {
+        background-color: #f0f8ff;
+        border-left: 4px solid var(--secondary-blue);
+        padding: 16px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 30px;
+      }
+
+      .modal-callout p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      /* Settings Section */
+      .settings-divider {
+        border-top: 1px solid #e2e8f0;
+        margin-bottom: 20px;
+        padding-top: 20px;
+      }
+
+      .settings-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--muted-text);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .settings-controls {
+        display: flex;
+        gap: 20px;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+      }
+
+      .control-group label {
+        font-size: 0.8rem;
+        color: var(--muted-text);
+      }
+
+      .control-group select {
+        padding: 8px 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        background-color: var(--white);
+        color: var(--dark-text);
+        cursor: pointer;
+      }
+
+      /* =========================================
+         JAVASCRIPT THEME & FONT CLASSES
+         Applied dynamically to .extended-modal
+         ========================================= */
+      
+      /* Dark Theme overrides */
+      .extended-modal.theme-dark {
+        background-color: #1a202c;
+        color: #f7fafc;
+      }
+      .extended-modal.theme-dark .close-modal-btn { color: #f7fafc; }
+      .extended-modal.theme-dark .modal-eyebrow,
+      .extended-modal.theme-dark .settings-title,
+      .extended-modal.theme-dark .control-group label { color: #a0aec0; }
+      .extended-modal.theme-dark .modal-callout { background-color: #2d3748; border-left-color: #4fd1c5; }
+      .extended-modal.theme-dark .settings-divider { border-top-color: #4a5568; }
+      .extended-modal.theme-dark .control-group select { background-color: #2d3748; color: #f7fafc; border-color: #4a5568; }
+
+      /* Ocean Theme overrides */
+      .extended-modal.theme-ocean {
+        background-color: #003b73;
+        color: #e0f2fe;
+      }
+      .extended-modal.theme-ocean .close-modal-btn { color: #e0f2fe; }
+      .extended-modal.theme-ocean .modal-eyebrow,
+      .extended-modal.theme-ocean .settings-title,
+      .extended-modal.theme-ocean .control-group label { color: #bae6fd; }
+      .extended-modal.theme-ocean .modal-callout { background-color: #004a8f; border-left-color: #00a6c8; }
+      .extended-modal.theme-ocean .settings-divider { border-top-color: #004a8f; }
+      .extended-modal.theme-ocean .control-group select { background-color: #004a8f; color: #e0f2fe; border-color: #005aab; }
+
+      /* Font Style Classes */
+      .font-sans { font-family: Arial, Helvetica, sans-serif !important; }
+      .font-serif { font-family: Georgia, "Times New Roman", serif !important; }
+      .font-mono { font-family: "Courier New", Courier, monospace !important; }
+
+      /* Mobile Responsive for Modal */
+      @media (max-width: 768px) {
+        .extended-modal {
+          grid-template-columns: 1fr;
+          height: 85vh;
+        }
+        .modal-left {
+          height: 250px; /* Fixed height for image on small screens */
+        }
+        .modal-right {
+          padding: 25px;
+        }
+      }
+    </style>
 </head>
 <body>
     
@@ -25,8 +315,139 @@
     </ul>
   </nav>
     </header>
-    </body>
-        <footer class="site-footer">
+    <main><section class="gallery-intro">
+        <h1>Marine Life &amp; Conservation Gallery</h1>
+        <p class="section-description">
+          Explore images related to SDG 14: Life Below Water. Click on any image to view details and relevance.
+        </p>
+      </section>
+
+      <!-- 6-Card Presentation Grid System -->
+      <div class="gallery-grid">
+        
+        <!-- Card 1 -->
+        <div class="gallery-card" data-index="0">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/CoralReef.jfif" alt="Vibrant coral reef with schooling fish" />
+          </div>
+          <div class="card-label">Coral Reefs</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="gallery-card" data-index="1">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/Turtle.jfif" alt="Green sea turtle gliding underwater" />
+          </div>
+          <div class="card-label">Sea Turtles</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="gallery-card" data-index="2">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/WasteBeach.jfif" alt="Plastic garbage polluting a sandy beach shoreline" />
+          </div>
+          <div class="card-label">Plastic Pollution</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="gallery-card" data-index="3">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/BoatOcean.jfif" alt="Commercial fishing vessel out on open ocean waters" />
+          </div>
+          <div class="card-label">Overfishing</div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="gallery-card" data-index="4">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/Coastline.jfif" alt="Healthy marine mangrove tree root structures along water edge" />
+          </div>
+          <div class="card-label">Coastal Ecosystems</div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="gallery-card" data-index="5">
+          <div class="card-image-wrapper">
+            <div class="card-overlay">
+              <button class="view-details-btn">View Details</button>
+            </div>
+            <img src="assets/images/LocalFishing.jfif" alt="Small local wooden fishing boat near shore" />
+          </div>
+          <div class="card-label">Artisanal Fishing</div>
+        </div>
+
+      </div>
+
+    </main>
+    <!-- Interactive Pop-up / Modal Extended Content Area -->
+    <div class="modal-backdrop" id="popup-modal-backdrop">
+      <div class="extended-modal font-sans theme-light" id="modal-container-box">
+        
+        <!-- Left Column: Image -->
+        <div class="modal-left">
+          <img src="" alt="" id="modal-target-image" />
+        </div>
+
+        <!-- Right Column: Content & Controls -->
+        <div class="modal-right">
+          <button class="close-modal-btn" id="modal-close-trigger">&times;</button>
+          
+          <h2 id="modal-target-title" class="modal-title">Title</h2>
+          
+          <p class="modal-eyebrow">Description</p>
+          <p class="modal-description" id="modal-target-description">Description copy goes here...</p>
+          
+          <div class="modal-callout">
+            <p class="modal-eyebrow">SDG 14 Relevance</p>
+            <p id="modal-target-relevance">Relevance text goes here...</p>
+          </div>
+          
+          <!-- Mandatory User Customization Controls (Dropdowns) -->
+          <div class="settings-divider">
+            <div class="settings-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              Extended View Settings
+            </div>
+            
+            <div class="settings-controls">
+              <div class="control-group">
+                <label for="theme-select">Theme</label>
+                <select id="theme-select">
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="ocean">Ocean</option>
+                </select>
+              </div>
+              <div class="control-group">
+                <label for="font-select">Font Style</label>
+                <select id="font-select">
+                  <option value="sans">Sans-serif</option>
+                  <option value="serif">Serif</option>
+                  <option value="mono">Monospace</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <footer class="site-footer">
     <div class="footer-container">
 
         <!-- Website information -->
@@ -81,4 +502,124 @@
         </p>
     </div>
 </footer>
+<!-- 
+      =========================================
+      JAVASCRIPT LOGIC IMPLEMENTATION
+      Mandatory event-listener structures for validation benchmarks
+      ========================================= 
+    -->
+    <script>
+      // 1. Data Store containing descriptions and new SDG Relevance targets
+      const galleryData = [
+        {
+          title: "Coral Reefs",
+          description: "Coral reefs are the rainforests of the sea. They support 25% of all marine species despite covering less than 1% of the ocean floor.",
+          relevance: "SDG 14 Target 14.2: Sustainably manage and protect marine and coastal ecosystems to avoid significant adverse impacts."
+        },
+        {
+          title: "Sea Turtles",
+          description: "Sea turtles keep ocean seagrass beds healthy and support localized ecosystem functionality. They are highly vulnerable to discarded plastics.",
+          relevance: "SDG 14 Target 14.1: By 2025, prevent and significantly reduce marine pollution of all kinds, in particular from land-based activities."
+        },
+        {
+          title: "Plastic Pollution",
+          description: "Over 8 million tonnes of structural plastic waste enter the global ocean network every year, choking marine life and washing up on coastlines.",
+          relevance: "SDG 14 Target 14.1: Prevent and significantly reduce marine pollution of all kinds, including marine debris and nutrient pollution."
+        },
+        {
+          title: "Overfishing",
+          description: "Unregulated fleet fishing activities break ecosystem balance and collapse standard target populations, jeopardizing long-term food security.",
+          relevance: "SDG 14 Target 14.4: Effectively regulate harvesting and end overfishing, illegal, unreported and unregulated fishing."
+        },
+        {
+          title: "Coastal Ecosystems",
+          description: "Mangrove swamp matrices absorb significant atmospheric carbon and solidify shorelines. Protecting them is vital against sea-level rises.",
+          relevance: "SDG 14 Target 14.2: Sustainably manage and protect marine and coastal ecosystems to avoid significant adverse impacts."
+        },
+        {
+          title: "Artisanal Fishing",
+          description: "Small-scale traditional operations prioritize eco-preservation over industrial maximization. Supporting local workers encourages sustainability.",
+          relevance: "SDG 14 Target 14.b: Provide access for small-scale artisanal fishers to marine resources and markets."
+        }
+      ];
+
+      // DOM Node Selectors
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      const backdrop = document.getElementById('popup-modal-backdrop');
+      const modalBox = document.getElementById('modal-container-box');
+      const closeTrigger = document.getElementById('modal-close-trigger');
+      
+      const targetTitle = document.getElementById('modal-target-title');
+      const targetImage = document.getElementById('modal-target-image');
+      const targetDesc = document.getElementById('modal-target-description');
+      const targetRelevance = document.getElementById('modal-target-relevance');
+
+      // 2. MANDATORY HOVER INTERACTIONS CAPTURED VIA JAVASCRIPT
+      galleryCards.forEach(card => {
+        const overlay = card.querySelector('.card-overlay');
+
+        card.addEventListener('mouseenter', function() {
+          overlay.classList.add('overlay-visible');
+        });
+
+        card.addEventListener('mouseleave', function() {
+          overlay.classList.remove('overlay-visible');
+        });
+
+        // 3. MANDATORY CLICK-TO-EXPAND INTERACTION IMPLEMENTATION
+        card.addEventListener('click', function() {
+          const index = parseInt(card.getAttribute('data-index'));
+          const selectedData = galleryData[index];
+          const imageSrc = card.querySelector('img').getAttribute('src');
+
+          // Populating structural data attributes
+          targetTitle.textContent = selectedData.title;
+          targetImage.setAttribute('src', imageSrc);
+          targetImage.setAttribute('alt', card.querySelector('img').getAttribute('alt'));
+          targetDesc.textContent = selectedData.description;
+          targetRelevance.textContent = selectedData.relevance;
+
+          // Present Expanded View
+          backdrop.classList.add('modal-open');
+        });
+      });
+
+      // 4. MANDATORY CLOSE INTERACTION IMPLEMENTATION
+      closeTrigger.addEventListener('click', closeModalWindow);
+      backdrop.addEventListener('click', function(event) {
+        if (event.target === backdrop) {
+          closeModalWindow();
+        }
+      });
+
+      function closeModalWindow() {
+        backdrop.classList.remove('modal-open');
+        
+        // Reset dropdowns and theme back to default when closing
+        document.getElementById('theme-select').value = 'light';
+        document.getElementById('font-select').value = 'sans';
+        modalBox.className = 'extended-modal theme-light font-sans';
+      }
+
+      // 5. MANDATORY USER CONTROLS PANEL LOGIC (Dropdown Listeners)
+      const themeSelect = document.getElementById('theme-select');
+      const fontSelect = document.getElementById('font-select');
+
+      themeSelect.addEventListener('change', function(e) {
+        const selectedTheme = e.target.value;
+        // Remove existing theme classes
+        modalBox.classList.remove('theme-light', 'theme-dark', 'theme-ocean');
+        // Add newly selected theme
+        modalBox.classList.add('theme-' + selectedTheme);
+      });
+
+      fontSelect.addEventListener('change', function(e) {
+        const selectedFont = e.target.value;
+        // Remove existing font classes
+        modalBox.classList.remove('font-sans', 'font-serif', 'font-mono');
+        // Add newly selected font
+        modalBox.classList.add('font-' + selectedFont);
+      });
+    </script>
+</body>
     </html>
