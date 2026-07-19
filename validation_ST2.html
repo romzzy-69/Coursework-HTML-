@@ -4,304 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation Page</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            scroll-behavior: smooth;
-
-        }
-
-        body{
-            font-family:Arial,Helvetica,sans-serif;
-            background-color:#f1faff;
-            color:#1f2937;
-        }
-
-        .stud{
-            background-color:#003b73;
-            padding:32px 60px;
-            color:white;
-
-        }
-
-        .stud h2{
-            font-size:26px;
-            font-weight:700;
-            margin-bottom:6px;
-        }
-
-        .stud p{
-            color:#aad4f5;
-            font-size:15px;
-        }
-
-        .container{
-            display:grid;
-            grid-template-columns:240px 1fr;
-            gap:40px;
-            max-width:1100px;
-            margin:48px auto;
-            padding:0px 40px;
-            box-sizing:border-box;
-            align-items:start;
-
-        }
-
-        aside{
-            background-color:#eaf4fb;
-            border-left:4px solid #00a6c8;
-            border-radius:8px;
-            padding:20px;
-            position:sticky;
-            top:24px;
-
-        }
-
-        aside h3{
-            font-size:13px;
-            font-weight:700;
-            color:#003b73;
-            margin-bottom:14px;
-        }
-
-        aside ul{
-            list-style:none;
-            padding:0;
-            margin:0;
-        }
-
-        aside ul li{
-            margin-bottom:8px;
-
-        }
-
-        aside ul li a{
-            font-size:13px;
-            color:#003b73;
-            text-decoration:none;
-            display:block;
-            line-height:1.4;
-        }
-
-        aside ul li:hover{
-            text-decoration:underline;
-            color:#00a6c8;
-        }
-
-        main{
-            background-color:white;
-            border-radius:12px;
-            padding:48px 52px;
-            box-shadow:0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        main section{
-            margin-bottom:48px;
-            padding-bottom:48px;
-            border-bottom:2px solid #f1faff;
-        }
-
-        main h2{
-            font-size:22px;
-            font-weight:700;
-            color:#003b73;
-            margin-bottom:20px;
-            padding-bottom:10px;
-            border-bottom:2px solid #f1faff;
-        }
-
-        main h3{
-            font-size:16px;
-            font-weight:700;
-            color:#00a6c8;
-            margin:20px 0 8px;
-        }
-
-        main p{
-            font-size:15px;
-            color:#5f6b7a;
-            line-height:1.75;
-            margin-bottom:12px;
-        }
-
-        main a{
-            color:#003b73;
-        }
-
-        main a:hover{
-            color:#00a6c8;
-        }
-
-        .screenshot-box{
-            width:100%;
-            border:2px dashed #b0bec5;
-            border-radius:8px;
-            background-color:#f1faff;
-            padding:40px;
-            text-align:center;
-            color:#5f6b7a;
-            font-size:14px;
-            margin:16px 0 24px;
-        }
-
-        .screenshot-box img{
-            width:100%;
-            border-radius:8px;
-            display:block;
-        }
-
-        .go-top {
-                position:fixed;
-                bottom:32px;
-                right:32px;
-                background-color:#0d2b4e;
-                color:#ffffff;
-                font-size:13px;
-                font-weight:700;
-                text-decoration:none;
-                padding:10px 16px;
-                border-radius:8px;
-                box-shadow:0 4px 12px rgba(0,0,0,0.20);
-                transition:background-color 0.2s ease;
-   
-}
-
-.go-top:hover {
-    background-color:#1565a8;
-}
-
-        /* Header */
-header {
-    background-color: #003b73;
-    min-height: 72px;
-    padding: 0 4%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.logo:hover { color: #00a6c8; }
-
-nav { display: flex; align-items: center; }
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 24px 0 8px;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover { color: #00a6c8; }
-
-.nav-links a.active {
-    color: #00a6c8;
-    border-bottom: 2px solid #00a6c8;
-}
-
-/* Footer */
-footer {
-    background-color: #003b73;
-    color: #ffffff;
-    padding: 0;
-    margin-top: 60px;
-}
-
-.footer-container {
-    max-width: 1050px;
-    margin: 0 auto;
-    padding: 42px 8%;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 70px;
-    align-items: start;
-}
-
-.footer-column h3 {
-    color: #ffffff;
-    font-size: 16px;
-    margin-bottom: 16px;
-}
-
-.footer-brand p {
-    max-width: 230px;
-    margin-top: 14px;
-    color: #c5d9eb;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.footer-links a {
-    color: #b8d2e8;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover { color: #ffffff; }
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 18px 8%;
-    text-align: center;
-}
-
-.footer-bottom p {
-    margin: 0;
-    color: #8fb3d1;
-    font-size: 13px;
-}
-    </style>
+    <link rel="stylesheet" href="pageEditor_validator.css">
 </head>
 <body>
+    <!-- Anchor target for the "Back to Top" button at the bottom of the page -->
     <div id="top"></div>
+
+    <!-- ============================================
+         HEADER: shared site logo + navigation bar
+         ============================================ -->
     <header>
-    <a href="index.html" class="logo">
+    <a href="home.html" class="logo">
         <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
         BlueFuture
     </a>
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="ais.html">AIS</a></li>
             <li><a href="feedback.html">Feedback</a></li>
@@ -311,12 +30,18 @@ footer {
         </ul>
     </nav>
 </header>
+
+    <!-- Student name + page title banner -->
     <div class="stud">
         <h2>Umar Hunais - Student 2</h2>
         <p>Team Coral | Validation Page</p>
     </div>
 
+    <!-- ============================================
+         TWO-COLUMN LAYOUT: sidebar nav + validation content
+         ============================================ -->
     <div class="container">
+        <!-- Sidebar: quick navigation to each validated page's section -->
         <aside>
             <h3>Validated Pages:</h3>
             <ul>
@@ -327,56 +52,67 @@ footer {
             </ul>
         </aside>
 
+        <!-- Main content: one validation section per implemented page,
+             each containing a result summary, a screenshot placeholder,
+             and a link to the live page, plus a closing reflection section -->
         <main>
+            <!-- Splash Screen validation evidence -->
             <section>
                 <h2 id="splashVal">Splash Screen</h2>
                 <h3>Validation Result</h3>
                 <p>The Splash Screen was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/SplashScreen.png" alt="Splash Screen Validation"/>
+                    <img src="./validationImages/Splash_ST2.png" alt="Splash Screen Validation"/>
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="splashScreen.html" target="_blank">Open the Splash Screen</a></p>
             </section>
 
+            <!-- Action Impact Simulator validation evidence -->
             <section>
                 <h2 id="aisVal">Action Impact Simulator</h2>
                 <h3>Validation Result</h3>
                 <p>The Action Impact Simulator was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/ais.png" alt="Action Impact Simulator Validation">
+                    <img src="./validationImages/ais_ST2.png" alt="Action Impact Simulator Validation">
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="ais.html" target="_blank">Open the Action Impact Simulator</a></p>
             </section>
 
+            <!-- Content Page validation evidence -->
             <section>
                 <h2 id="contentVal">Content Page</h2>
                 <h3>Validation Result</h3>
                 <p>The Content Page was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/Content.png" alt="Content page Validation">
+                    <img src="./validationImages/ContentPage_ST2.png" alt="Content page Validation">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="content.html" target="_blank">Open the Content Page</a></p>
+                <p><a href="content_ST2.html" target="_blank">Open the Content Page</a></p>
             </section>
             
+            <!-- Closing reflection on the overall validation process -->
             <section>
                 <h2 id="reflection">Reflection on Validation</h2>
                 <p>Using the W3C Validator was a massive reality check because it caught things I completely missed just by looking at the page layout. It pointed out duplicate IDs and skipped heading levels stuff that technically worked on my screen but was breaking proper web standards under the hood. Fixing those errors forced me to actually clean up my HTML structure, which makes the whole site way more stable and accessible for things like screen readers. It really showed me that just because a page looks good visually doesn't mean it's coded right, and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
             </section>
 
-            <a href="#top" class="go-top">Top</a>
+            <!-- Jumps back to the #top anchor at the start of the body -->
+            <a href="#top" class="go-top">Back to Top</a>
 
             
         </main>
 
     </div>
 
+    <!-- ============================================
+         FOOTER: shared site template
+         ============================================ -->
     <footer>
     <div class="footer-container">
         <div class="footer-column footer-brand">
-            <a href="index.html" class="footer-logo">
+            <a href="home.html" class="footer-logo">
                 <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
                 BlueFuture
             </a>

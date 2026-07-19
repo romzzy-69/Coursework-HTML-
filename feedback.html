@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback & Program Directory | BlueFuture - SDG 14</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+:root {
+  --navy: #14335c;
+  --navy-dark: #0e2647;
+  --blue: #2f7bd6;
+  --teal: #1fb6c9;
+  --gold: #e8b93a;
+  --bg-light: #eef5fb;
+  --white: #ffffff;
+  --text-dark: #1c2b3a;
+  --text-muted: #6b7c8f;
+  --border: #dfe8f2;
+  --shadow: 0 4px 14px rgba(20, 51, 92, 0.08);
+  --radius: 14px;
+  --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.5;
+}
+
+img { max-width: 100%; display: block; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ================= HEADER / NAV ================= */
+.site-header {
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.logo-icon { font-size: 1.6rem; }
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 34px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: #cfe0f5;
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--white);
+  border-bottom-color: var(--teal);
+}
+
+.main-nav a.active {
+  color: var(--white);
+  border-bottom-color: var(--teal);
+}
+
+/* ================= PAGE HERO ================= */
+.page-hero {
+  text-align: center;
+  padding: 64px 24px 40px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.page-hero h1 {
+  color: var(--navy);
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+}
+
+.page-hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* ================= LAYOUT: DIRECTORY + FORM ================= */
+.feedback-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .feedback-layout { grid-template-columns: 1fr; }
+}
+
+/* ---- Directory panel ---- */
+.directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.directory-header h2 {
+  color: var(--navy);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.sort-dropdown {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.directory-scroll {
+  max-height: 640px;
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.directory-scroll:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* thin styled scrollbar */
+.directory-scroll::-webkit-scrollbar { width: 8px; }
+.directory-scroll::-webkit-scrollbar-thumb {
+  background: #c3d5e8;
+  border-radius: 8px;
+}
+
+.program-card {
+  display: flex;
+  gap: 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(20, 51, 92, 0.14);
+}
+
+.program-card[hidden] {
+  display: none;
+}
+
+.program-card img {
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.program-card-body { flex: 1; }
+
+.program-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.program-card h3 {
+  margin: 0 0 6px;
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+
+.program-card p {
+  margin: 0 0 10px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.tag-blue { background: #dceaff; color: var(--blue); }
+.tag-teal { background: #d5f4f6; color: #0e828f; }
+.tag-gold { background: #fbeecb; color: #9a7411; }
+
+.card-link {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.card-link:hover { text-decoration: underline; }
+
+.no-results-msg {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 30px 10px;
+  font-size: 0.95rem;
+}
+
+/* ---- Form panel ---- */
+.form-panel {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.form-panel h2 {
+  color: var(--navy);
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 26px;
+}
+
+legend {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding: 0;
+}
+
+.field { margin-bottom: 18px; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 500px) {
+  .field-row { grid-template-columns: 1fr; }
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--white);
+  color: var(--text-dark);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(47, 123, 214, 0.15);
+}
+
+textarea { resize: vertical; }
+
+.field-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.field-label-row label { margin-bottom: 0; }
+
+.char-counter {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.error-msg {
+  display: block;
+  color: #c0392b;
+  font-size: 0.82rem;
+  margin-top: 5px;
+  min-height: 1em;
+}
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover { background: var(--navy-dark); }
+.submit-btn:active { transform: scale(0.99); }
+
+.confirmation-msg {
+  margin-top: 14px;
+  font-weight: 600;
+  color: #1f8a4c;
+  text-align: center;
+  min-height: 1.2em;
+}
+
+/* ================= REVIEWS SECTION ================= */
+.reviews-section {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 32px;
+}
+
+.reviews-section > h2 {
+  color: var(--navy);
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+}
+
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 800px) {
+  .reviews-layout { grid-template-columns: 1fr; }
+}
+
+.rating-summary {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.rating-number { font-size: 3rem; font-weight: 800; }
+
+.stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; }
+.stars.small { font-size: 1rem; }
+.star-dim { color: rgba(255,255,255,0.35); }
+
+.rating-label { margin: 4px 0 2px; font-weight: 700; }
+.rating-count { margin: 0; font-size: 0.85rem; color: #c7d6ea; }
+
+.review-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.review-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.review-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.review-card h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.review-card p {
+  margin: 0 0 8px;
+  color: var(--text-dark);
+  font-size: 0.92rem;
+}
+
+.review-card a { color: var(--blue); text-decoration: none; font-weight: 600; }
+.review-card a:hover { text-decoration: underline; }
+
+.review-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+  background: var(--navy);
+  color: #cfe0f5;
+  padding: 50px 32px 20px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 700px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+.footer-logo { color: var(--white); margin-bottom: 12px; }
+
+.footer-col h3 {
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  color: #cfe0f5;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.footer-col a:hover { color: var(--white); text-decoration: underline; }
+
+.accessibility-link {
+  display: inline-block;
+  margin-top: 14px;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #93a9c4;
+  font-size: 0.85rem;
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="home.html" class="logo">
+      <span class="logo-icon" aria-hidden="true">🌊</span>
+      <span class="logo-text">BlueFuture</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="ais.html">AIS</a></li>
+        <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <h1>Programs &amp; Feedback</h1>
+    <p>Get involved in our local initiatives or share your thoughts to help us improve.</p>
+  </section>
+
+  <!-- ============ DIRECTORY + FORM ============ -->
+  <section class="feedback-layout">
+
+    <!-- ---- Scrollable Opportunity Directory ---- -->
+    <div class="directory-panel">
+      <div class="directory-header">
+        <h2>Opportunity Directory</h2>
+        <label for="sortPrograms" class="visually-hidden">Filter programs</label>
+        <select id="sortPrograms" class="sort-dropdown">
+          <option value="all">All Programs</option>
+          <option value="most-popular">Most Popular</option>
+          <option value="nearest">Nearest</option>
+          <option value="student-friendly">Student Friendly</option>
+        </select>
+      </div>
+
+      <div class="directory-scroll" tabindex="0">
+
+        <article class="program-card" data-category="nearest">
+          <img src="assets/images/beach_clean_thesa.jpg" alt="Volunteers picking up plastic waste along a sandy beach">
+          <div class="program-card-body">
+            <div class="program-card-title-row">
+              <h3>Beach Cleanup Campaign</h3>
+              <span class="tag tag-blue">Nearest</span>
+            </div>
+            <p>Join local volunteers to clean the Hikkaduwa coastline.</p>
+            <a href="#feedback-form" class="card-link">Join Program &rarr;</a>
+          </div>
+        </article>
+
+        <article class="program-card" data-category="student-friendly">
+          <img src="assets/images/plastic_free_thesa.jpg" alt="Coastline strewn with plastic waste to be collected by student volunteers">
+          <div class="program-card-body">
+            <div class="program-card-title-row">
+              <h3>Plastic-Free School Challenge</h3>
+              <span class="tag tag-teal">Student Friendly</span>
+            </div>
+            <p>A program designed for students to reduce school waste.</p>
+            <a href="#feedback-form" class="card-link">Join Program &rarr;</a>
+          </div>
+        </article>
+
+        <article class="program-card" data-category="most-popular">
+          <img src="assets/images/coral_thesa.jpg" alt="Colourful coral reef teeming with fish, viewed underwater">
+          <div class="program-card-body">
+            <div class="program-card-title-row">
+              <h3>Coral Reef Awareness Workshop</h3>
+              <span class="tag tag-gold">Most Popular</span>
+            </div>
+            <p>Learn about marine ecosystems from experts.</p>
+            <a href="#feedback-form" class="card-link">Join Program &rarr;</a>
+          </div>
+        </article>
+
+        <article class="program-card" data-category="nearest">
+          <img src="assets/images/marine_wildlife_thesa.jpg"alt="A sea turtle swimming, representing marine wildlife rescue efforts">
+          <div class="program-card-body">
+            <div class="program-card-title-row">
+              <h3>Marine Wildlife Rescue Support</h3>
+              <span class="tag tag-blue">Nearest</span>
+            </div>
+            <p>Assist teams in rescuing stranded sea turtles.</p>
+            <a href="#feedback-form" class="card-link">Join Program &rarr;</a>
+          </div>
+        </article>
+
+        <p class="no-results-msg" id="noResultsMsg" hidden>No programs match this filter yet.</p>
+
+      </div>
+    </div>
+
+    <!-- ---- Feedback Form ---- -->
+    <div class="form-panel" id="feedback-form">
+      <h2>Leave Your Feedback</h2>
+
+      <form id="feedbackForm" novalidate>
+
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <div class="field">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="John Doe" required minlength="2">
+            <span class="error-msg" id="err-fullName"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+              <span class="error-msg" id="err-email"></span>
+            </div>
+            <div class="field">
+              <label for="telephone">Telephone</label>
+              <input type="tel" id="telephone" name="telephone" placeholder="+94 77 123 4567" pattern="^[0-9+\-\s()]{7,15}$">
+              <span class="error-msg" id="err-telephone"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Street, city, postcode"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your Feedback</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected>Select topic...</option>
+                <option value="beach-cleanup">Beach Cleanup Campaign</option>
+                <option value="plastic-free-school">Plastic-Free School Challenge</option>
+                <option value="coral-reef-workshop">Coral Reef Awareness Workshop</option>
+                <option value="marine-rescue">Marine Wildlife Rescue Support</option>
+                <option value="general">General Feedback</option>
+              </select>
+              <span class="error-msg" id="err-topic"></span>
+            </div>
+            <div class="field">
+              <label for="dateAttended">Date Attended (if applicable)</label>
+              <input type="date" id="dateAttended" name="dateAttended">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label-row">
+              <label for="message">Message / Comment *</label>
+              <span class="char-counter"><span id="charCount">0</span> / 300</span>
+            </div>
+            <textarea id="message" name="message" rows="4" maxlength="300" placeholder="Share your thoughts..." required></textarea>
+            <span class="error-msg" id="err-message"></span>
+          </div>
+
+          <div class="field">
+            <label for="followUp">Follow up request time</label>
+            <input type="datetime-local" id="followUp" name="followUp">
+          </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Submit Feedback &#10148;</button>
+        <p class="confirmation-msg" id="confirmationMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+  </section>
+
+  <!-- ============ RATINGS & REVIEWS ============ -->
+  <section class="reviews-section">
+    <h2>Community Reviews</h2>
+
+    <div class="reviews-layout">
+      <div class="rating-summary">
+        <div class="rating-number">8.6</div>
+        <div class="rating-detail">
+          <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="star-dim">★</span></div>
+          <p class="rating-label">Excellent</p>
+          <p class="rating-count">Based on 124 reviews</p>
+        </div>
+      </div>
+
+      <div class="review-cards">
+        <article class="review-card">
+          <div class="review-card-head">
+            <h3>Great initiative!</h3>
+            <span class="stars small" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>The beach cleanup was incredibly well organized. <a href="#">See more</a></p>
+          <p class="review-meta">Jane D. &bull; Oct 12, 2026</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card-head">
+            <h3>Learned so much</h3>
+            <span class="stars small" aria-label="4 out of 5 stars">★★★★<span class="star-dim">★</span></span>
+          </div>
+          <p>The coral reef workshop opened my eyes to the importance of biodiversity. <a href="#">See more</a></p>
+          <p class="review-meta">Mark S. &bull; Oct 05, 2026</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card-head">
+            <h3>Good for students</h3>
+            <span class="stars small" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <p>My kids loved the plastic-free challenge. Highly recommend. <a href="#">See more</a></p>
+          <p class="review-meta">Sarah W. &bull; Sep 28, 2026</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <script>
+  //javaaaa
+document.addEventListener('DOMContentLoaded', function () {
+
+  const form = document.getElementById('feedbackForm');
+  const messageField = document.getElementById('message');
+  const charCount = document.getElementById('charCount');
+  const confirmationMsg = document.getElementById('confirmationMsg');
+  const MAX_CHARS = 300;
+
+  /* ---------- 1. Live character counter ---------- */
+  function updateCharCount() {
+    const remaining = messageField.value.length;
+    charCount.textContent = remaining;
+    charCount.parentElement.style.color = remaining >= MAX_CHARS ? '#c0392b' : '';
+  }
+  messageField.addEventListener('input', updateCharCount);
+  updateCharCount(); // initialise on page load
+
+  /* ---------- 2. Field validators ---------- */
+  const validators = {
+    fullName: function (value) {
+      return value.trim().length >= 2 ? '' : 'Please enter your full name.';
+    },
+    email: function (value) {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return pattern.test(value.trim()) ? '' : 'Please enter a valid email address.';
+    },
+    telephone: function (value) {
+      if (value.trim() === '') return ''; // optional field
+      const pattern = /^[0-9+\-\s()]{7,15}$/;
+      return pattern.test(value.trim()) ? '' : 'Please enter a valid phone number.';
+    },
+    topic: function (value) {
+      return value !== '' ? '' : 'Please select a topic.';
+    },
+    message: function (value) {
+      if (value.trim().length === 0) return 'Please share a comment before submitting.';
+      if (value.length > MAX_CHARS) return `Message must be ${MAX_CHARS} characters or fewer.`;
+      return '';
+    }
+  };
+
+  function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorEl = document.getElementById('err-' + fieldId);
+    if (message) {
+      field.classList.add('invalid');
+      errorEl.textContent = message;
+    } else {
+      field.classList.remove('invalid');
+      errorEl.textContent = '';
+    }
+  }
+
+  /* live validation as the user types/selects */
+  Object.keys(validators).forEach(function (fieldId) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    const evt = (field.tagName === 'SELECT') ? 'change' : 'input';
+    field.addEventListener(evt, function () {
+      showError(fieldId, validators[fieldId](field.value));
+    });
+  });
+
+  /* ---------- 3. Form submission + confirmation ---------- */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    confirmationMsg.textContent = '';
+
+    let isValid = true;
+    Object.keys(validators).forEach(function (fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      const errorMessage = validators[fieldId](field.value);
+      showError(fieldId, errorMessage);
+      if (errorMessage) isValid = false;
+    });
+
+    if (!isValid) {
+      confirmationMsg.style.color = '#c0392b';
+      confirmationMsg.textContent = 'Please fix the highlighted fields and try again.';
+      return;
+    }
+
+    /* Success — no server required, per spec */
+    confirmationMsg.style.color = '#1f8a4c';
+    confirmationMsg.textContent = 'Thank you for your feedback!';
+    form.reset();
+    updateCharCount();
+  });
+
+  /* ---------- 4. Opportunity Directory filter (NOW WORKING) ---------- */
+  const sortDropdown = document.getElementById('sortPrograms');
+  const programCards = document.querySelectorAll('.program-card');
+  const noResultsMsg = document.getElementById('noResultsMsg');
+
+  function filterPrograms() {
+    const selected = sortDropdown.value; // "all", "nearest", "most-popular", "student-friendly"
+    let visibleCount = 0;
+
+    programCards.forEach(function (card) {
+      const matches = (selected === 'all') || (card.dataset.category === selected);
+      card.hidden = !matches;
+      if (matches) visibleCount++;
+    });
+
+    if (noResultsMsg) {
+      noResultsMsg.hidden = visibleCount !== 0;
+    }
+  }
+
+  if (sortDropdown) {
+    sortDropdown.addEventListener('change', filterPrograms);
+    filterPrograms(); // apply on load in case a non-default option is pre-selected
+  }
+});
+</script>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="logo footer-logo">
+        <span class="logo-icon" aria-hidden="true">🌊</span>
+        <span class="logo-text">BlueFuture</span>
+      </div>
+      <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Coursework Links</h3>
+      <ul>
+        <li><a href="pageEditor_ST1.html">ST1: Page Editor</a></li>
+        <li><a href="validation_ST1.html">ST1: Validation</a></li>
+        <li><a href="pageEditor_ST2.html">ST2: Page Editor</a></li>
+        <li><a href="validation_ST2.html">ST2: Validation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Team CORAL</h3>
+      <ul>
+        <li><a href="pageEditor_ST3.html">ST3: Page Editor</a></li>
+        <li><a href="validation_ST3.html">ST3: Validation</a></li>
+        <li><a href="pageEditor_ST4.html">ST4: Page Editor</a></li>
+        <li><a href="validation_ST4.html">ST4: Validation</a></li>
+      </ul>
+      <a href="#" class="accessibility-link">Accessibility / Compliance</a>
+    </div>
+  </div>
+  <p class="footer-bottom">&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+</footer>
+</body>
+</html>

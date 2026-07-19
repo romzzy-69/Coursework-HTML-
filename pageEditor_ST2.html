@@ -3,326 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation Page</title>
-    <style>
-        /* Universal reset: removes default browser spacing and 
-           makes width/height calculations include padding/border */
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            scroll-behavior: smooth; /* smooth scrolling for sidebar anchor links */
-
-        }
-
-        body{
-            font-family:Arial,Helvetica,sans-serif;
-            background-color:#f1faff;
-            color:#1f2937;
-        }
-
-        /* ============================================
-           STUDENT BANNER
-           Dark blue strip showing student name and page title
-           ============================================ */
-        .stud{
-            background-color:#003b73;
-            padding:32px 60px;
-            color:white;
-
-        }
-
-        .stud h2{
-            font-size:26px;
-            font-weight:700;
-            margin-bottom:6px;
-        }
-
-        .stud p{
-            color:#aad4f5;
-            font-size:15px;
-        }
-
-        /* ============================================
-           PAGE LAYOUT
-           Two-column grid: fixed sidebar + main validation content
-           ============================================ */
-        .container{
-            display:grid;
-            grid-template-columns:240px 1fr;
-            gap:40px;
-            max-width:1100px;
-            margin:48px auto;
-            padding:0px 40px;
-            box-sizing:border-box;
-            align-items:start;
-
-        }
-
-        /* Sticky sidebar listing links to each validated page's section */
-        aside{
-            background-color:#eaf4fb;
-            border-left:4px solid #00a6c8;
-            border-radius:8px;
-            padding:20px;
-            position:sticky; /* stays in view as the user scrolls down the page */
-            top:24px;
-
-        }
-
-        aside h3{
-            font-size:13px;
-            font-weight:700;
-            color:#003b73;
-            margin-bottom:14px;
-        }
-
-        aside ul{
-            list-style:none;
-            padding:0;
-            margin:0;
-        }
-
-        aside ul li{
-            margin-bottom:8px;
-
-        }
-
-        aside ul li a{
-            font-size:13px;
-            color:#003b73;
-            text-decoration:none;
-            display:block;
-            line-height:1.4;
-        }
-
-        /* Note: hover effect is applied to the <li> here rather than the <a> itself,
-           so underline/colour change triggers slightly differently than a direct link hover */
-        aside ul li:hover{
-            text-decoration:underline;
-            color:#00a6c8;
-        }
-
-        /* White card holding all validation sections */
-        main{
-            background-color:white;
-            border-radius:12px;
-            padding:48px 52px;
-            box-shadow:0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        /* Adds spacing and a divider line between each validation section */
-        main section{
-            margin-bottom:48px;
-            padding-bottom:48px;
-            border-bottom:2px solid #f1faff;
-        }
-
-        /* Section heading style, e.g. "Splash Screen", "Action Impact Simulator" */
-        main h2{
-            font-size:22px;
-            font-weight:700;
-            color:#003b73;
-            margin-bottom:20px;
-            padding-bottom:10px;
-            border-bottom:2px solid #f1faff;
-        }
-
-        /* Sub-heading style, e.g. "Validation Result", "Link to page" */
-        main h3{
-            font-size:16px;
-            font-weight:700;
-            color:#00a6c8;
-            margin:20px 0 8px;
-        }
-
-        main p{
-            font-size:15px;
-            color:#5f6b7a;
-            line-height:1.75;
-            margin-bottom:12px;
-        }
-
-        main a{
-            color:#003b73;
-        }
-
-        main a:hover{
-            color:#00a6c8;
-        }
-
-        /* Dashed-border placeholder box used to frame each validation screenshot */
-        .screenshot-box{
-            width:100%;
-            border:2px dashed #b0bec5;
-            border-radius:8px;
-            background-color:#f1faff;
-            padding:40px;
-            text-align:center;
-            color:#5f6b7a;
-            font-size:14px;
-            margin:16px 0 24px;
-        }
-
-        .screenshot-box img{
-            width:100%;
-            border-radius:8px;
-            display:block;
-        }
-
-        /* ============================================
-           "BACK TO TOP" BUTTON
-           Fixed in bottom-right corner, always visible while scrolling
-           ============================================ */
-        .go-top {
-                position:fixed;
-                bottom:32px;
-                right:32px;
-                background-color:#0d2b4e;
-                color:#ffffff;
-                font-size:13px;
-                font-weight:700;
-                text-decoration:none;
-                padding:10px 16px;
-                border-radius:8px;
-                box-shadow:0 4px 12px rgba(0,0,0,0.20);
-                transition:background-color 0.2s ease;
-   
-}
-
-.go-top:hover {
-    background-color:#1565a8;
-}
-
-        /* ============================================
-           HEADER (shared site template)
-           Logo + sticky navigation bar
-           ============================================ */
-        /* Header */
-header {
-    background-color: #003b73;
-    min-height: 72px;
-    padding: 0 4%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky; /* stays fixed at top while scrolling the long validation report */
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.logo:hover { color: #00a6c8; }
-
-nav { display: flex; align-items: center; }
-
-/* Horizontal navigation link list */
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 24px 0 8px;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover { color: #00a6c8; }
-
-/* Highlights the current page in the nav bar (via class="active" in HTML) */
-.nav-links a.active {
-    color: #00a6c8;
-    border-bottom: 2px solid #00a6c8;
-}
-
-/* ============================================
-   FOOTER (shared site template)
-   3-column layout: brand info, coursework links, team links
-   ============================================ */
-/* Footer */
-footer {
-    background-color: #003b73;
-    color: #ffffff;
-    padding: 0;
-    margin-top: 60px;
-}
-
-.footer-container {
-    max-width: 1050px;
-    margin: 0 auto;
-    padding: 42px 8%;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 70px;
-    align-items: start;
-}
-
-.footer-column h3 {
-    color: #ffffff;
-    font-size: 16px;
-    margin-bottom: 16px;
-}
-
-.footer-brand p {
-    max-width: 230px;
-    margin-top: 14px;
-    color: #c5d9eb;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.footer-links a {
-    color: #b8d2e8;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover { color: #ffffff; }
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 18px 8%;
-    text-align: center;
-}
-
-.footer-bottom p {
-    margin: 0;
-    color: #8fb3d1;
-    font-size: 13px;
-}
-    </style>
+    <title>Page Editor - Umar Hunais | BlueFuture</title>
+    <link rel="stylesheet" href="pageEditor_validator.css">
 </head>
 <body>
     <!-- Anchor target for the "Back to Top" button at the bottom of the page -->
@@ -332,94 +14,280 @@ footer {
          HEADER: shared site logo + navigation bar
          ============================================ -->
     <header>
-    <a href="home.html" class="logo">
-        <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
-        BlueFuture
-    </a>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="ais.html">AIS</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="sitemap.html">Sitemap</a></li>
-        </ul>
-    </nav>
-</header>
+        <a href="home.html" class="logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+            BlueFuture
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="ais.html">AIS</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Student name + page title banner -->
+    <!-- Student name + role banner -->
     <div class="stud">
         <h2>Umar Hunais - Student 2</h2>
-        <p>Team Coral | Validation Page</p>
+        <p>Team CORAL | Role: Splash Screen, Action Impact Simulator & Content Page</p>
     </div>
 
     <!-- ============================================
-         TWO-COLUMN LAYOUT: sidebar nav + validation content
+         TWO-COLUMN LAYOUT: sidebar nav + report content
          ============================================ -->
     <div class="container">
-        <!-- Sidebar: quick navigation to each validated page's section -->
+
+        <!-- Sidebar: quick navigation to each report section via anchor links -->
         <aside>
-            <h3>Validated Pages:</h3>
+            <h3>Pages Developed:</h3>
             <ul>
-                <li><a href="#splashVal">Splash Screen</a></li>
-                <li><a href="#aisVal">Action Impact Simulator</a></li>
-                <li><a href="#contentVal">Content Page</a></li>
-                <li><a href="#reflection">Reflection</a></li>
+                <li>Student 2 - Umar Hunais</li>
+                <ul>
+                    <li><a href="#splash">Splash Screen</a></li>
+                    <li><a href="#ais">Action Impact Simulator</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                </ul>
+                <li><a href="#challenge">Challenge & Lessons</a></li>
+                <li><a href="#compliance">Compliance</a></li>
+                <li><a href="#group">Group Meetings</a></li>
+                <li><a href="#ref">References</a></li>
             </ul>
         </aside>
 
-        <!-- Main content: one validation section per implemented page,
-             each containing a result summary, a screenshot placeholder,
-             and a link to the live page, plus a closing reflection section -->
+        <!-- Main report content: one section per implemented page, plus 
+             reflection, compliance, meeting log, and references sections -->
         <main>
-            <!-- Splash Screen validation evidence -->
+
+            <!-- ============================================
+                 SECTION: Splash Screen technical write-up
+                 ============================================ -->
             <section>
-                <h2 id="splashVal">Splash Screen</h2>
-                <h3>Validation Result</h3>
-                <p>The Splash Screen was validated using the W3C HTML Validator. The page passed with no errors.</p>
-                <div class="screenshot-box">
-                    <img src="./assets/images/SplashScreen.png" alt="Splash Screen Validation"/>
-                </div>
-                <h3>Link to page</h3>
+                <h2 id="splash">Splash Screen</h2>
+                <h3>Technical Description</h3>
+                <p>The Splash Screen is the first page users see when visiting the BlueFuture website. It introduces the site's identity, mission, and team before automatically redirecting to the Home Page.</p>
+
+<p><strong>HTML Structure:</strong> The page uses a single <code>&lt;div class="overlay"&gt;</code> that covers the full screen with a dark transparent layer over the background image. Inside is a <code>&lt;div class="content"&gt;</code> which holds the logo image, an <code>&lt;h1&gt;</code> for the site title, an <code>&lt;h2&gt;</code> for the mission statement, a team card using CSS grid, and the countdown row with the skip button.</p>
+
+<p><strong>CSS Techniques:</strong> The <code>body</code> uses <code>background-image</code> with <code>background-size: cover</code> and <code>height: 100vh</code> to make the ocean image fill the entire screen. The overlay uses <code>display: flex</code> with <code>justify-content: center</code> and <code>align-items: center</code> to centre all content both vertically and horizontally. The team members section uses <code>grid-template-columns: 1fr 1fr</code> for a two column layout. The CSS loader spinner uses <code>@keyframes spin</code> with <code>transform: rotate</code> to create a spinning animation without any images or JavaScript.</p>
+
+<p><strong>JavaScript:</strong> A <code>setInterval</code> function runs every 1000 milliseconds and decreases a <code>seconds</code> variable by 1 on each tick. It updates the countdown text using <code>textContent</code>. When the counter hits 0 it calls <code>clearInterval</code> to stop the timer and uses <code>window.location.href</code> to redirect to the Home Page. A <code>&lt;meta http-equiv="refresh"&gt;</code> tag is also included as a fallback redirect in case JavaScript is disabled in the browser.</p>
+               
+
+            <h3>Accessibility</h3>
+
+                <ul>
+    <li>The logo image includes descriptive <code>alt</code> text so screen readers can identify it</li>
+    <li>The <code>lang="en"</code> attribute is set on the <code>&lt;html&gt;</code> tag to help screen readers identify the language</li>
+    <li>The Skip Intro button is a standard <code>&lt;a&gt;</code> tag so it is fully keyboard accessible</li>
+    <li>White text on a dark overlay ensures sufficient colour contrast for readability</li>
+    <li>Text shadow on the heading improves legibility against the background image</li>
+</ul>
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST2.html#splashVal">View validation result</a></p>
+                <h3>Link to the page</h3>
                 <p><a href="splashScreen.html" target="_blank">Open the Splash Screen</a></p>
             </section>
 
-            <!-- Action Impact Simulator validation evidence -->
+            <!-- ============================================
+                 SECTION: Action Impact Simulator technical write-up
+                 ============================================ -->
             <section>
-                <h2 id="aisVal">Action Impact Simulator</h2>
-                <h3>Validation Result</h3>
-                <p>The Action Impact Simulator was validated using the W3C HTML Validator. The page passed with no errors.</p>
-                <div class="screenshot-box">
-                    <img src="./assets/images/ais.png" alt="Action Impact Simulator Validation">
-                </div>
-                <h3>Link to page</h3>
+                <h2 id="ais">Action Impact Simulator</h2>
+                <h3>Technical Description</h3>
+                <p>The Action Impact Simulator is an interactive page that lets users select ocean-friendly actions and receive live feedback on their total environmental impact score.</p>
+
+<p><strong>HTML Structure:</strong> The page uses the shared team template with a sticky header, a frosted overlay div containing the page content, and the shared footer. The main content is split into three parts a hero section with the title, a two column card grid with six action cards, and a summary box at the bottom. Each card has an image wrapper with an absolutely positioned points badge, a radio circle div, a heading and a short description. A <code>data-points</code> attribute on each card stores the point value so JavaScript can read it without hardcoding values in the script.</p>
+
+<p><strong>CSS Techniques:</strong> The background image is applied to the <code>body</code> with a <code>transition</code> property so it changes smoothly when the impact level updates. A <code>div.ais-overlay</code> uses <code>background-color: rgba(255,255,255,0.8)</code> to create a frosted glass effect over the background. The card grid uses <code>display: grid</code> with <code>grid-template-columns: repeat(2, 1fr)</code> for the two column layout. The points badge uses <code>position: absolute</code> inside a <code>position: relative</code> wrapper to pin it to the bottom left corner of the image. The card body uses <code>display: flex</code> to place the radio circle and text side by side.</p>
+
+<p><strong>JavaScript:</strong> <code>document.querySelectorAll('.ais-card')</code> grabs all six cards into a list. A click event listener added with <code>addEventListener</code> runs on each card. Clicking calls <code>classList.toggle('selected')</code> to add or remove the selected state. The <code>updateScore</code> function loops through every card using <code>forEach</code>, checks which ones have the <code>selected</code> class, reads their <code>dataset.points</code> value using <code>parseInt</code> to convert from text to a number, and adds them to a running total. The total then updates the score number, the progress bar width, the impact level text and colour, the hint message, and the body background image all through direct DOM manipulation.</p>
+
+<p><strong>Impact level thresholds:</strong></p>
+<ul>
+    <li>Low: 0–33 points → Coastline background image</li>
+    <li>Medium: 34–66 points → Mangrove background image</li>
+    <li>High: 67–100 points → Healthy Coral Reef background image</li>
+</ul>
+                <h3>Accessibility</h3>
+                <ul>
+    <li>All six card images include descriptive <code>alt</code> text relevant to the action being shown</li>
+    <li>Cards use <code>cursor: pointer</code> and a visible hover lift effect so users know they are clickable</li>
+    <li>The selected state adds a visible dark border and fills the radio circle so the selection is clear without relying on colour alone</li>
+    <li>The impact level text label changes between Low, Medium and High so colour is not the only way to communicate the result</li>
+    <li>The progress bar and score number update in real time giving immediate feedback after each selection</li>
+</ul>
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST2.html#aisVal">View validation result</a></p>
+                <h3>Link to the page</h3>
                 <p><a href="ais.html" target="_blank">Open the Action Impact Simulator</a></p>
             </section>
 
-            <!-- Content Page validation evidence -->
+            <!-- ============================================
+                 SECTION: Content Page technical write-up
+                 ============================================ -->
             <section>
-                <h2 id="contentVal">Content Page</h2>
-                <h3>Validation Result</h3>
-                <p>The Content Page was validated using the W3C HTML Validator. The page passed with no errors.</p>
-                <div class="screenshot-box">
-                    <img src="./assets/images/Content.png" alt="Content page Validation">
-                </div>
-                <h3>Link to page</h3>
+                <h2 id="content">Content Page</h2>
+                <h3>Technical Description</h3>
+                <p>The Content Page is an educational article about ocean pollution and plastic waste, structured to support meaningful internal navigation across five clearly defined sections.</p>
+
+<p><strong>HTML Structure:</strong> The page is divided into a hero banner at the top and a two column layout below using <code>div.content-layout</code>. The left column is a sticky sidebar using Student 1's shared <code>article-sidebar</code> and <code>article-menu</code> classes, containing a numbered ordered list of anchor links. The right column is an <code>&lt;article class="content-main"&gt;</code> containing five content sections each wrapped in a <code>&lt;div&gt;</code> with a unique <code>id</code>. Each section uses <code>&lt;h2&gt;</code> for the section title, <code>&lt;p&gt;</code> for body text, <code>&lt;ul&gt;</code> for bullet points, <code>&lt;div class="callout"&gt;</code> for stat highlight boxes, and <code>&lt;img&gt;</code> with a caption paragraph below.</p>
+
+<p><strong>CSS Techniques:</strong> The two column layout uses Student 1's global <code>.content-layout</code> class which applies <code>display: grid</code> with <code>grid-template-columns: 220px minmax(0, 1fr)</code> so the sidebar is a fixed width and the article takes all remaining space. The sidebar uses <code>position: sticky</code> with <code>top: 130px</code> so it follows the user as they scroll down the article. Images use <code>object-fit: cover</code> with a fixed height to keep all images the same size regardless of their original dimensions. The callout box uses a <code>border-left: 4px solid</code> with a light blue background to visually separate key statistics from the body text. The Go to Top button uses <code>position: fixed</code> to keep it visible at all times as the user scrolls.</p>
+
+<p><strong>JavaScript:</strong> No JavaScript was required on this page. All interactivity including anchor navigation, the sticky sidebar, and the Go to Top button is achieved purely through HTML anchor links and CSS positioning.</p>
+                <h3>Accessibility</h3>
+                <ul>
+    <li>All images include descriptive <code>alt</code> text explaining the content of each image</li>
+    <li>Headings follow a logical hierarchy one <code>&lt;h1&gt;</code> for the page title and <code>&lt;h2&gt;</code> for each section</li>
+    <li>Sidebar anchor links allow keyboard users to jump directly to any section without scrolling</li>
+    <li>The Go to Top button is a plain <code>&lt;a&gt;</code> tag making it fully keyboard accessible</li>
+    <li>Sufficient colour contrast is maintained between text and background throughout the page</li>
+    <li>The sticky sidebar keeps navigation visible while scrolling helping users understand where they are in the article</li>
+</ul>
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST2.html#contentVal">View validation result</a></p>
+                <h3>Link to the page</h3>
                 <p><a href="content_ST2.html" target="_blank">Open the Content Page</a></p>
             </section>
-            
-            <!-- Closing reflection on the overall validation process -->
+
+            <!-- ============================================
+                 SECTION: Reflective write-up on challenges faced
+                 ============================================ -->
             <section>
-                <h2 id="reflection">Reflection on Validation</h2>
-                <p>Using the W3C Validator was a massive reality check because it caught things I completely missed just by looking at the page layout. It pointed out duplicate IDs and skipped heading levels stuff that technically worked on my screen but was breaking proper web standards under the hood. Fixing those errors forced me to actually clean up my HTML structure, which makes the whole site way more stable and accessible for things like screen readers. It really showed me that just because a page looks good visually doesn't mean it's coded right, and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
+                <h2 id="challenge">Challenges and Lessons Learned</h2>
+                <p>One of the main challenges I faced was getting the AIS background image to change smoothly when the impact level updated. I initially tried adding a CSS <code>transition</code> on <code>background-image</code> but found that browsers do not animate this property directly. I resolved this by keeping the instant swap and instead adding a smooth transition on the overlay's opacity to soften the visual change.</p>
+
+<p>Another challenge was the Splash Screen content overflowing the screen height on smaller monitors. The <code>h1</code> was originally set to <code>90px</code> which pushed the countdown and skip button below the viewport so you had to scroll to see them. I fixed this by reducing the font size and margins step by step until everything fit within <code>100vh</code>.</p>
+
+<p>On the Content Page I initially used a complex CSS selector <code>.content-main div:first-child h2</code> to remove the top margin from the first section heading. This was confusing so I simplified it by adding <code>class="first-section"</code> directly to the first div in the HTML which made the intent much clearer.</p>
+
+<p>I also ran into a JavaScript bug on the AIS page where the score was not updating when cards were clicked. After checking the console I found I had written <code>card.datasetpoints</code> instead of <code>card.dataset.points</code> a missing dot that silently broke everything. This taught me to always check the browser console when JavaScript does not behave as expected.</p>
+
+<p>Overall this project taught me that building in phases HTML first, then CSS, then JavaScript makes it much easier to isolate and fix problems because you always know which layer is causing the issue.</p>
+            </section>
+
+            <!-- ============================================
+                 SECTION: JANET compliance statement
+                 ============================================ -->
+            <section>
+                <h2 id="compliance">Compliance</h2>
+                <p>All pages I implemented comply with JANET regulations governing web page publication on university networks. JANET regulations require that content is appropriate, legal, does not breach copyright, and does not cause harm to others.</p>
+
+<ul>
+    <li><strong>Appropriate content:</strong> All content across my three pages relates directly to SDG 14 and ocean conservation. There is no offensive, harmful, or discriminatory material anywhere on my pages.</li>
+    <li><strong>Copyright compliance:</strong> All images used are royalty-free and sourced from appropriate platforms. The Poppins font is loaded from Google Fonts via a standard CDN link which is freely licensed for web use. No copyrighted material has been reproduced without permission.</li>
+    <li><strong>Honest and accurate information:</strong> The statistics and facts on the Content Page are based on real environmental data and are presented accurately. I have not exaggerated or fabricated any figures.</li>
+    <li><strong>No malicious code:</strong> The JavaScript on my pages is limited to DOM manipulation, timers, and event listeners. No user data is collected, stored, or transmitted to any external server.</li>
+    <li><strong>Accessibility:</strong> All pages include alt text on images, semantic HTML structure, and keyboard-accessible elements in line with responsible web publishing standards.</li>
+</ul>
+            </section>
+
+            <!-- ============================================
+                 SECTION: Group meetings and contribution log table
+                 Minimum of 6 meetings required per coursework spec (4.11.9)
+                 ============================================ -->
+             <section>
+                <h2 id="group">Group Meetings and Individual Contribution Log</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="6">Group Meetings and Contribution Log</th>
+                        </tr>
+                        <tr>
+                            <th>Meeting</th>
+                            <th>Date &amp; Time</th>
+                            <th>Format</th>
+                            <th>Objective</th>
+                            <th>Attended</th>
+                            <th>My Individual Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>14th June 2026, 10:00 AM</td>
+                            <td>Face-to-face</td>
+                            <td>Choose SDG and assign roles</td>
+                            <td>Yes</td>
+                            <td>Agreed on SDG 14 (Life Below Water) and volunteered for splash screen, Action Impact Simulator and Content Page (Student 2).</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>21st June 2026, 3:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Review template design and colour scheme</td>
+                            <td>Yes</td>
+                            <td>Reviewed Student 1's shared HTML template and gave feedback on the layout structure. Discussed the colour palette and agreed on the navy and cyan scheme.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>28th June 2026, 11:00 AM</td>
+                            <td>Google Meet</td>
+                            <td>Profile page planning and SVG sitemap ideas</td>
+                            <td>Yes</td>
+                            <td>Demonstrated the Splash Screen to the group and showed the countdown timer and skip button working. Received feedback to reduce the font size so the content fits within the screen height without scrolling.</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>5th July 2026, 2:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Content page progress and image sourcing</td>
+                            <td>Yes</td>
+                            <td>Shared my Content Page draft with the group.Agreed to use royalty free images from unsplash.com</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>10th July 2026, 4:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Integration testing and navigation</td>
+                            <td>Yes</td>
+                            <td>Tested all three of my pages in the browser and confirmed the navigation links work correctly. Checked that the AIS background image changes at the right score thresholds and that the splash screen redirects to the home page after 4 seconds.</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>12th July 2026, 6:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Validation and accessibility review</td>
+                            <td>Yes</td>
+                            <td>Ran the W3C validator on all three of my pages. Took screenshots of the validation results and added them to my Validation Page.</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>18th July 2026, 9:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Final review, group contract signing and submission preparation</td>
+                            <td>Yes</td>
+                            <td>Reviewed the entire website with the team. Checked all my pages work correctly and confirmed my Page Editor and Validation pages are complete.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="font-size:0.85rem; color:#5f6b7a; margin-top:10px;"><strong>Note:</strong> I attended all 7 meetings and contributed actively to each one.</p>
+            </section>
+
+            <!-- ============================================
+                 SECTION: References (currently empty)
+                 ============================================ -->
+            <section>
+                <h2 id="ref">References</h2>
+                <ul class="ref">
+                    <li>Unsplash, 2026. <em>Free stock photos</em>. [online] Available at: &lt;https://unsplash.com&gt; [Accessed 1 July 2026].</li>
+        <li>Google Fonts, 2026. <em>Poppins</em>. [online] Available at: &lt;https://fonts.google.com/specimen/Poppins&gt; [Accessed 1 July 2026].</li>
+        <li>University of Westminster (2026) <i>4COSC011W Lecture Notes.</i> Blackboard VLE.</li>
+         <li>United Nations (2025) <i>SDG 14: Life Below Water.</i> Available at: <a href="https://sdgs.un.org/goals/goal14" target="_blank">https://sdgs.un.org/goals/goal14</a> (Last accessed: July 2026).</li>
+        <li>W3C Validator (2026) <i>Markup Validation Service.</i> Available at: <a href="https://validator.w3.org/" target="_blank">https://validator.w3.org/</a> (Last accessed: July 2026).</li>
+                    
+                </ul>
             </section>
 
             <!-- Jumps back to the #top anchor at the start of the body -->
             <a href="#top" class="go-top">Back to Top</a>
 
-            
         </main>
 
     </div>
@@ -428,37 +296,38 @@ footer {
          FOOTER: shared site template
          ============================================ -->
     <footer>
-    <div class="footer-container">
-        <div class="footer-column footer-brand">
-            <a href="home.html" class="footer-logo">
-                <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
-                BlueFuture
-            </a>
-            <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
-        </div>
-        <div class="footer-column">
-            <h3>Coursework Links</h3>
-            <div class="footer-links">
-                <a href="pageEditor_ST1.html">ST1: Page Editor</a>
-                <a href="validation_ST1.html">ST1: Validation</a>
-                <a href="pageEditor_ST2.html">ST2: Page Editor</a>
-                <a href="validation_ST2.html">ST2: Validation</a>
+        <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="home.html" class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+                    BlueFuture
+                </a>
+                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Coursework Links</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                    <a href="validation_ST1.html">ST1: Validation</a>
+                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                    <a href="validation_ST2.html">ST2: Validation</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Team CORAL</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                    <a href="validation_ST3.html">ST3: Validation</a>
+                    <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+                    <a href="validation_ST4.html">ST4: Validation</a>
+                    <a href="accessibility.html">Accessibility / Compliance</a>
+                </div>
             </div>
         </div>
-        <div class="footer-column">
-            <h3>Team CORAL</h3>
-            <div class="footer-links">
-                <a href="pageEditor_ST3.html">ST3: Page Editor</a>
-                <a href="validation_ST3.html">ST3: Validation</a>
-                <a href="pageEditor_ST4.html">ST4: Page Editor</a>
-                <a href="validation_ST4.html">ST4: Validation</a>
-                <a href="accessibility.html">Accessibility / Compliance</a>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
-    </div>
-</footer>
+    </footer>
+
 </body>
 </html>
