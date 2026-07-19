@@ -35,7 +35,7 @@
         <aside>
             <h3>Validated Pages:</h3>
             <ul>
-                <li><a href="#homepageVal">Homepage Page</a></li>
+                <li><a href="#homepageVal">Homepage</a></li>
                 <li><a href="#galleryVal">Gallery Page</a></li>
                 <li><a href="#contentVal">Content Page</a></li>
                 <li><a href="#reflection">Reflection</a></li>
@@ -51,58 +51,57 @@
                 I used proper heading structure (<code>h1</code>, <code>h2</code>, <code>h3</code>) and semantic 
                 HTML elements. All images include alt text.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Profile_ST4.png" alt="W3C validation result for Profile page showing no errors"/>
+                    <img src="validationImages/Homepage_ST1.jpg" alt="W3C validation result for  Homepage showing no errors"/>
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="profile.html" target="_blank">Open the Profile Page</a></p>
+                <p><a href="home.html" target="_blank">Open the Homepage</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#profile">Go to Profile section in Page Editor</a></p>
+                <p><a href="pageEditor_ST1.html#Homepage">Go to Homepage section in Page Editor</a></p>
             </section>
 
-            <!-- ===== SITEMAP PAGE VALIDATION ===== -->
+            <!-- ===== GALLERY PAGE VALIDATION ===== -->
             <section>
-                <h2 id="sitemapVal">Sitemap Page</h2>
+                <h2 id="galleryVal">Gallery Page</h2>
                 <h3>Validation Result</h3>
-                <p>The Sitemap Page was validated using the W3C HTML Validator. Initially, I had a heading structure 
-                error (skipping from <code>h1</code> to <code>h3</code> without an <code>h2</code>). I fixed this by 
-                adding an <code>h2</code> heading. The SVG code also validated correctly.</p>
+                <p>The Gallery Page was validated using the W3C HTML Validator. The page passed with no errors on the first attempt. The document utilizes a clean HTML structure with custom <code>data-index</code> attributes to support JavaScript interactivity. Form dropdowns (<code>&lt;select&gt;</code>) within the modal are correctly paired with <code>&lt;label&gt;</code> elements for accessibility, and all gallery images include proper <code>alt</code> text.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Sitemap_ST4.png" alt="W3C validation result for Sitemap page showing no errors">
+                    <img src="validationImages/Gallery_ST1.jpg" alt="W3C validation result for Gallery page showing no errors">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="sitemap.html" target="_blank">Open the Sitemap Page</a></p>
+                <p><a href="gallery.html" target="_blank">Open the Gallery Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#sitemap">Go to Sitemap section in Page Editor</a></p>
+                <p><a href="pageEditor_ST1.html#Gallery">Go to Gallery section in Page Editor</a></p>
             </section>
 
             <!-- ===== CONTENT PAGE VALIDATION ===== -->
             <section>
-                <h2 id="contentVal">Content Page (Student 4)</h2>
+                <h2 id="contentVal">Content Page (Student 1)</h2>
                 <h3>Validation Result</h3>
-                <p>The Content Page was validated using the W3C HTML Validator. I had to fix a heading structure 
-                issue (changed sidebar heading from <code>h3</code> to <code>h2</code>) and changed an orphan 
-                <code>&lt;section&gt;</code> without a heading to a <code>&lt;div&gt;</code>. After these fixes, 
-                the page passed with no errors.</p>
+                <p>The Content Page was validated using the W3C HTML Validator. 
+                    Initially, I received a warning because my <code>&lt;article&gt;</code> 
+                    element lacked a direct identifying heading. I fixed this by adding a 
+                    visually hidden <code>&lt;h2&gt;</code> to satisfy semantic rules 
+                    without breaking the visual design. I maintained a strict heading 
+                    hierarchy (<code>&lt;h1&gt;</code> to <code>&lt;h2&gt;</code>) for screen 
+                    readers and used semantic tags to logically separate the sticky 
+                    <code>&lt;aside&gt;</code> from the main text.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Content_ST4.png" alt="W3C validation result for Content page showing no errors">
+                    <img src="validationImages/Content_ST1.jpg" alt="W3C validation result for Content page showing no errors">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="content_ST4.html" target="_blank">Open the Content Page</a></p>
+                <p><a href="content_ST1.html" target="_blank">Open the Content Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#content">Go to Content section in Page Editor</a></p>
+                <p><a href="pageEditor_ST1.html#content">Go to Content section in Page Editor</a></p>
             </section>
             
             <!-- ===== REFLECTION ===== -->
             <section>
                 <h2 id="reflection">Reflection on Validation</h2>
-                <p>Using the W3C Validator was a massive reality check because it caught things I completely missed 
-                just by looking at the page layout. It pointed out skipped heading levels (e.g., going from 
-                <code>h1</code> to <code>h3</code> without an <code>h2</code>) and sections missing headings; stuff 
-                that technically worked on my screen but was breaking proper web standards under the hood.</p>
-                <p>Fixing those errors forced me to actually clean up my HTML structure. For my sitemap, I added 
-                a missing <code>h2</code> heading. For my content page, I changed a <code>&lt;section&gt;</code> to a <code>&lt;div&gt;</code> because it didn't need a heading. This makes the whole site way more stable and accessible for things like screen readers.</p>
-                <p>It really showed me that just because a page looks good visually doesn't mean it's coded right 
-                and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
+                <p>Using the W3C Validator was an eye-opening experience because it caught outdated habits and structural issues that I couldn't see just by looking at the visual layout. For instance, it flagged numerous messages across my pages for using trailing slashes (<code>/&gt;</code>) on void elements like <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, and <code>&lt;meta&gt;</code> tags. While this used to be standard practice, the validator taught me that modern HTML5 no longer requires them, prompting me to clean up my syntax globally.</p>
+
+                <p>It also caught a structural warning on my Content Page where my <code>&lt;article&gt;</code> element lacked a direct identifying heading. Even though my layout looked perfect and my sections had nested <code>&lt;h2&gt;</code> tags, the validator reminded me that strict semantic HTML requires clear document outlines. I fixed this by adding a visually hidden <code>&lt;h2&gt;</code> to satisfy the accessibility outline without breaking my CSS design.</p>
+
+                <p>Ultimately, this process proved that just because a page renders correctly in a browser doesn't mean the code is structurally sound under the hood. Validating the pages forced me to write cleaner, more professional HTML that is accessible to screen readers and fully compliant with modern web standards.</p>
             </section>
 
             <a href="#top" class="go-top">Back to Top</a>
