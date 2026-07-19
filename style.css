@@ -625,7 +625,7 @@
     }
 
     .go-top:hover {
-    background-color: var(--accent-green);
+    background-color: var(--primary-blue);
     transform: translateY(-3px);
     }
 
