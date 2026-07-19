@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Editor - Student 4 | BlueFuture</title>
+    <link rel="stylesheet" href="pageEditor_validator.css">
+</head>
+<body>
+    <div id="top"></div>
+    <header>
+        <a href="home.html" class="logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+            BlueFuture
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="ais.html">AIS</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="stud">
+        <h2>G.H.D.R Shevin Sheron - Student 1</h2>
+        <p>Team CORAL | Role: Homepage with shared template, Gallery &amp; Content Page</p>
+    </div>
+
+    <div class="container">
+
+        <aside>
+            <h3>Pages Developed:</h3>
+            <ul>
+                <li>Student 1</li>
+                <ul>
+                    <li><a href="#home">Homepage</a></li>
+                    <li><a href="#gallery">Gallery Page</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                </ul>
+                <li><a href="#challenge">Challenge &amp; Lessons</a></li>
+                <li><a href="#compliance">Compliance</a></li>
+                <li><a href="#group">Group Meetings</a></li>
+                <li><a href="#ref">References</a></li>
+            </ul>
+        </aside>
+
+        <main>
+
+            <!-- Homepage -->
+            <section>
+                <h2 id="home">Homepage</h2>
+                <h3>Technical Description</h3>
+                <p><strong>HTML Structure:</strong>As Student 1, I was responsible for the shared website template. I chose to use semantic HTML5 elements like 
+                    <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;footer&gt;</code> because they provide clear meaning to the page structure, which improves both accessibility for screen readers and overall code readability.</p>
+            
+                <p>On the Content Page, I used a <code>&lt;div class="content-layout"&gt;</code> to separate the page into an <code>&lt;aside&gt;</code> 
+                    (for the sticky sidebar menu) and an <code>&lt;article&gt;</code> (for the main educational content). This logical 
+                    separation ensures the user can easily navigate the text. I used heading tags (<code>&lt;h1&gt;</code> to <code>&lt;h2&gt;</code>) to 
+                    establish a strict content hierarchy.</p>
+
+                <p>On the Gallery Page, I structured the grid using <code>&lt;div class="gallery-card"&gt;</code> 
+                    containers. I utilized the <code>&lt;div class="gallery-card"&gt;</code> HTML attribute on these cards to seamlessly link the structural elements 
+                    to the JavaScript data array without cluttering the HTML with hidden text.</p>
+            
+                
+                <p><strong>CSS Techniques:</strong> <br>
+                    My CSS strategy focused on creating a responsive, 
+                    cohesive visual identity using global variables <b>(:root)</b> 
+                    for colors and spacing. I avoided copying large code sections by relying on reusable classes.
+                    <br>
+                    Layouts (Grid vs. Flexbox): I justified using CSS Grid <b>(display: grid)</b> for the mission cards and the 
+                    gallery because it perfectly handles rigid, two-dimensional card layouts. I chose Flexbox <b>(display: flex)</b> 
+                    for the navigation bar and alignment within containers because of its flexibility in distributing space 
+                    along a single row.
+                    <br>
+                    Positioning: I applied <b>position: sticky</b> to the <code>&lt;header&gt;</code> and the article sidebar. The purpose of this 
+                    was to keep vital navigation tools visible on the screen as the user reads long articles. I used <b>position: fixed</b> 
+                    for the "Go to Top" button and the modal backdrop so they sit on top of the entire document.
+
+                <p><strong>JavaScript Implementation:</strong> <br>
+                    My JavaScript logic is focused on the Gallery Page to drive the interactivity requirements without relying on CSS-only hacks. Instead of hardcoding all the expanded descriptions into the HTML, I created a <b>galleryData</b> array to store objects containing the titles, descriptions, and SDG relevance for each image. This separates data from presentation.</p>
+                <p style="color: black;">The main event listeners and functions I wrote are:</p>
+                
+                 <ul>
+                    <li><strong>Hover Event Listeners (mouseenter and mouseleave)</strong> — I used a <b>.forEach()</b> loop to attach these to every card. They dynamically add or remove the <b>overlay-visible</b> CSS class to show a dark blue overlay with a "View Details" button, ensuring the hover effect is JavaScript-driven.</li><br>
+                    <li><strong>Card <code>click</code> Listener</strong> — Handles the click-to-expand feature. It reads the card's index using <b>parseInt(card.getAttribute('data-index'))</b>. It then pulls the correct data from galleryData and updates the DOM using textContent and setAttribute on variables like <b>targetTitle</b>, <b>targetImage</b>, and <b>targetDesc</b>. Finally, it adds the modal-open class to the backdrop to fade the modal into view.</li><br>
+                    <li><strong>updateDisplay()</strong> — updates the profile card on the right side. It 
+                        checks each field and only shows the ones that have been answered. I used variables 
+                        like "<code>fullNameField</code>", "<code>userNameField</code>" and "<code>actionField</code>"
+                        to store the DOM elements.</li><br>
+                    <li><strong>Dropdown <code>change</code> Listeners</strong> — Handles the user customization requirement. When a user selects a new theme or font, the listener reads <b>e.target.value</b>. It removes the existing theme/font classes from the <b>modalBox</b> using <b>classList.remove()</b> and applies the newly selected class using <b>classList.add('theme-' + selectedTheme)</b>.</li><br>
+                </ul>
+                <p>I used standard DOM manipulation (<code>document.getElementById()</code> and <code>document.querySelectorAll()</code>) to update the modal display in real-time without refreshing the page. I also used descriptive variable names like <b>modalBox</b>, <b>targetTitle</b>, <b>themeSelect</b>, and <b>closeTrigger</b> to make the code highly readable and easy to follow.</p>
+                <h3>Accessibility</h3>
+                    <p>I ensured my pages are accessible by using semantic HTML elements and logical heading levels 
+                    ("<code>h1</code>, <code>h2</code>, <code>h3</code>"). <br>All images include descriptive <code>alt</code> 
+                    text for screen reader users, and the global colour palette ensures high contrast readability. 
+                    I also implemented a global visible focus state (<code>:focus-visible</code>) to fully support keyboard navigation.</p>
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST1.html#homepage-validation">View validation result</a></p>
+                
+                <h3>Link to the page</h3>
+                <p><a href="home.html" target="_blank">Open the Homepage</a></p>
+            </section>
+            <!-- Gallery page -->
+            <section>
+                <h2 id="gallery">Gallery Page</h2>
+                <h3>Technical Description</h3>
+                
+                <p><strong>HTML Structure:</strong> The gallery relies on the shared template for consistent header and footer navigation. The main content area features a 6-card grid, and I built a hidden modal structure (<code>&lt;div class="modal-backdrop"&gt;</code>) at the bottom of the page to handle the extended view.</p>
+                <p>Key HTML elements I used: <br>"<code>&lt;div&gt;</code>", "<code>&lt;img&gt;</code>", "<code>&lt;button&gt;</code>", "<code>&lt;select&gt;</code>", and "<code>&lt;label&gt;</code>". I heavily utilized custom <code>data-index</code> attributes on each card to seamlessly link the HTML elements to the JavaScript data array.</p>
+                
+                <p><strong>CSS Design & Techniques:</strong> <br>To create the main gallery, I used CSS Grid (<code>display: grid</code>) with <code>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))</code>. This was a highly efficient way to make a responsive layout that automatically reflows on smaller screens without needing complex media queries.</p>
+                <p>For the extended view, I used <code>position: fixed</code> to ensure the modal backdrop overlays the entire screen, locking the user's focus. The modal itself also uses a 2-column Grid for a clean, side-by-side layout (image on the left, text and controls on the right). I applied smooth CSS properties (<code>transition: opacity 0.3s ease</code>) so the modal fades in naturally rather than snapping abruptly.</p>
+                <br>
+                
+                <p><strong>Interactivity (JavaScript):</strong> <br>To meet the strict coursework requirements, I completely avoided CSS-only hover hacks. Instead, I used a <code>.forEach()</code> loop to attach <code>mouseenter</code> and <code>mouseleave</code> event listeners to every card, which dynamically adds or removes an <code>overlay-visible</code> CSS class to reveal the "View Details" button.</p>
+                <p>When a card is clicked, the script reads its <code>data-index</code>, pulls the corresponding information from the <code>galleryData</code> array, and injects it into the hidden modal using <code>textContent</code> and <code>setAttribute()</code>.</p><p>To handle the user customization requirement, I attached <code>change</code> event listeners to the Theme and Font <code>&lt;select&gt;</code> dropdowns. When a user picks a new option, the script removes the old CSS classes from the modal's <code>classList</code> and applies the new ones (e.g., <code>.theme-ocean</code> or <code>.font-mono</code>), allowing the user to change the visual design in real-time without refreshing the page.</p>
+
+                <h3>Accessibility</h3>
+                <p>To ensure the gallery is highly accessible, every <code>&lt;img&gt;</code> tag includes a descriptive <code>alt</code> attribute so visually impaired users using screen readers understand the visual content of the SDG 14 images. Within the extended view modal, I paired each <code>&lt;select&gt;</code> dropdown with a clear, associated <code>&lt;label&gt;</code> tag to support form accessibility. Finally, I ensured that all interactive elements including the cards, close buttons, and dropdowns trigger the global <code>:focus-visible</code> CSS outline, providing a clear visual indicator for users navigating the site exclusively with a keyboard.</p>
+                
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST1.html#gallery-validation">View validation result</a></p>
+                
+                <h3>Link to the page</h3>
+                <p><a href="gallery.html" target="_blank">Open the Gallery Page</a></p>
+            </section>
+
+           
+            <!-- CONTENT PAGE -->
+            <section>
+                <h2 id="content">Content Page</h2>
+                <h3>Technical Description</h3>
+                <p><strong>HTML Structure:</strong> My content page focuses on "Coral Reefs &amp; Coastal Ecosystems," directly relating to SDG 14. I utilized the shared template for the header and footer, and structured the main body using a two-column CSS Grid layout (<code>.content-layout</code>) to separate an <code>&lt;aside&gt;</code> sidebar from the main <code>&lt;article&gt;</code> content.</p>
+                <p>Key HTML elements I used: <br>"<code>&lt;aside&gt;</code>", "<code>&lt;article&gt;</code>", "<code>&lt;section&gt;</code>", "<code>&lt;h2&gt;</code>", "<code>&lt;img&gt;</code>", and "<code>&lt;div class="callout"&gt;</code>".</p>
+                
+                <p><strong>Internal Navigation & CSS:</strong> <br>I built a sidebar menu containing an ordered list of anchor links (e.g., <code>#what-are-corals</code>). I applied <code>position: sticky</code> to this sidebar so it remains visible alongside the reader. To ensure the section headings aren't hidden behind the global sticky header when a link is clicked, I applied <code>scroll-margin-top: 120px</code> to the <code>&lt;section&gt;</code> tags. <br>I also implemented a "Back to top" button in the bottom right corner utilizing <code>position: fixed</code> to ensure it remains constantly accessible as the user scrolls.</p>
+
+                <p><strong>Images and Styling:</strong> <br>I embedded 5 images throughout the article. I styled them using the global <code>.article-image</code> class to apply uniform rounded corners and shadows. I also utilized customized <code>.callout</code> boxes to visually break up paragraphs and highlight critical environmental facts for the user.</p>
+
+                <h3>Accessibility</h3>
+                <p>I structured the page strictly using semantic HTML landmarks (<code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;article&gt;</code>) and maintained a proper heading hierarchy (<code>&lt;h1&gt;</code> down to <code>&lt;h2&gt;</code>) to allow screen readers to navigate the document logically. <br>All 5 images include highly descriptive <code>alt</code> text, and the continuous visibility of the sticky sidebar and "Back to top" button significantly reduces the scroll burden for users relying on keyboard navigation.</p>
+                <h3>Link to the validation page</h3>
+                <p><a href="validation_ST1.html#content-validation">View validation result</a></p>
+                
+                <h3>Link to the page</h3>
+                <p><a href="content_ST1.html" target="_blank">Open the Content Page</a></p>
+            </section>
+
+            <!-- CHALLENGES AND LESSONS -->
+            <section>
+                <h2 id="challenge">Challenges and Lessons Learned</h2>
+                
+            <h3>Challenge 1: Anchor Links and Sticky Headers</h3>
+            <p>When implementing the "Back to Top" button on my Content Page, the scrolling behavior glitched. I initially used an <code>id="Top"</code> on my sticky header, which caused case-sensitivity issues with the <code>#top</code> link and fought against the header's sticky positioning.</p>
+            <p><strong>How I fixed it:</strong><br> I removed the <code>id</code> from the header completely. I kept the link as <code>&lt;a href="#top"&gt;</code>, allowing the browser's native default behavior to scroll to the absolute top of the document without interfering with the sticky CSS.</p>
+            <p><strong>What I learned:</strong><br> Modern browsers have built-in reserved keywords (like <code>#top</code>) that natively handle document scrolling. Sometimes, removing custom code and relying on native browser behaviors is cleaner and more reliable than forcing a manual solution.</p>
+
+            <h3>Challenge 2: Avoiding CSS-Only Hover Effects</h3>
+            <p>The coursework specification strictly required that the Gallery page's hover overlays and expanded views be handled entirely by JavaScript, meaning I could not just use a simple CSS <code>:hover</code> selector for the visual effects.</p>
+            <p><strong>How I fixed it:</strong><br> I used <code>querySelectorAll()</code> and a <code>.forEach()</code> loop in JavaScript to attach <code>mouseenter</code> and <code>mouseleave</code> event listeners to every gallery card. These listeners dynamically add and remove an <code>overlay-visible</code> CSS class to trigger the visual transitions.</p>
+            <p><strong>What I learned:</strong><br> Strict separation of concerns is highly effective. Using JavaScript to control the <em>behavior</em> (when the class is added) and CSS to control the <em>presentation</em> (how the class animates) keeps the codebase modular and much easier to debug.</p>
+
+            <h3>Challenge 3: Font Changes Breaking Modal Layouts</h3>
+            <p>While testing the Gallery's user customization panel, I noticed that switching the text to the "Monospace" font caused the letters to take up more horizontal space. This forced the text to wrap to new lines, which vertically stretched the modal card and broke the side-by-side design.</p>
+            <p><strong>How I fixed it:</strong><br> I applied a strict <code>height: 550px;</code> limit to the <code>.extended-modal</code> container and added <code>overflow-y: auto;</code> specifically to the right-side content column. This locks the card size in place and simply triggers an internal scrollbar if the text gets too long.</p>
+            <p><strong>What I learned:</strong><br> Dynamic user content (like changing fonts or adding text) can easily destroy a rigid design. It is critical to define strict container boundaries and plan for content overflow to maintain structural integrity.</p>
+          
+            </section>
+
+            <!-- COMPLIANCE -->
+            <section>
+                <h2 id="compliance">Compliance</h2>
+<p>JANET regulations govern the publication of web pages on the UK academic network. I made sure my pages comply with these regulations by:</p>
+<ul>
+    <li><strong>Appropriate Content:</strong> All content across my Home, Gallery, and Content pages focuses purely on the academic exploration of SDG 14 (specifically Coral Reefs and Coastal Ecosystems). I ensured no offensive, defamatory, or non-academic material was included anywhere on the site.</li><br>
+    <li><strong>Ethical Use of Resources:</strong> JANET strictly prohibits using the network for commercial gain. I ensured there are no advertisements, sponsorships, or commercial links on my pages. Furthermore, all images used in my gallery and content page are appropriately sourced as royalty-free, and my CSS/JavaScript is optimized to avoid wasting network bandwidth.</li><br>
+    <li><strong>Professional Conduct:</strong> As Student 1, I was responsible for developing the shared global template. I worked collaboratively and professionally with my team to ensure everyone's individual pages integrated smoothly into my template. This collaboration is documented in the meeting log below.</li><br>
+    <li><strong>Academic Integrity:</strong> The HTML, CSS, and JavaScript structures—especially the custom data-driven Gallery modal—were written originally based on our coursework and lecture materials. The written research regarding Coral Reefs is my own original work, and any external facts will be properly cited in the References section.</li><br>
+</ul>
+<p>By following these guidelines, I ensure that my work meets the standards expected by the University of Westminster.</p>
+            </section>
+
+            <!-- GROUP MEETINGS -->
+            <section>
+                <h2 id="group">Group Meetings and Individual Contribution Log</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="6">Group Meetings and Contribution Log</th>
+                        </tr>
+                        <tr>
+                            <th>Meeting</th>
+                            <th>Date &amp; Time</th>
+                            <th>Format</th>
+                            <th>Objective</th>
+                            <th>Attended</th>
+                            <th>My Individual Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>14th June 2026, 10:00 AM</td>
+                            <td>Face-to-face</td>
+                            <td>Choose SDG and assign roles</td>
+                            <td>Yes</td>
+                            <td>Led the initial discussion to select SDG 14 (Life Below Water). Volunteered for the Student 1 role to design the core global site architecture, Home page, Gallery page, and the first Content page</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>21st June 2026, 3:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Review template design and colour scheme</td>
+                            <td>Yes</td>
+                            <td>Developed and presented the initial global CSS structural layout. Collaborated on design feedback, integrating the team's accent color suggestions into the shared :root variable stylesheet.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>28th June 2026, 11:00 AM</td>
+                            <td>Google Meet</td>
+                            <td>Profile page planning and SVG sitemap ideas</td>
+                            <td>Yes</td>
+                            <td>Finalized and distributed the master layout template files to all team members, providing a unified design baseline to ensure seamless individual page integration.</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>5th July 2026, 2:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Content page progress and image sourcing</td>
+                            <td>Yes</td>
+                            <td>Shared my <code>content_ST1.html</code> draft. Demonstrated the sticky sidebar navigation layout and fixed 'Back to top' functionality, and helped establish standard global article image classes.</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>10th July 2026, 4:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Integration testing and navigation</td>
+                            <td>Yes</td>
+                            <td>Collected components from members for baseline integration testing. Developed the data-driven JavaScript logic for the Gallery page hover overlays and the dynamic single-modal asset population.</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>12th July 2026, 6:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Validation and accessibility review</td>
+                            <td>Yes</td>
+                            <td>Implemented the real-time JavaScript <code>change</code> dropdown listeners for the gallery's theme/font style customizer. Added global keyboard :focus-visible rules to the shared stylesheet.</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>18th July 2026, 9:00 PM</td>
+                            <td>WhatsApp</td>
+                            <td>Final review, group contract signing and submission preparation</td>
+                            <td>Yes</td>
+                            <td>Coordinated the final full-site review and cross-page navigation links validation. Managed the compiled project file architecture, signed off on the group contract, and prepared my validation reports.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="font-size:0.85rem; color:#5f6b7a; margin-top:10px;"><strong>Note:</strong> I attended all 7 meetings and contributed actively to each one.</p>
+            </section>
+
+            <!-- REFERENCES -->
+            <section>
+                <h2 id="ref">References</h2>
+                <ul class="ref">
+                    <li>unsplash (2025) <i>unsplash.</i> Available at: <a href="https://unsplash.com/" target="_blank">https://unsplash.com/</a> (Last accessed: July 2026).</li><br>
+                    <li>United Nations (2025) <i>SDG 14: Life Below Water.</i> Available at: <a href="https://sdgs.un.org/goals/goal14" target="_blank">https://sdgs.un.org/goals/goal14</a> (Last accessed: July 2026).</li><br>
+                    <li>W3Schools (2026) <em>CSS Grid Layout</em>. Available at: <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank">https://www.w3schools.com/css/css_grid.asp</a> (Last accessed: July 2026).</li><br>
+                    <li>MDN Web Docs (2026) <em>Positioning (Sticky and Fixed)</em>. Available at: <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning</a> (Last accessed: July 2026).</li><br>
+                    <li>MDN Web Docs (2026) <em>EventTarget: addEventListener() method</em>. Available at: <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener</a> (Last accessed: July 2026).</li><br>
+                    <li>W3Schools (2026) <em>JavaScript HTML DOM classList Property</em>. Available at: <a href="https://www.w3schools.com/jsref/prop_element_classlist.asp" target="_blank">https://www.w3schools.com/jsref/prop_element_classlist.asp</a> (Last accessed: July 2026).</li><br>
+                    <li>University of Westminster (2026) <i>4COSC011W Lecture Notes.</i> Blackboard VLE.</li><br>
+                    <li>W3C Validator (2026) <i>Markup Validation Service.</i> Available at: <a href="https://validator.w3.org/" target="_blank">https://validator.w3.org/</a> (Last accessed: July 2026).</li><br>
+                </ul>
+            </section>
+
+            <a href="#top" class="go-top">Back to Top</a>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="home.html" class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
+                    BlueFuture
+                </a>
+                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity and promote sustainable use of oceans.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Coursework Links</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                    <a href="validation_ST1.html">ST1: Validation</a>
+                    <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                    <a href="validation_ST2.html">ST2: Validation</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Team CORAL</h3>
+                <div class="footer-links">
+                    <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                    <a href="validation_ST3.html">ST3: Validation</a>
+                    <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+                    <a href="validation_ST4.html">ST4: Validation</a>
+                    <a href="accessibility.html">Accessibility / Compliance</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
