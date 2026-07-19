@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programs & Feedback | BlueFuture</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Page-specific embedded CSS: Feedback page only ===== */
+
+  /* 1. Hero */
+  .hero {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+  }
+  .hero h1 { font-size: 2.75rem; margin-bottom: 0.6rem; }
+  .hero p { font-size: 1.1rem; color: #4a5a72; }
+
+  /* 2. Two-column layout: directory + form */
+  .feedback-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .feedback-layout { grid-template-columns: 1fr; }
+  }
+
+  /* 3. Opportunity Directory */
+  .directory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .directory-header select {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #cfd8e3;
+    background: #fff;
+  }
+  .programme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-height: 640px;
+    overflow-y: auto;
+    padding-right: 0.4rem;
+  }
+  .programme-card {
+    display: flex;
+    gap: 1.1rem;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+  }
+  .programme-card img {
+    width: 110px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .programme-card .badge {
+    display: inline-block;
+    background: var(--color-badge-bg);
+    color: var(--color-badge-text);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .programme-card .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .programme-card h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+  .programme-card p { margin: 0 0 0.5rem; font-size: 0.92rem; color: #4a5a72; }
+  .programme-card .join-link {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  /* 4. Feedback form card */
+  .feedback-form-card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.75rem;
+  }
+  #feedback-form fieldset {
+    border: none;
+    border-top: 1px solid #e3e9f2;
+    margin: 0 0 1.5rem;
+    padding: 1.25rem 0 0;
+  }
+  #feedback-form fieldset:first-of-type { border-top: none; padding-top: 0; }
+  #feedback-form legend {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #6b7a90;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+  #feedback-form label {
+    display: block;
+    margin-top: 0.9rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  #feedback-form input,
+  #feedback-form select,
+  #feedback-form textarea {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    margin-top: 0.35rem;
+    border: 1px solid #d7dee8;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  #feedback-form input:focus,
+  #feedback-form select:focus,
+  #feedback-form textarea:focus {
+    outline: 2px solid var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .char-counter { font-size: 0.78rem; color: #8493a8; }
+  .field-error {
+    color: #d00000;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+  #feedback-form .btn { width: 100%; margin-top: 1.5rem; }
+  .confirmation-box {
+    display: none;
+    background: #e6f4ea;
+    border: 1px solid #6ab04c;
+    color: #256029;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* 5. Community Reviews */
+  .reviews-section { margin-top: 3rem; }
+  .rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.75rem;
+    border-radius: var(--radius);
+    margin: 1.25rem 0 1.5rem;
+  }
+  .rating-summary .score { font-size: 3rem; font-weight: 700; }
+  .rating-summary .stars { color: #ffc94a; letter-spacing: 2px; }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.1rem;
+  }
+  .review-card .stars { color: #ffc94a; float: right; }
+  .review-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .review-card p { color: #4a5a72; font-size: 0.92rem; }
+  .review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #8493a8;
+    margin-top: 0.75rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 2C8 8 4 11.5 4 15.5C4 19.6 7.6 22 12 22C16.4 22 20 19.6 20 15.5C20 11.5 16 8 12 2Z" fill="#63b3ed"/>
+    </svg>
+    BlueFuture
+  </div>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="ais.html">AIS</a></li>
+      <li><a href="feedback.html" class="active">Feedback</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="sitemap.html">Sitemap</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1>Programs &amp; Feedback</h1>
+    <p>Get involved in our local initiatives or share your thoughts to help us improve.</p>
+  </section>
+
+  <div class="feedback-layout">
+
+    <!-- ===================== OPPORTUNITY DIRECTORY ===================== -->
+    <section aria-labelledby="programmes-heading">
+      <div class="directory-header">
+        <h2 id="programmes-heading">Opportunity Directory</h2>
+        <label for="sort-select" class="visually-hidden">Filter programmes</label>
+        <select id="sort-select" name="sort-select">
+          <option value="all">All Programs</option>
+          <option value="popular">Most Popular</option>
+          <option value="nearest">Nearest</option>
+          <option value="student">Student Friendly</option>
+        </select>
+      </div>
+
+      <div class="programme-list">
+        <div class="programme-card">
+          <img src="https://picsum.photos/seed/beachclean/220/180" alt="Volunteers collecting plastic waste on a beach">
+          <div>
+            <div class="title-row">
+              <h3>Beach Cleanup Campaign</h3>
+              <span class="badge">Nearest</span>
+            </div>
+            <p>Join local volunteers to clean the Hikkaduwa coastline.</p>
+            <a class="join-link" href="#" onclick="return false;">Join Program &rarr;</a>
+          </div>
+        </div>
+
+        <div class="programme-card">
+          <img src="https://picsum.photos/seed/schoolchallenge/220/180" alt="Coastal litter collected as part of a school plastic-reduction programme">
+          <div>
+            <div class="title-row">
+              <h3>Plastic-Free School Challenge</h3>
+              <span class="badge">Student Friendly</span>
+            </div>
+            <p>A program designed for students to reduce school waste.</p>
+            <a class="join-link" href="#" onclick="return false;">Join Program &rarr;</a>
+          </div>
+        </div>
+
+        <div class="programme-card">
+          <img src="https://picsum.photos/seed/coralreef/220/180" alt="Coral reef with fish, viewed underwater">
+          <div>
+            <div class="title-row">
+              <h3>Coral Reef Awareness Workshop</h3>
+              <span class="badge">Most Popular</span>
+            </div>
+            <p>Learn about marine ecosystems from experts.</p>
+            <a class="join-link" href="#" onclick="return false;">Join Program &rarr;</a>
+          </div>
+        </div>
+
+        <div class="programme-card">
+          <img src="https://picsum.photos/seed/turtlerescue/220/180" alt="Sea turtle being cared for by marine wildlife rescue volunteers">
+          <div>
+            <div class="title-row">
+              <h3>Marine Wildlife Rescue Support</h3>
+              <span class="badge">Nearest</span>
+            </div>
+            <p>Assist trained rescuers protecting stranded marine life along the coast.</p>
+            <a class="join-link" href="#" onclick="return false;">Join Program &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEEDBACK FORM ===================== -->
+    <section class="feedback-form-card" aria-labelledby="form-heading">
+      <h2 id="form-heading">Leave Your Feedback</h2>
+      <form id="feedback-form" novalidate>
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <label for="full-name">Full Name *</label>
+          <input type="text" id="full-name" name="full-name" placeholder="John Doe" required>
+          <span class="field-error" id="error-full-name">Please enter your name.</span>
+
+          <div class="form-row">
+            <div>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+              <span class="field-error" id="error-email">Please enter a valid email address.</span>
+            </div>
+            <div>
+              <label for="tel">Telephone</label>
+              <input type="tel" id="tel" name="tel" placeholder="+94 77 123 4567" pattern="[0-9 +()-]{7,15}">
+              <span class="field-error" id="error-tel">Please enter a valid phone number.</span>
+            </div>
+          </div>
+
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="2"></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your Feedback</legend>
+
+          <div class="form-row">
+            <div>
+              <label for="programme-select">Topic</label>
+              <select id="programme-select" name="programme-select" required>
+                <option value="">Select topic...</option>
+                <option value="beach-cleanup">Beach Cleanup Campaign</option>
+                <option value="school-challenge">Plastic-Free School Challenge</option>
+                <option value="coral-workshop">Coral Reef Awareness Workshop</option>
+                <option value="turtle-rescue">Marine Wildlife Rescue Support</option>
+              </select>
+            </div>
+            <div>
+              <label for="visit-date">Date Attended (if applicable)</label>
+              <input type="date" id="visit-date" name="visit-date">
+            </div>
+          </div>
+
+          <div class="label-row">
+            <label for="message">Message / Comment *</label>
+            <span class="char-counter" id="char-counter">0 / 300</span>
+          </div>
+          <textarea id="message" name="message" maxlength="300" rows="4" placeholder="Share your thoughts..." required></textarea>
+          <span class="field-error" id="error-message">Please enter a message (max 300 characters).</span>
+
+          <label for="submit-datetime">Follow up request time</label>
+          <input type="datetime-local" id="submit-datetime" name="submit-datetime">
+        </fieldset>
+
+        <button type="submit" class="btn">Submit Feedback &nbsp;&#10148;</button>
+        <div class="confirmation-box" id="confirmation-box">
+          Thank you for your feedback! We've received your message.
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- ===================== COMMUNITY REVIEWS ===================== -->
+  <section class="reviews-section" aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading">Community Reviews</h2>
+
+    <div class="rating-summary">
+      <div class="score">8.6</div>
+      <div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <strong>Excellent</strong><br>
+        Based on 124 reviews
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <div class="card review-card">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <h3>Great initiative!</h3>
+        <p>The beach cleanup was incredibly well organized.</p>
+        <div class="review-meta">
+          <span>Jane D. &bull; Oct 12, 2026</span>
+          <a href="#">See More</a>
+        </div>
+      </div>
+      <div class="card review-card">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <h3>Learned so much</h3>
+        <p>The coral reef workshop opened my eyes to the importance of biodiversity.</p>
+        <div class="review-meta">
+          <span>Mark S. &bull; Oct 05, 2026</span>
+          <a href="#">See More</a>
+        </div>
+      </div>
+      <div class="card review-card">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <h3>Good for students</h3>
+        <p>My kids loved the plastic-free challenge. Highly recommend.</p>
+        <div class="review-meta">
+          <span>Sarah W. &bull; Sep 28, 2026</span>
+          <a href="#">See More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C8 8 4 11.5 4 15.5C4 19.6 7.6 22 12 22C16.4 22 20 19.6 20 15.5C20 11.5 16 8 12 2Z" fill="#63b3ed"/>
+        </svg>
+        BlueFuture
+      </div>
+      <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+    </div>
+    <div>
+      <h4>Coursework Links</h4>
+      <ul>
+        <li><a href="pageEditor_ST1.html">ST1: Page Editor</a></li>
+        <li><a href="validation_ST1.html">ST1: Validation</a></li>
+        <li><a href="pageEditor_ST2.html">ST2: Page Editor</a></li>
+        <li><a href="validation_ST2.html">ST2: Validation</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Team CORAL</h4>
+      <ul>
+        <li><a href="pageEditor_ST3.html">ST3: Page Editor</a></li>
+        <li><a href="validation_ST3.html">ST3: Validation</a></li>
+        <li><a href="pageEditor_ST4.html">ST4: Page Editor</a></li>
+        <li><a href="validation_ST4.html">ST4: Validation</a></li>
+        <li><a href="#" aria-label="Accessibility and compliance statement"><u>Accessibility / Compliance</u></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</div>
+</footer>
+
+<script>
+  // ===== Live character counter =====
+  const message = document.getElementById('message');
+  const counter = document.getElementById('char-counter');
+  const MAX_LEN = 300;
+
+  message.addEventListener('input', () => {
+    counter.textContent = `${message.value.length} / ${MAX_LEN}`;
+  });
+
+  // ===== Form validation + submission confirmation =====
+  const form = document.getElementById('feedback-form');
+  const confirmationBox = document.getElementById('confirmation-box');
+
+  function showError(id, show) {
+    const el = document.getElementById('error-' + id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const fullName = document.getElementById('full-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = message.value.trim();
+
+    showError('full-name', fullName === '');
+    if (fullName === '') valid = false;
+
+    showError('email', !isValidEmail(email));
+    if (!isValidEmail(email)) valid = false;
+
+    showError('message', msg === '');
+    if (msg === '') valid = false;
+
+    if (valid) {
+      confirmationBox.style.display = 'block';
+      form.reset();
+      counter.textContent = `0 / ${MAX_LEN}`;
+    } else {
+      confirmationBox.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
