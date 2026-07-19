@@ -235,6 +235,7 @@ table {
     font-size: 14px;
     display: block;
     overflow-x: auto;
+    max-width: 100%;
 }
 
 th {
@@ -375,7 +376,7 @@ footer {
 
 @media (max-width: 800px) {
     .container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 0 20px;
     }
 
