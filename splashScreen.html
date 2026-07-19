@@ -6,15 +6,20 @@
         <title>SplashScreen</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-
-        <meta http-equiv="refresh" content="5; url=index.html"/>
+        <!-- Fallback redirect to Home Page after 5 seconds, in case JavaScript is disabled.
+             The JS timer below also redirects after 4 seconds when JS is enabled. -->
+        <meta http-equiv="refresh" content="5; url=home.html"/>
         <style>
 
+            /* Universal reset: removes default browser spacing and 
+               makes width/height calculations include padding/border */
             *{
                 margin:0;
                 padding:0;
                 box-sizing:border-box;
             }
+
+            /* Full-screen ocean background image that fills the viewport */
             body{
                  background-image: url("./assets/images/OceanWater.jfif");
                  background-size: cover;
@@ -24,6 +29,8 @@
                 font-family:Arial, Helvetica, sans-serif;
             }
 
+            /* Dark semi-transparent layer over the background image so white text stays readable.
+               Uses flexbox to centre all content both vertically and horizontally. */
             .overlay {
                 width:100%;
                 height:100vh;
@@ -35,19 +42,22 @@
                 color:white;
             }
 
+            /* Constrains the width of the centred content block */
             .content{
                 width:80%;
                 max-width:900px;
             
             }
 
+            /* Site title styling */
             h1 {
                 font-size:70px;
                 font-weight:bold;
                 margin-bottom:10px;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* improves legibility over the busy background */
             }
 
+            /* Mission statement text below the title */
             h2{
                 font-size:20px;
                 font-weight:400;
@@ -56,6 +66,7 @@
 
             }
 
+            /* Semi-transparent card containing the team member list */
             .card{
                 width:500px;
                 margin:20px auto;
@@ -73,6 +84,7 @@
                 
             }
 
+            /* Two-column grid layout for the 4 team member names */
             .members{
                 display:grid;
                 grid-template-columns:1fr 1fr;
@@ -85,11 +97,17 @@
                 border-radius:8px;
 
             }
+
+            /* Highlights the "Blue" part of "BlueFuture" in the site title */
             .content h1 strong{
                 color:#00bfff;
             }
 
-            /* loader */
+            /* ============================================
+               COUNTDOWN LOADER
+               CSS-only spinning animation shown next to the
+               countdown text (no image or JS needed for the spin itself)
+               ============================================ */
             .countdown-row{
                 display:flex;
                 align-items:center;
@@ -98,6 +116,8 @@
                 margin:18px 0 12px;
             }
 
+            /* Circular spinner: top border coloured white, rest transparent-ish,
+               rotated continuously via the spin keyframes below */
             .loader{
                 width:28px;
                 height:28px;
@@ -107,11 +127,13 @@
                 animation:spin 1s linear infinite;
             }
 
+            /* Rotates the loader a full 360 degrees, repeating indefinitely */
             @keyframes spin{
                 0%{transform:rotate(0deg);}
                 100%{transform:rotate(360deg);}
             }
 
+            /* Countdown text, e.g. "Entering site in 4..." - updated live by JS */
             .countdown{
                 font-size:18px;
                 color:#ffffff;
@@ -119,6 +141,7 @@
                 letter-spacing:1px;
             }
 
+            /* "Skip Intro" button: outlined pill button that inverts colours on hover */
             .skip-btn{
                 display:inline-block;
                 margin-top:8px;
@@ -138,6 +161,7 @@
                 color:#0d2b4e;
             }
 
+            /* Logo image sizing above the site title */
             .content img{
                 width:60px;
                 height:60px;
@@ -148,6 +172,7 @@
         </style>
     </head>
     <body>
+        <!-- Full-screen dark overlay wrapping all splash screen content -->
         <div class="overlay">
             <div class="content">
                 <img src="assets/images/logo.svg" alt="BlueFuture Logo"/>
@@ -155,6 +180,8 @@
                 <h2>Protect marine ecosystems, reduce pollution,
                     conserve biodiversity, and promote sustainable
                     use of oceans.</h2>
+
+                <!-- Team member card, displayed in a 2-column grid -->
                 <div class="card">
                     <h3>Team Coral</h3>
                     <div class="members">
@@ -165,19 +192,29 @@
                     </div>
 
                 </div>
+
+                <!-- Countdown row: CSS spinner + live countdown text (updated by JS below) -->
                 <div class="countdown-row">
                 <div class="loader"></div>
                 <p class="countdown">Entering site in 4...</p>
             </div>
+
+            <!-- Manual skip link: takes the user straight to the Home Page,
+                 bypassing the countdown/auto-redirect -->
             <a href="home.html" class="skip-btn">Skip Intro</a>
             </div>
             
         </div>
 
     <script>
+        // Starting countdown value in seconds (matches the visible "Entering site in 4..." text)
         let seconds=4;
+
+        // Reference to the countdown paragraph so its text can be updated each tick
         const countdown = document.querySelector('.countdown');
 
+        // Runs every 1000ms (1 second): decreases the counter and updates the on-screen text.
+        // Once the counter reaches 0, stops the timer and redirects to the Home Page.
         const timer = setInterval(function(){
             seconds=seconds-1;
             countdown.textContent = 'Entering site in '+seconds +'...';
