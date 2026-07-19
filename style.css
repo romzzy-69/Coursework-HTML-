@@ -1,4 +1,4 @@
-﻿/* =========================================
+/* =========================================
     BlueFuture - SDG 14: Life Below Water
     Global stylesheet
     Team: CORAL
@@ -608,25 +608,24 @@
       font-weight:600;
     }
 
-                /* "GO TO TOP" BUTTON STYLING (No JS required) */
-    .go-top{
-      position:fixed;
-      bottom:32px;
-      right:32px;
-      background-color:#0d2b4e;
-      color:#ffffff;
-      font-size:13px;
-      font-weight:700;
-      text-decoration:none;
-      padding:10px 16px;
-      border-radius:8px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.20);
-      transition:background-color 0.2s ease;
+                /* "GO TO TOP" BUTTON STYLING */
+    .go-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--secondary-blue);
+    color: var(--white);
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
     }
-    
 
     .go-top:hover {
-    background-color:#1565a8;
+    background-color: var(--accent-green);
     transform: translateY(-3px);
     }
 
@@ -638,3 +637,226 @@
     .article-sidebar { position: static; }
     .article-menu { width: 100%; }
     }
+
+    /* VALIDATION & PAGE EDITOR SPECIFIC STYLES
+   These styles are ONLY for validation and page editor pages. */
+
+/* --- Student header section --- */
+.stud {
+    background-color: var(--primary-blue);
+    padding: 32px 60px;
+    color: var(--white);
+}
+
+.stud h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--white);
+}
+
+.stud p {
+    color: #aad4f5;
+    font-size: 15px;
+}
+
+/* --- Layout container (sidebar + main) --- */
+.container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 48px auto;
+    padding: 0px 40px;
+    align-items: start;
+}
+
+/* --- Sidebar --- */
+aside {
+    background-color: #eaf4fb;
+    border-left: 4px solid var(--secondary-blue);
+    border-radius: 8px;
+    padding: 20px;
+    position: sticky;
+    top: 24px;
+}
+
+aside h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 14px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside ul li {
+    margin-bottom: 8px;
+}
+
+aside ul li a {
+    font-size: 13px;
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+    color: var(--secondary-blue);
+}
+
+aside ul ul {
+    padding-left: 14px;
+    margin-top: 6px;
+}
+
+/* --- Main content area --- */
+main {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 48px 52px;
+    box-shadow: var(--shadow);
+}
+
+main section {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 2px solid var(--light-bg);
+}
+
+main section:last-of-type {
+    border-bottom: none;
+}
+
+main h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light-bg);
+}
+
+main h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--secondary-blue);
+    margin: 20px 0 8px;
+}
+
+main p {
+    font-size: 15px;
+    color: var(--muted-text);
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+
+main a {
+    color: var(--primary-blue);
+}
+
+main a:hover {
+    color: var(--secondary-blue);
+}
+
+/* --- Screenshot box --- */
+.screenshot-box {
+    width: 100%;
+    border: 2px dashed #b0bec5;
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    padding: 4px;
+    text-align: center;
+    color: var(--muted-text);
+    font-size: 14px;
+    margin: 16px 0 24px;
+}
+
+.screenshot-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* --- Meeting log table --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+th {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 10px 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e8f0;
+    color: var(--muted-text);
+    vertical-align: top;
+}
+
+/* --- References list --- */
+ul.ref {
+    padding-left: 22px;
+}
+
+ul.ref li {
+    font-size: 15px;
+    color: var(--muted-text);
+    line-height: 1.75;
+    margin-bottom: 10px;
+}
+
+/* --- Responsive for validation pages --- */
+@media (max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    aside {
+        position: static;
+    }
+
+    main {
+        padding: 30px 24px;
+    }
+
+    .stud {
+        padding: 24px 20px;
+    }
+
+    .stud h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px 16px;
+    }
+
+    .stud {
+        padding: 18px 16px;
+    }
+
+    .stud h2 {
+        font-size: 17px;
+    }
+
+    .stud p {
+        font-size: 13px;
+    }
+}
