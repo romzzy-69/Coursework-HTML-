@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feedback & Program Directory | BlueFuture - SDG 14</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 <style>
 :root {
   --navy: #14335c;
+  --primary-blue: #003b73;
   --navy-dark: #0e2647;
   --blue: #2f7bd6;
   --teal: #1fb6c9;
@@ -41,64 +42,6 @@ img { max-width: 100%; display: block; }
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
-
-/* ================= HEADER / NAV ================= */
-.site-header {
-  background: var(--navy);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.4rem;
-}
-
-.logo-icon { font-size: 1.6rem; }
-
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 34px;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav a {
-  color: #cfe0f5;
-  text-decoration: none;
-  font-weight: 500;
-  padding-bottom: 6px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.main-nav a:hover,
-.main-nav a:focus {
-  color: var(--white);
-  border-bottom-color: var(--teal);
-}
-
-.main-nav a.active {
-  color: var(--white);
-  border-bottom-color: var(--teal);
-}
-
 /* ================= PAGE HERO ================= */
 .page-hero {
   text-align: center;
@@ -530,24 +473,23 @@ textarea.invalid {
 <body>
 
 <!-- ============ HEADER / NAV ============ -->
-<header class="site-header">
-  <div class="header-inner">
+<header>
     <a href="home.html" class="logo">
-      <span class="logo-icon" aria-hidden="true">🌊</span>
-      <span class="logo-text">BlueFuture</span>
+        <img src="assets/images/logo.svg" alt="BlueFuture logo">
+        <span>BlueFuture</span>
     </a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="ais.html">AIS</a></li>
-        <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="sitemap.html">Sitemap</a></li>
-      </ul>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="ais.html">AIS</a></li>
+            <li><a href="feedback.html" class="active">Feedback</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
     </nav>
-  </div>
 </header>
 
 <main>
