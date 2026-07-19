@@ -226,6 +226,53 @@
             border-color:#0d2b4e;
         }
 
+         /* ============================================
+           MOBILE RESPONSIVE OVERRIDES
+           Only affects the main AIS content (overlay,
+           hero, grid, cards, summary). Header/footer
+           left untouched as requested.
+           ============================================ */
+        @media (max-width: 768px) {
+            .ais-overlay{
+                padding: 24px 16px;
+            }
+ 
+            .ais-grid{
+                grid-template-columns: 1fr; /* stack cards into a single column */
+                gap: 18px;
+                margin: 24px 0;
+            }
+ 
+            .ais-hero h1{
+                font-size: 24px;
+            }
+ 
+            .ais-hero p{
+                font-size: 14px;
+                max-width: 100%;
+            }
+ 
+            .ais-card-img-wrap img{
+                height: 160px;
+            }
+ 
+            .ais-summary{
+                padding: 24px 18px;
+            }
+ 
+            .score-number{
+                font-size: 48px;
+            }
+ 
+            .score-total{
+                font-size: 16px;
+            }
+ 
+            .impact-level{
+                font-size: 26px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -347,7 +394,7 @@
             <!-- Card 6: Spread awareness -->
             <div class="ais-card" data-points="5">
                 <div class="ais-card-img-wrap">
-                    <img src="./assets/images/Coral Reef.jfif" alt="People Cleaning a Beach" >
+                    <img src="./assets/images/CoralReef.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+5 points</span>
                 </div>
                 <div class="ais-card-body">
