@@ -119,7 +119,7 @@ aside {
     border-radius: 8px;
     padding: 20px;
     position: sticky;
-    top: 24px;
+    top: 130px;
 }
 
 aside h3 {
@@ -236,6 +236,7 @@ table {
     display: block;
     overflow-x: auto;
     max-width: 100%;
+    border: 1px solid #e0e8f0;
 }
 
 th {
@@ -243,6 +244,7 @@ th {
     color: #ffffff;
     padding: 10px 12px;
     text-align: left;
+    border: 1px solid #002a52;
 }
 
 td {
@@ -250,6 +252,7 @@ td {
     border-bottom: 1px solid #e0e8f0;
     color: #5f6b7a;
     vertical-align: top;
+    border: 1px solid #e0e8f0;
 }
 
 /* ---------- REFERENCES LIST ---------- */
