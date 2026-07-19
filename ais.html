@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Action Impact Simulator</title>
-
+    <link rel="stylesheet" href="style.css">
     <style>
+        /* ============================================
+           GLOBAL PAGE SETUP
+           Full-screen background image that changes 
+           depending on the user's impact level (see JS)
+           ============================================ */
         body {
             margin:0;
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url('./assets/images/Coastline.jfif');
+            background-image: url('./assets/images/Coastline.jfif'); /* default/low-impact background */
             background-size:cover;
             background-position:center;
             background-attachment: fixed;
-            transition:background-image 0.5s ease;
+            transition:background-image 0.5s ease; /* smooth fade when background changes via JS */
         }
 
+        /* Semi-transparent white layer so text stays readable over the background image */
         .ais-overlay{
             min-height:100vh;
             background-color:rgba(255,255,255,0.8);
@@ -23,45 +29,37 @@
             box-sizing:border-box;
         }
 
+        /* ============================================
+           ACTION CARDS GRID
+           Displays the 6 required action cards in a
+           responsive 2-column layout
+           ============================================ */
         .ais-grid{
             display:grid;
             grid-template-columns:repeat(2,1fr);
             gap:28px;
             margin:36px 0;
-
         }
 
+        /* Base card styling - unselected state */
         .ais-card{
             background-color:white;
             border-radius:16px;
             overflow:hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.10);
-            cursor:pointer;
-            /* Updated: transition includes background-color and border-color for a smooth selection animation */
-            transition:transform 0.2s ease,box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-            border:2px solid transparent;
+            cursor:pointer; /* indicates the whole card is clickable */
+            transition:transform 0.2s ease,box-shadow 0.2s ease;
+            border:2px solid transparent; /* transparent border reserved for the "selected" state below */
         }
 
+        /* Hover feedback so users know the card is interactive */
         .ais-card:hover{
             transform:translateY(-5px);
             box-shadow:0 8px 30px rgba(0,0,0,0.15);
-           
         }
 
         .ais-card-img-wrap{
-            position:relative;
-        }
-
-        /* Added: Subtle theme-colored blue overlay on the card's image when selected */
-        .ais-card.selected .ais-card-img-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(13, 42, 78, 0.08);
-            pointer-events: none;
+            position:relative; /* allows the points badge to be positioned inside the image */
         }
 
         .ais-card-img-wrap img{
@@ -71,6 +69,7 @@
             display:block;
         }
 
+        /* "+X points" badge shown on top of each card image */
         .points{
             position:absolute;
             bottom:12px;
@@ -90,6 +89,7 @@
             align-items:flex-start;
         }
 
+        /* Circular radio-style indicator showing selection state (filled in via JS/CSS class) */
         .ais-radio{
             width:22px;
             height:22px;
@@ -99,11 +99,6 @@
             background-color:#ffffff;
             box-sizing:border-box;
             margin-top:3px;
-            /* Added: display flex properties to center the checkmark tick inside the circle */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
         .ais-card-text h2{
@@ -120,6 +115,9 @@
             line-height:1.5;
         }
 
+        /* ============================================
+           PAGE HERO / INTRO TEXT
+           ============================================ */
         .ais-hero{
             text-align:center;
             margin-bottom:12px;
@@ -129,7 +127,6 @@
             color:#0d2b4e;
             font-weight:700;
             margin-bottom:8px;
-
         }
 
         .ais-hero p{
@@ -139,13 +136,17 @@
             max-width:560px;
         }
 
+        /* ============================================
+           IMPACT SCORE SUMMARY PANEL
+           Updated dynamically by JavaScript as the
+           user selects/deselects action cards
+           ============================================ */
         .ais-summary{
             background-color:white;
             border-radius:16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.10);
             padding:40px 32px;
             text-align:center;
-
         }
 
         .ais-summary h2{
@@ -153,8 +154,9 @@
             font-weight:700;
             color:#0d2b4e;
             margin-bottom:16px;
-
         }
+
+        /* Large numeric score display, e.g. "45" */
         .score-number{
             font-size:64px;
             font-weight:700;
@@ -162,26 +164,28 @@
             line-height:1;
         }
 
+        /* "/ 100" label next to the score number */
         .score-total{
             font-size:21px;
             color:#6b7c8d;
-
         }
 
+        /* Coloured fill inside the progress bar track; width and colour set by JS based on score */
         .score-bar-fill{
-            background-color:#b0bec5;
+            background-color:#b0bec5; /* default grey, overridden by JS per impact level */
             height:100%;
-            width:0%;
+            width:0%; /* starts empty, animated by JS as actions are selected */
             border-radius:99px;
         }
 
+        /* Background track for the progress bar */
         .score-bar-track{
             background-color:#e0e0e0;
             border-radius:99px;
             height:10px;
             margin:20px auto;
             max-width:600px;
-            overflow:hidden;
+            overflow:hidden; /* keeps the fill's rounded corners contained */
         }
 
         .impact-label{
@@ -190,13 +194,13 @@
             text-transform:uppercase;
             color:#6b7c8d;
             margin-bottom:6px;
-
         }
 
+        /* "Low / Medium / High" text, colour changed dynamically by JS */
         .impact-level{
             font-size:32px;
             font-weight:700;
-            color:#e05555;
+            color:#e05555; /* default red (Low), overridden by JS */
             margin:0;
         }
         .impact-hint{
@@ -205,254 +209,30 @@
             margin-top:16px;    
         }
 
-        /* ---------- HEADER ---------- */
+        
+        /* ============================================
+           SELECTED CARD STATE
+           Applied/removed by JS when a card is clicked
+           (class="selected" toggled in the click handler)
+           ============================================ */
+        .ais-card.selected{
+            border:2px solid #0d2b4e; /* dark blue border replaces the transparent default border */
+            box-shadow:0 0 0 3px rgba(13,42,78,0.15); /* soft glow ring around selected cards */
+        }
 
-:root {
-  --primary-blue: #003b73;
-  --secondary-blue: #00a6c8;
-  --white: #ffffff;
-}
-
-header {
-  background-color: var(--primary-blue);
-  min-height: 72px;
-  padding: 0 4%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: var(--white);
-  text-decoration: none;
-  font-size: 1.35rem;
-  font-weight: 700;
-}
-
-.logo img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.logo:hover {
-  color: var(--secondary-blue);
-}
-
-nav {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links {
-  list-style: none;
-
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.nav-links a {
-  position: relative;
-
-  color: var(--white);
-  text-decoration: none;
-
-  font-size: 0.85rem;
-  font-weight: 500;
-
-  padding: 24px 0 8px;
-
-  transition:
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--secondary-blue);
-}
-
-.nav-links a.active {
-  color: var(--secondary-blue);
-  border-bottom: 2px solid var(--secondary-blue);
-}
-
-@media (max-width: 900px) {
-  header {
-    padding: 18px 5%;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .nav-links {
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .nav-links a {
-    padding: 6px 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .nav-links {
-    gap: 12px;
-  }
-
-  .nav-links a {
-    font-size: 0.8rem;
-  }
-}
-
-<!--Footer-->
-:root {
-  --primary-blue: #003b73;
-  --white: #ffffff;
-}
-
-.site-footer {
-  background-color: var(--primary-blue);
-  color: var(--white);
-  padding: 0;
-}
-
-.site-footer .footer-container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 42px 8%;
-
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 70px;
-
-  align-items: start;
-}
-
-.footer-column h3 {
-  color: var(--white);
-  font-size: 1rem;
-  margin-bottom: 16px;
-}
-
-.footer-brand p {
-  max-width: 230px;
-  margin-top: 14px;
-  margin-bottom: 0;
-
-  color: #c5d9eb;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.footer-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  color: var(--white);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.footer-logo img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 9px;
-}
-
-.site-footer .footer-links a {
-  color: #b8d2e8;
-  text-decoration: none;
-  font-size: 0.84rem;
-
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.site-footer .footer-links a:hover {
-  color: var(--white);
-  transform: translateX(3px);
-}
-
-.site-footer .accessibility-link {
-  margin-top: 6px;
-  text-decoration: underline;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 18px 8%;
-  text-align: center;
-}
-
-.footer-bottom p {
-  margin: 0;
-  color: #8fb3d1;
-  font-size: 0.78rem;
-}
-
-@media (max-width: 600px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-links {
-    justify-content: center;
-  }
-}
-
-/* Updated: Highlight selected cards with a light blue background overlay */
-.ais-card.selected{
-    background-color: #f0f7ff; /* Soft light blue highlight color */
-    border:2px solid #0d2b4e;
-    box-shadow:0 8px 24px rgba(13,42,78,0.15);
-}
-
-/* Updated: Selected radio circle matches theme color */
-.ais-card.selected .ais-radio{
-    background-color:#0d2b4e;
-    border-color:#0d2b4e;
-}
-
-/* Added: Right/checkmark icon inside the circle when selected */
-.ais-card.selected .ais-radio::after {
-    content: '';
-    width: 4px;
-    height: 8px;
-    border: solid #ffffff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    margin-bottom: 2px; /* Shift up slightly for vertical visual balance */
-}
-
-
-
+        /* Fills in the circular radio indicator when its parent card is selected */
+        .ais-card.selected .ais-radio{
+            background-color:#0d2b4e;
+            border-color:#0d2b4e;
+        }
 
     </style>
 </head>
 <body>
+    <!-- ============================================
+         HEADER: site logo + navigation bar (shared template)
+         "AIS" link marked active since this is the current page
+         ============================================ -->
     <header>
          <a href="home.html" class="logo">
         <img src="assets/images/logo.svg" alt="BlueFuture logo">
@@ -460,9 +240,9 @@ nav {
   </a>
          <nav>
     <ul class="nav-links">
-      <li><a href="home.html">Home</a></li>
+      <li><a href="home.html" class="active">Home</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="ais.html" class="active">AIS</a></li>
+      <li><a href="ais.html">AIS</a></li>
       <li><a href="feedback.html">Feedback</a></li>
       <li><a href="team.html">Team</a></li>
       <li><a href="profile.html">Profile</a></li>
@@ -470,19 +250,30 @@ nav {
     </ul>
   </nav>
     </header>
+
+    <!-- ============================================
+         MAIN CONTENT: Action Impact Simulator
+         ============================================ -->
     <div class="ais-overlay">
+
+        <!-- Page title and short instructions -->
         <div class="ais-hero">
             <h1>SDG 14 Action Impact Simulator</h1>
             <p>Choose the actions you are willing to take and see how your choices help protect our oceans.</p>
         </div>
 
+        <!-- 
+            Grid of 6 action cards.
+            Each card has a data-points attribute read by JS to calculate the total score.
+            Clicking anywhere on a card toggles its "selected" class (handled in <script> below).
+        -->
         <div class="ais-grid">
-            <!-- First Card-->
+
+            <!-- Card 1: Beach cleanup -->
             <div class="ais-card" data-points="25">
                 <div class="ais-card-img-wrap">
                     <img src="./assets/images/BeachCleaning.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+25 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -490,17 +281,14 @@ nav {
                         <h2>Join a beach cleanup</h2>
                         <p>Directly remove waste from coastal ecosystems.</p>
                     </div>
-
-
                 </div>
             </div>
 
-            <!-- Second Card-->
+            <!-- Card 2: Sustainable seafood -->
             <div class="ais-card" data-points="20">
                 <div class="ais-card-img-wrap">
                     <img src="./assets/images/Dolphin.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+20 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -508,17 +296,14 @@ nav {
                         <h2>Choose sustainable seafood</h2>
                         <p>Support fisheries that don't overfish.</p>
                     </div>
-
-
                 </div>
             </div>
 
-            <!-- Third Card-->
+            <!-- Card 3: Avoid single-use plastics -->
             <div class="ais-card" data-points="15">
                 <div class="ais-card-img-wrap">
                     <img src="./assets/images/BoatOcean.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+15 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -526,17 +311,14 @@ nav {
                         <h2>Avoid single-use plastics</h2>
                         <p>Cut out straws, bags, and disposable packaging daily.</p>
                     </div>
-
-
                 </div>
             </div>
 
-            <!-- Fourth Card-->
+            <!-- Card 4: Reusable water bottle -->
             <div class="ais-card" data-points="15">
                 <div class="ais-card-img-wrap">
                     <img src="./assets/images/Whale.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+15 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -544,17 +326,14 @@ nav {
                         <h2>Use a reusable water bottle</h2>
                         <p>Saves around 156 plastic bottles from the ocean every year.</p>
                     </div>
-
-
                 </div>
             </div>
 
-            <!-- Fifth Card-->
+            <!-- Card 5: Coral reef protection -->
             <div class="ais-card" data-points="20">
                 <div class="ais-card-img-wrap">
                     <img src="./assets/images/Turtle.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+20 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -562,17 +341,14 @@ nav {
                         <h2>Support coral reef protection</h2>
                         <p>Donate to or advocate for marine protected areas.</p>
                     </div>
-
-
                 </div>
             </div>
 
-            <!-- Sixth Card-->
+            <!-- Card 6: Spread awareness -->
             <div class="ais-card" data-points="5">
                 <div class="ais-card-img-wrap">
-                    <img src="./assets/images/Coral Reef.jfif" alt="People Cleaning a Beach" >
+                    <img src="./assets/images/CoralReef.jfif" alt="People Cleaning a Beach" >
                     <span class="points">+5 points</span>
-
                 </div>
                 <div class="ais-card-body">
                     <div class="ais-radio"></div>
@@ -580,14 +356,16 @@ nav {
                         <h2>Spread awareness</h2>
                         <p>Educate others about marine life and SDG 14.</p>
                     </div>
-
-
                 </div>
             </div>
 
-
         </div>
 
+        <!-- 
+            Impact score summary panel.
+            All values inside here (score number, bar width/colour, impact level text
+            and hint message) are updated live by updateScore() in the script below.
+        -->
         <div class="ais-summary">
             <h2>Your Impact Score</h2>
             <div>
@@ -596,15 +374,18 @@ nav {
             </div>
             <div class="score-bar-track">
                 <div class="score-bar-fill"></div>
-
             </div>
 
             <p class="impact-label">Current Impact Level</p>
             <p class="impact-level">Low</p>
             <p class="impact-hint">Select actions to see how you can help save our oceans.</p>
-
         </div>
     </div>
+
+    <!-- ============================================
+         FOOTER: shared template, with links updated
+         to point to this student's Page Editor / Validation pages
+         ============================================ -->
     <footer class="site-footer">
     <div class="footer-container">
 
@@ -661,69 +442,82 @@ nav {
     </div>
 </footer>
 
-<script>
-    const cards=document.querySelectorAll('.ais-card');
+    <!-- ============================================
+         JAVASCRIPT: Action Impact Simulator logic
+         Handles card selection, score calculation,
+         impact level classification, and background changes
+         ============================================ -->
+    <script>
+        // Grab all action cards, and the summary elements we need to update
+        const cards=document.querySelectorAll('.ais-card');
 
-    const scoreNumber =document.querySelector('.score-number');
-    const scoreBarFill =document.querySelector('.score-bar-fill');
-    const impactLevel =document.querySelector('.impact-level');
-    const impactHint =document.querySelector('.impact-hint');
+        const scoreNumber =document.querySelector('.score-number');   // numeric score display
+        const scoreBarFill =document.querySelector('.score-bar-fill'); // progress bar fill element
+        const impactLevel =document.querySelector('.impact-level');    // "Low/Medium/High" text
+        const impactHint =document.querySelector('.impact-hint');      // supporting hint message
 
-    const max_score=100;
+        const max_score=100; // used to calculate the progress bar's fill percentage
 
-    function updateScore(){
-        let total=0;
-        cards.forEach(function(card){
-            if(card.classList.contains('selected')){
-                total= total + parseInt(card.dataset.points);
+        // Recalculates the total score from all currently selected cards
+        // and updates the summary panel (number, bar, level text/colour, background image)
+        function updateScore(){
+            let total=0;
+
+            // Sum the data-points value of every card that has the "selected" class
+            cards.forEach(function(card){
+                if(card.classList.contains('selected')){
+                    total= total + parseInt(card.dataset.points);
+                }
+            });
+
+            // Update the visible score number
+            scoreNumber.textContent=total;
+
+            // Update the progress bar width as a percentage of max_score
+            scoreBarFill.style.width=(total/max_score*100) + '%';
+
+            // Determine impact level band and update colours, text, and background image accordingly.
+            // Thresholds: 0 = none selected, 1-33 = Low, 34-66 = Medium, 67+ = High
+            if(total===0){
+                impactLevel.textContent='Low';
+                impactLevel.style.color='#e05555'
+                scoreBarFill.style.backgroundColor='#b0bec5';
+                impactHint.textContent='Select actions to see how you can help save our oceans.';
+                document.body.style.backgroundImage="url(assets/images/Coastline.jfif)";
+
+            }else if(total<=33){
+                impactLevel.textContent='Low';
+                impactLevel.style.color='#e05555'
+                scoreBarFill.style.backgroundColor='#e05555';
+                impactHint.textContent='Good start! Every action counts.';
+                document.body.style.backgroundImage="url(assets/images/Coastline.jfif)";
+
+            } else if(total<=66){
+                impactLevel.textContent='Medium';
+                impactLevel.style.color='#e8a020'
+                scoreBarFill.style.backgroundColor='#e8a020';
+                impactHint.textContent='Great effort! You are making a real difference.';
+                document.body.style.backgroundImage="url(assets/images/Mangrove.jfif)";
+
+            } else{
+                impactLevel.textContent='High';
+                impactLevel.style.color='#2eab6e'
+                scoreBarFill.style.backgroundColor='#2eab6e';
+                impactHint.textContent='Outstanding! You are a true ocean champion.';
+                document.body.style.backgroundImage="url(assets/images/HealthyCoralReef.jfif)";
             }
-        });
-
-        scoreNumber.textContent=total;
-
-        scoreBarFill.style.width=(total/max_score*100) + '%';
-
-        if(total===0){
-            impactLevel.textContent='Low';
-            impactLevel.style.color='#e05555'
-            scoreBarFill.style.backgroundColor='#b0bec5';
-            impactHint.textContent='Select actions to see how you can help save our oceans.';
-            document.body.style.backgroundImage="url(assets/images/Coastline.jfif)";
-
-        }else if(total<=33){
-            impactLevel.textContent='Low';
-            impactLevel.style.color='#e05555'
-            scoreBarFill.style.backgroundColor='#e05555';
-            impactHint.textContent='Good start! Every action counts.';
-            document.body.style.backgroundImage="url(assets/images/Coastline.jfif)";
-
-
-        } else if(total<=66){
-            impactLevel.textContent='Medium';
-            impactLevel.style.color='#e8a020'
-            scoreBarFill.style.backgroundColor='#e8a020';
-            impactHint.textContent='Great effort! You are making a real difference.';
-            document.body.style.backgroundImage="url(assets/images/Mangrove.jfif)";
-
-
-        } else{
-            impactLevel.textContent='High';
-            impactLevel.style.color='#2eab6e'
-            scoreBarFill.style.backgroundColor='#2eab6e';
-            impactHint.textContent='Outstanding! You are a true ocean champion.';
-            document.body.style.backgroundImage="url(assets/images/HealthyCoralReef.jfif)";
-
         }
-    }
 
-    cards.forEach(function(card){
-        card.addEventListener('click',function(){
-            card.classList.toggle('selected');
-            updateScore();
+        // Attach a click listener to every card: clicking toggles its "selected" state
+        // (adds/removes the .selected class, which also updates the radio dot via CSS)
+        // and immediately recalculates the score summary.
+        cards.forEach(function(card){
+            card.addEventListener('click',function(){
+                card.classList.toggle('selected');
+                updateScore();
+            });
         });
-    });
-
-</script>
+    </script>
     
 </body>
 </html>
