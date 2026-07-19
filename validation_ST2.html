@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation Page</title>
     <style>
+        /* Universal reset: removes default browser spacing and 
+           makes width/height calculations include padding/border */
         *{
             margin:0;
             padding:0;
             box-sizing:border-box;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* smooth scrolling for sidebar anchor links */
 
         }
 
@@ -19,6 +21,10 @@
             color:#1f2937;
         }
 
+        /* ============================================
+           STUDENT BANNER
+           Dark blue strip showing student name and page title
+           ============================================ */
         .stud{
             background-color:#003b73;
             padding:32px 60px;
@@ -37,6 +43,10 @@
             font-size:15px;
         }
 
+        /* ============================================
+           PAGE LAYOUT
+           Two-column grid: fixed sidebar + main validation content
+           ============================================ */
         .container{
             display:grid;
             grid-template-columns:240px 1fr;
@@ -49,12 +59,13 @@
 
         }
 
+        /* Sticky sidebar listing links to each validated page's section */
         aside{
             background-color:#eaf4fb;
             border-left:4px solid #00a6c8;
             border-radius:8px;
             padding:20px;
-            position:sticky;
+            position:sticky; /* stays in view as the user scrolls down the page */
             top:24px;
 
         }
@@ -85,11 +96,14 @@
             line-height:1.4;
         }
 
+        /* Note: hover effect is applied to the <li> here rather than the <a> itself,
+           so underline/colour change triggers slightly differently than a direct link hover */
         aside ul li:hover{
             text-decoration:underline;
             color:#00a6c8;
         }
 
+        /* White card holding all validation sections */
         main{
             background-color:white;
             border-radius:12px;
@@ -97,12 +111,14 @@
             box-shadow:0 2px 12px rgba(0,0,0,0.06);
         }
 
+        /* Adds spacing and a divider line between each validation section */
         main section{
             margin-bottom:48px;
             padding-bottom:48px;
             border-bottom:2px solid #f1faff;
         }
 
+        /* Section heading style, e.g. "Splash Screen", "Action Impact Simulator" */
         main h2{
             font-size:22px;
             font-weight:700;
@@ -112,6 +128,7 @@
             border-bottom:2px solid #f1faff;
         }
 
+        /* Sub-heading style, e.g. "Validation Result", "Link to page" */
         main h3{
             font-size:16px;
             font-weight:700;
@@ -134,6 +151,7 @@
             color:#00a6c8;
         }
 
+        /* Dashed-border placeholder box used to frame each validation screenshot */
         .screenshot-box{
             width:100%;
             border:2px dashed #b0bec5;
@@ -152,6 +170,10 @@
             display:block;
         }
 
+        /* ============================================
+           "BACK TO TOP" BUTTON
+           Fixed in bottom-right corner, always visible while scrolling
+           ============================================ */
         .go-top {
                 position:fixed;
                 bottom:32px;
@@ -172,6 +194,10 @@
     background-color:#1565a8;
 }
 
+        /* ============================================
+           HEADER (shared site template)
+           Logo + sticky navigation bar
+           ============================================ */
         /* Header */
 header {
     background-color: #003b73;
@@ -180,7 +206,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
+    position: sticky; /* stays fixed at top while scrolling the long validation report */
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
@@ -200,6 +226,7 @@ header {
 
 nav { display: flex; align-items: center; }
 
+/* Horizontal navigation link list */
 .nav-links {
     list-style: none;
     display: flex;
@@ -218,11 +245,16 @@ nav { display: flex; align-items: center; }
 
 .nav-links a:hover { color: #00a6c8; }
 
+/* Highlights the current page in the nav bar (via class="active" in HTML) */
 .nav-links a.active {
     color: #00a6c8;
     border-bottom: 2px solid #00a6c8;
 }
 
+/* ============================================
+   FOOTER (shared site template)
+   3-column layout: brand info, coursework links, team links
+   ============================================ */
 /* Footer */
 footer {
     background-color: #003b73;
@@ -293,15 +325,20 @@ footer {
     </style>
 </head>
 <body>
+    <!-- Anchor target for the "Back to Top" button at the bottom of the page -->
     <div id="top"></div>
+
+    <!-- ============================================
+         HEADER: shared site logo + navigation bar
+         ============================================ -->
     <header>
-    <a href="index.html" class="logo">
+    <a href="home.html" class="logo">
         <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
         BlueFuture
     </a>
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="ais.html">AIS</a></li>
             <li><a href="feedback.html">Feedback</a></li>
@@ -311,12 +348,18 @@ footer {
         </ul>
     </nav>
 </header>
+
+    <!-- Student name + page title banner -->
     <div class="stud">
         <h2>Umar Hunais - Student 2</h2>
         <p>Team Coral | Validation Page</p>
     </div>
 
+    <!-- ============================================
+         TWO-COLUMN LAYOUT: sidebar nav + validation content
+         ============================================ -->
     <div class="container">
+        <!-- Sidebar: quick navigation to each validated page's section -->
         <aside>
             <h3>Validated Pages:</h3>
             <ul>
@@ -327,56 +370,67 @@ footer {
             </ul>
         </aside>
 
+        <!-- Main content: one validation section per implemented page,
+             each containing a result summary, a screenshot placeholder,
+             and a link to the live page, plus a closing reflection section -->
         <main>
+            <!-- Splash Screen validation evidence -->
             <section>
                 <h2 id="splashVal">Splash Screen</h2>
                 <h3>Validation Result</h3>
                 <p>The Splash Screen was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/SplashScreen.png" alt="Splash Screen Validation"/>
+                    <img src="./validationImages/Splash_ST2.png" alt="Splash Screen Validation"/>
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="splashScreen.html" target="_blank">Open the Splash Screen</a></p>
             </section>
 
+            <!-- Action Impact Simulator validation evidence -->
             <section>
                 <h2 id="aisVal">Action Impact Simulator</h2>
                 <h3>Validation Result</h3>
                 <p>The Action Impact Simulator was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/ais.png" alt="Action Impact Simulator Validation">
+                    <img src="./validationImages/ais_ST2.png" alt="Action Impact Simulator Validation">
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="ais.html" target="_blank">Open the Action Impact Simulator</a></p>
             </section>
 
+            <!-- Content Page validation evidence -->
             <section>
                 <h2 id="contentVal">Content Page</h2>
                 <h3>Validation Result</h3>
                 <p>The Content Page was validated using the W3C HTML Validator. The page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="./assets/images/Content.png" alt="Content page Validation">
+                    <img src="./validationImages/Content.png" alt="Content page Validation">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="content.html" target="_blank">Open the Content Page</a></p>
+                <p><a href="content_ST2.html" target="_blank">Open the Content Page</a></p>
             </section>
             
+            <!-- Closing reflection on the overall validation process -->
             <section>
                 <h2 id="reflection">Reflection on Validation</h2>
                 <p>Using the W3C Validator was a massive reality check because it caught things I completely missed just by looking at the page layout. It pointed out duplicate IDs and skipped heading levels stuff that technically worked on my screen but was breaking proper web standards under the hood. Fixing those errors forced me to actually clean up my HTML structure, which makes the whole site way more stable and accessible for things like screen readers. It really showed me that just because a page looks good visually doesn't mean it's coded right, and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
             </section>
 
-            <a href="#top" class="go-top">Top</a>
+            <!-- Jumps back to the #top anchor at the start of the body -->
+            <a href="#top" class="go-top">Back to Top</a>
 
             
         </main>
 
     </div>
 
+    <!-- ============================================
+         FOOTER: shared site template
+         ============================================ -->
     <footer>
     <div class="footer-container">
         <div class="footer-column footer-brand">
-            <a href="index.html" class="footer-logo">
+            <a href="home.html" class="footer-logo">
                 <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
                 BlueFuture
             </a>
