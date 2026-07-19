@@ -48,7 +48,7 @@
             overflow:hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.10);
             cursor:pointer; /* indicates the whole card is clickable */
-            transition:transform 0.2s ease,box-shadow 0.2s ease;
+            transition:transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease; /* UPDATED: Added background & border transitions for smooth highlight */
             border:2px solid transparent; /* transparent border reserved for the "selected" state below */
         }
 
@@ -99,6 +99,10 @@
             background-color:#ffffff;
             box-sizing:border-box;
             margin-top:3px;
+            display:flex; /* UPDATED: Added flexbox to center checkmark icon inside the circle */
+            align-items:center;
+            justify-content:center;
+            transition:background-color 0.2s ease, border-color 0.2s ease; /* UPDATED: Smooth transition for radio fill */
         }
 
         .ais-card-text h2{
@@ -217,13 +221,26 @@
            ============================================ */
         .ais-card.selected{
             border:2px solid #0d2b4e; /* dark blue border replaces the transparent default border */
-            box-shadow:0 0 0 3px rgba(13,42,78,0.15); /* soft glow ring around selected cards */
+            box-shadow:0 0 0 3px rgba(13,42,78,0.15), 0 8px 25px rgba(13,42,78,0.12); /* soft glow ring around selected cards */
+            background-color: #e8f4fc; /* UPDATED: Added light blue background overlay when card is selected */
         }
 
         /* Fills in the circular radio indicator when its parent card is selected */
         .ais-card.selected .ais-radio{
             background-color:#0d2b4e;
             border-color:#0d2b4e;
+        }
+
+        /* UPDATED: Displays white checkmark (right / tick icon) inside circle when card is selected */
+        .ais-card.selected .ais-radio::after {
+            content: '';
+            width: 4px;
+            height: 9px;
+            border: solid #ffffff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+            display: block;
         }
 
          /* ============================================
