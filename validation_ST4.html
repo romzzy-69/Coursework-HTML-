@@ -134,22 +134,23 @@
             color:#00a6c8;
         }
 
-        .screenshot-box{
-            width:100%;
-            border:2px dashed #b0bec5;
-            border-radius:8px;
-            background-color:#f1faff;
-            padding:40px;
-            text-align:center;
-            color:#5f6b7a;
-            font-size:14px;
-            margin:16px 0 24px;
+        .screenshot-box {
+            width: 100%;
+            border: 2px dashed #b0bec5;
+            border-radius: 8px;
+            background-color: #f1faff;
+            padding: 4px;
+            text-align: center;
+            color: #5f6b7a;
+            font-size: 14px;
+            margin: 16px 0 24px;
         }
 
-        .screenshot-box img{
-            width:100%;
-            border-radius:8px;
-            display:block;
+        .screenshot-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
         }
 
         .go-top{
@@ -333,50 +334,62 @@
             <section>
                 <h2 id="profileVal">Profile Page</h2>
                 <h3>Validation Result</h3>
-                <p>The Profile Page was validated using the W3C HTML Validator. The page passed with no errors. I used proper heading structure (<code>h1</code>, <code>h2</code>, <code>h3</code>) and semantic HTML elements. All images include alt text.</p>
+                <p>The Profile Page was validated using the W3C HTML Validator. The page passed with no errors. 
+                I used proper heading structure (<code>h1</code>, <code>h2</code>, <code>h3</code>) and semantic 
+                HTML elements. All images include alt text.</p>
                 <div class="screenshot-box">
-                    <img src="validationSnapshots/Profile_ST4.png" alt="W3C validation result for Profile page showing no errors"/>
+                    <img src="validationImages/Profile_ST4.png" alt="W3C validation result for Profile page showing no errors"/>
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="profile.html" target="_blank">Open the Profile Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#profile">Go to Profile section in Page Editor →</a></p>
+                <p><a href="pageEditor_ST4.html#profile">Go to Profile section in Page Editor</a></p>
             </section>
 
             <!-- ===== SITEMAP PAGE VALIDATION ===== -->
             <section>
                 <h2 id="sitemapVal">Sitemap Page</h2>
                 <h3>Validation Result</h3>
-                <p>The Sitemap Page was validated using the W3C HTML Validator. Initially, I had a heading structure error (skipping from <code>h1</code> to <code>h3</code> without an <code>h2</code>). I fixed this by adding an <code>h2</code> heading. The SVG code also validated correctly.</p>
+                <p>The Sitemap Page was validated using the W3C HTML Validator. Initially, I had a heading structure 
+                error (skipping from <code>h1</code> to <code>h3</code> without an <code>h2</code>). I fixed this by 
+                adding an <code>h2</code> heading. The SVG code also validated correctly.</p>
                 <div class="screenshot-box">
-                    <img src="validationSnapshots/Sitemap_ST4.png" alt="W3C validation result for Sitemap page showing no errors">
+                    <img src="validationImages/Sitemap_ST4.png" alt="W3C validation result for Sitemap page showing no errors">
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="sitemap.html" target="_blank">Open the Sitemap Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#sitemap">Go to Sitemap section in Page Editor →</a></p>
+                <p><a href="pageEditor_ST4.html#sitemap">Go to Sitemap section in Page Editor</a></p>
             </section>
 
             <!-- ===== CONTENT PAGE VALIDATION ===== -->
             <section>
                 <h2 id="contentVal">Content Page (Student 4)</h2>
                 <h3>Validation Result</h3>
-                <p>The Content Page was validated using the W3C HTML Validator. I had to fix a heading structure issue (changed sidebar heading from <code>h3</code> to <code>h2</code>) and changed an orphan <code>&lt;section&gt;</code> without a heading to a <code>&lt;div&gt;</code>. After these fixes, the page passed with no errors.</p>
+                <p>The Content Page was validated using the W3C HTML Validator. I had to fix a heading structure 
+                issue (changed sidebar heading from <code>h3</code> to <code>h2</code>) and changed an orphan 
+                <code>&lt;section&gt;</code> without a heading to a <code>&lt;div&gt;</code>. After these fixes, 
+                the page passed with no errors.</p>
                 <div class="screenshot-box">
-                    <img src="validationSnapshots/Content_ST4.png" alt="W3C validation result for Content page showing no errors">
+                    <img src="validationImages/Content_ST4.png" alt="W3C validation result for Content page showing no errors">
                 </div>
                 <h3>Link to page</h3>
                 <p><a href="content_ST4.html" target="_blank">Open the Content Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST4.html#content">Go to Content section in Page Editor →</a></p>
+                <p><a href="pageEditor_ST4.html#content">Go to Content section in Page Editor</a></p>
             </section>
             
             <!-- ===== REFLECTION ===== -->
             <section>
                 <h2 id="reflection">Reflection on Validation</h2>
-                <p>Using the W3C Validator was a massive reality check because it caught things I completely missed just by looking at the page layout. It pointed out skipped heading levels (e.g., going from <code>h1</code> to <code>h3</code> without an <code>h2</code>) and sections missing headings — stuff that technically worked on my screen but was breaking proper web standards under the hood.</p>
-                <p>Fixing those errors forced me to actually clean up my HTML structure. For my sitemap, I added a missing <code>h2</code> heading. For my content page, I changed a <code>&lt;section&gt;</code> to a <code>&lt;div&gt;</code> because it didn't need a heading. This makes the whole site way more stable and accessible for things like screen readers.</p>
-                <p>It really showed me that just because a page looks good visually doesn't mean it's coded right, and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
+                <p>Using the W3C Validator was a massive reality check because it caught things I completely missed 
+                just by looking at the page layout. It pointed out skipped heading levels (e.g., going from 
+                <code>h1</code> to <code>h3</code> without an <code>h2</code>) and sections missing headings; stuff 
+                that technically worked on my screen but was breaking proper web standards under the hood.</p>
+                <p>Fixing those errors forced me to actually clean up my HTML structure. For my sitemap, I added 
+                a missing <code>h2</code> heading. For my content page, I changed a <code>&lt;section&gt;</code> to a <code>&lt;div&gt;</code> because it didn't need a heading. This makes the whole site way more stable and accessible for things like screen readers.</p>
+                <p>It really showed me that just because a page looks good visually doesn't mean it's coded right 
+                and passing the official validation is what makes the difference between messy code and a professional, functional project.</p>
             </section>
 
             <a href="#top" class="go-top">Back to Top</a>
@@ -392,7 +405,8 @@
                     <img src="assets/images/logo.svg" alt="BlueFuture logo" width="24" height="24">
                     BlueFuture
                 </a>
-                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity and promote sustainable use of oceans.</p>
+                <p>Protect marine ecosystems, reduce pollution, conserve biodiversity and promote sustainable use 
+                of oceans.</p>
             </div>
             <div class="footer-column">
                 <h3>Coursework Links</h3>
