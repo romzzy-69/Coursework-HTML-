@@ -6,70 +6,10 @@
     <title>BlueFuture | Sustainable Fishing & Marine Conservation</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Page-specific styles -->
-    <style>
-        /* Hero header for this page */
-        .content-hero {
-            background-color: #003b73;
-            padding: 45px 20px 35px;
-        }
-
-        .content-hero p {
-            color: #00a6c8;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .content-hero h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 6px;
-        }
-
-        .content-hero .subtitle {
-            color: #b8d2e8;
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
-
-        .go-top{
-            position:fixed;
-            bottom:32px;
-            right:32px;
-            background-color:#0d2b4e;
-            color:#ffffff;
-            font-size:13px;
-            font-weight:700;
-            text-decoration:none;
-            padding:10px 16px;
-            border-radius:8px;
-            box-shadow:0 4px 12px rgba(0,0,0,0.20);
-            transition:background-color 0.2s ease;
-                
-        }
-
-        .go-top:hover{
-            background-color:#1565a8;
-        }
-
-        /* Make images fit better in content */
-        .article-image {
-            margin: 16px 0 6px;
-        }
-
-        .image-caption {
-            font-size: 0.75rem;
-            color: #8a9baa;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
 <body>
 
-    <!--HEADER-->
+    <!-- HEADER -->
     <header>
         <a href="home.html" class="logo">
             <img src="assets/images/logo.svg" alt="BlueFuture logo">
@@ -88,23 +28,20 @@
         </nav>
     </header>
 
-    <!--MAIN CONTENT-->
-    <main>
+    <!-- MAIN CONTENT -->
+    <main class="student-content">
 
-        <!-- Page header -->
-        <div class="content-hero">
-            <p>SDG 14 Educational Resource • Student 4</p>
+        <!-- Page title section -->
+        <section class="content-hero">
+            <p>SDG 14 EDUCATIONAL RESOURCE • STUDENT 4</p>
             <h1>Sustainable Fishing &amp; Marine Conservation</h1>
-            <p class="subtitle">Understanding overfishing, sustainable practices and protecting our oceans</p>
-        </div>
+        </section>
 
-        <!-- Content layout -->
         <div class="content-layout">
 
-            <!-- SIDEBAR  -->
             <aside class="article-sidebar">
                 <div class="article-menu">
-                    <h2 style="font-size:1rem; color:#003b73; margin-bottom:15px;">In this article</h2>
+                    <h2>In this article</h2>
                     <ol>
                         <li><a href="#section1">What is overfishing?</a></li>
                         <li><a href="#section2">Sustainable fishing methods</a></li>
@@ -116,48 +53,70 @@
                 </div>
             </aside>
 
-            <!--  ARTICLE CONTENT  -->
             <article class="article-content">
 
-                <!-- Section 1 -->
+                <!-- SECTION 1 -->
                 <section id="section1">
                     <h2>1. What is overfishing?</h2>
+
                     <p>
                         Overfishing occurs when more fish are caught than the population can replace
                         through natural reproduction. This depletes fish stocks, disrupts marine
                         ecosystems and threatens the livelihoods of millions of people who depend
                         on fishing for food and income.
                     </p>
-                    <p>
-                        According to the United Nations, more than 30% of global fish stocks are
-                        being harvested at unsustainable levels. This is a serious threat to
-                        SDG 14 (Life Below Water), which aims to conserve and sustainably use
-                        marine resources.
-                    </p>
-                    <img src="assets/images/BoatOcean.jfif" alt="Commercial fishing boat at sea, showing overfishing practices" class="article-image">
-                    <p class="image-caption">Figure: Commercial fishing boat at sea (Ref: Royalty-free image placeholder)</p>
+
+                    <ul>
+                        <li>Over 30% of global fish stocks are overexploited.</li>
+                        <li>It affects food security for billions of people.</li>
+                        <li>It damages marine biodiversity and ecosystem health.</li>
+                    </ul>
+
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: Did you know that we are catching fish much faster than they can make babies? 
+                            Right now, more than 1/3 of all global fish populations are being pushed to their absolute limits. </p>
+                    </div>
+
+                    <img
+                        src="assets/images/BoatOcean.jfif"
+                        alt="Commercial fishing boat at sea, showing overfishing practices"
+                        class="article-image"
+                    />
+                    <p class="image-caption">Figure: Commercial fishing boat at sea</p>
                 </section>
 
-                <!-- Section 2 -->
+                <!-- SECTION 2 -->
                 <section id="section2">
                     <h2>2. Sustainable fishing methods</h2>
+
                     <p>
                         Sustainable fishing methods are designed to catch fish in ways that
                         minimise harm to marine ecosystems and ensure fish populations remain
                         healthy for future generations.
                     </p>
                     <p>
-                        Methods like <strong>pole-and-line</strong>, <strong>trap fishing</strong>,
+                        Methods like <strong>pole-and-line</strong>, <strong>trap fishing</strong>
                         and <strong>troll fishing</strong> reduce bycatch (unwanted fish caught by
                         accident) and minimise damage to the sea floor. These practices are
                         becoming more common as consumers and businesses demand more sustainable
                         seafood options.
                     </p>
+
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: Choosing sustainable seafood is a massive trend that is shaking 
+                            up the global economy! Eco-friendly fishing has become so popular that the 
+                            global trade of responsibly caught seafood has soared to a whopping $184 
+                            billion a year.
+                        </p>
+                    </div>
                 </section>
 
-                <!-- Section 3 -->
+                <!-- SECTION 3 -->
                 <section id="section3">
                     <h2>3. Marine protected areas</h2>
+
                     <p>
                         Marine Protected Areas (MPAs) are designated zones in our oceans where
                         human activity is regulated to protect marine life and habitats. These
@@ -170,13 +129,26 @@
                         fish breeding grounds. These protected areas are vital for maintaining
                         biodiversity and supporting sustainable fisheries.
                     </p>
-                    <img src="assets/images/Mangrove.jfif" alt="Protected mangrove forest along the coast, a marine protected area" class="article-image">
-                    <p class="image-caption">Figure: Protected mangrove forest coast (Ref: Royalty-free image placeholder)</p>
+
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: Our oceans just hit a major historical milestone! Marine 
+                            Protected Areas, which act like giant and safe national parks underwater, 
+                            now cover just over 10% of the world's oceans.</p>
+                    </div>
+
+                    <img
+                        src="assets/images/Mangrove.jfif"
+                        alt="Protected mangrove forest along the coast, a marine protected area"
+                        class="article-image"
+                    />
+                    <p class="image-caption">Figure: Protected mangrove forest coast</p>
                 </section>
 
-                <!-- Section 4 -->
+                <!-- SECTION 4 -->
                 <section id="section4">
                     <h2>4. Sri Lankan fishing communities</h2>
+
                     <p>
                         In Sri Lanka, fishing is an important part of the economy and culture.
                         More than 250,000 people are directly employed in the fishing industry
@@ -184,17 +156,32 @@
                         fish stocks for their livelihoods and food security.
                     </p>
                     <p>
-                        However, unsustainable fishing practices, climate change and pollution are 
+                        However, unsustainable fishing practices, climate change and pollution are
                         putting pressure on these communities. Supporting sustainable fishing
                         helps protect both marine ecosystems and the people who depend on them.
                     </p>
-                    <img src="assets/images/LocalFishing.jfif" alt="Sri Lankan fishing community boats at the shore" class="article-image">
-                    <p class="image-caption">Figure: Sri Lankan fishing community boats at shore (Ref: Royalty-free image placeholder)</p>
+
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: Sri Lanka is leading the way in South Asia when it comes to 
+                            looking after local fishers! The island nation became the very first in 
+                            the region to launch a massive, dedicated national plan to protect small
+                            scale fishing communities. This awesome initiative helps safeguard the 
+                            traditions and income of over 80% of the country’s coastal fishers.</p>
+                    </div>
+
+                    <img
+                        src="assets/images/LocalFishing.jfif"
+                        alt="Sri Lankan fishing community boats at the shore"
+                        class="article-image"
+                    />
+                    <p class="image-caption">Figure: Sri Lankan fishing community boats at shore</p>
                 </section>
 
-                <!-- Section 5 -->
+                <!-- SECTION 5 -->
                 <section id="section5">
                     <h2>5. Government and community conservation</h2>
+
                     <p>
                         Effective conservation requires collaboration between governments,
                         NGOs and local communities. In Sri Lanka, the government has introduced
@@ -207,11 +194,28 @@
                         are working to protect coral reefs and mangrove forests. By working
                         together, we can ensure our oceans continue to thrive.
                     </p>
+
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: In places like Sri Lanka's Mannar region, local fishers, 
+                            international eco-groups and government officials have teamed up 
+                            for a special project called MARESSOL. Together, they are hunting 
+                            down and removing dangerous "ghost gear"; which are lost or abandoned 
+                            fishing nets that float around trapping marine life.</p>
+                    </div>
+
+                    <img
+                        src="assets/images/SeaCave.jpg"
+                        alt="Healthy coral reef, the goal of marine conservation efforts"
+                        class="article-image"
+                    />
+                    <p class="image-caption">Figure: Healthy coral reef, the goal of conservation</p>
                 </section>
 
-                <!-- Section 6 -->
+                <!-- SECTION 6 -->
                 <section id="section6">
                     <h2>6. Future of ocean protection</h2>
+
                     <p>
                         The future of our oceans depends on innovation, sustainable aquaculture
                         and global cooperation. New technologies are helping us track fish
@@ -224,30 +228,40 @@
                         oceans. Together, we can ensure that our oceans continue to thrive for
                         future generations.
                     </p>
-                    <img src="assets/images/HealthyCoralReef.jfif" alt="Healthy ocean ecosystem for future generations" class="article-image">
-                    <p class="image-caption">Figure: The future of ocean protection depends on sustainable practices and global cooperation (Ref: Royalty-free image placeholder)</p>
+                    <!-- Callout Box -->
+                    <div class="callout">
+                        <p>Fun fact: Scientists and coastal managers are now using artificial 
+                            intelligence and smart mobile apps to instantly scan seafood for 
+                            quality and track health conditions on fish farms. High tech digital 
+                            platforms are officially the new superheroes keeping our waters safe.</p>
+                    </div>
+                    <img
+                        src="assets/images/ColourfulCoral.jpg"
+                        alt="Digital methods for future conservation"
+                        class="article-image"
+                    />
+                    <p class="image-caption">Figure:Using technology for future conservation</p>
+
+                    
                 </section>
 
-                <section style="text-align:center; margin-top:30px;">
-                    <p>
+                <p style="text-align:center; margin-top:30px;">
                         Innovation, sustainable aquaculture and global cooperation are key to
                         ensuring our oceans continue to thrive for future generations. By taking
                         action now, we can protect marine biodiversity and support sustainable
                         development for all.
                     </p>
-                </section>
 
             </article>
-           
 
         </div>
 
     </main>
 
-    <!--  GO TO TOP BUTTON  -->
+    <!-- GO TO TOP BUTTON -->
     <a href="#top" class="go-top">Back to Top</a>
 
-    <!--  FOOTER  -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
 
