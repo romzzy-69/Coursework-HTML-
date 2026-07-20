@@ -77,20 +77,21 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- Directory panel ---- */
-.directory-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+.header {
+    background-color: var(--primary-blue);
+    min-height: 72px;
+    padding: 0 4%;
 
-.directory-header h2 {
-  color: var(--navy);
-  margin: 0;
-  font-size: 1.6rem;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
 
 .sort-dropdown {
   padding: 10px 16px;
@@ -474,23 +475,22 @@ textarea.invalid {
 
 <!-- ============ HEADER / NAV ============ -->
 <header>
-    <a href="home.html" class="logo">
-        <img src="assets/images/logo.svg" alt="BlueFuture logo">
+      <a href="home.html" class="logo">
+        <img src="assets/images/logo.svg" alt="BlueFuture logo" >
         <span>BlueFuture</span>
-    </a>
-
-    <nav>
+      </a>
+      <nav>
         <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="ais.html">AIS</a></li>
-            <li><a href="feedback.html" class="active">Feedback</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="sitemap.html">Sitemap</a></li>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="ais.html">AIS</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
 
 <main>
 
