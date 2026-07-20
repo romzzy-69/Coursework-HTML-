@@ -139,15 +139,23 @@ nav ul.nav-links a.active {
 }
 
 .team-icon {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  border-radius: 80%;
   margin: 0 auto 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+.team-icon img {
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .team-card:hover .team-icon,
@@ -226,9 +234,9 @@ nav ul.nav-links a.active {
   margin: 0;
 }
 .team-photo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  border-radius: 80%;
   object-fit: cover;
   margin: 0 auto 24px;
   display: block;
@@ -357,7 +365,7 @@ nav ul.nav-links a.active {
 
         <article class="team-card" tabindex="0">
           <div class="team-icon icon-blue" aria-hidden="true">
-            <img src="assets/images/Shevin.png" alt="Student 1 icon" />
+            <img src="assets/images/Shevin.png" alt="Student 1 photo" />
           </div>
           <h2>Student 1</h2>
           <p class="team-role">Lead Developer / Architect</p>
@@ -371,7 +379,7 @@ nav ul.nav-links a.active {
 
         <article class="team-card" tabindex="0">
           <div class="team-icon icon-teal" aria-hidden="true">
-            <img src="assets/images/Umar.png"Student 2 icon" />
+            <img src="assets/images/Umar.png" alt="Student 2 photo" />
           </div>
           <h2>Student 2</h2>
           <p class="team-role">Interaction Specialist</p>
@@ -385,7 +393,7 @@ nav ul.nav-links a.active {
 
         <article class="team-card" tabindex="0">
           <div class="team-icon icon-purple" aria-hidden="true">
-            <img src="assets/images/Thesnadu.png" alt="Student 3 icon" />
+            <img src="assets/images/Thesnadu.png" alt="Student 3 photo" />
           </div>
           <h2>Student 3</h2>
           <p class="team-role">Community &amp; Data Lead</p>
@@ -399,7 +407,7 @@ nav ul.nav-links a.active {
 
         <article class="team-card" tabindex="0">
           <div class="team-icon icon-cyan" aria-hidden="true">
-            <img src="assets/images/Pahandi.png" alt="Student 4 icon" />
+            <img src="assets/images/Pahandi.png" alt="Student 4 photo" />
           </div>
           <h2>Student 4</h2>
           <p class="team-role">User Experience Engineer</p>
