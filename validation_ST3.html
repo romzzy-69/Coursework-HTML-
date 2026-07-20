@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation Page - Student 4</title>
+    <title>Validation Page - Student 3</title>
     <link rel="stylesheet" href="pageEditor_validator.css">
 </head>
 <body>
@@ -27,81 +27,113 @@
     </header>
 
     <div class="stud">
-        <h2>G.H.D.R Shevin Sheron - Student 1</h2>
-        <p>Team CORAL | Validation Page | Homepage, Gallery &amp; Content</p>
+        <h2>Thesandu Methvan - Student 3</h2>
+        <p>Team CORAL | Validation Page | Feedback, Team &amp; Content</p>
     </div>
 
     <div class="container">
         <aside>
             <h3>Validated Pages:</h3>
             <ul>
-                <li><a href="#homepageVal">Homepage</a></li>
-                <li><a href="#galleryVal">Gallery Page</a></li>
-                <li><a href="#contentVal">Content Page</a></li>
+                <li><a href="#feedback-validation">Feedback Page</a></li>
+                <li><a href="#team-validation">Team Page</a></li>
+                <li><a href="#content-validation">Content Page</a></li>
                 <li><a href="#reflection">Reflection</a></li>
             </ul>
         </aside>
 
         <main>
-            <!-- ===== PROFILE PAGE VALIDATION ===== -->
+            <!-- ===== FEEDBACK PAGE VALIDATION ===== -->
             <section>
-                <h2 id="homepageVal">Homepage Page</h2>
+                <h2 id="feedback-validation">Feedback &amp; Program Directory Page</h2>
                 <h3>Validation Result</h3>
-                <p>The Homepage Page was validated using the W3C HTML Validator. The page passed with no errors. 
-                I used proper heading structure (<code>h1</code>, <code>h2</code>, <code>h3</code>) and semantic 
-                HTML elements. All images include alt text.</p>
+                <p>The Feedback Page was validated using the W3C HTML Validator. Initially, the validator flagged
+                a small number of issues: two consecutive-hyphen comments that made the document unmappable to
+                XML, one missing space between attributes on an <code>&lt;img&gt;</code> tag, and four instances
+                of <code>aria-label</code> being used on <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code>
+                elements without a valid ARIA role. I fixed the comments, added the missing space, and added
+                <code>role="img"</code> to each star-rating element so the labels were valid while keeping the
+                exact same visual design. After these fixes, the page passed with no errors or warnings.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Homepage_ST1.jpg" alt="W3C validation result for  Homepage showing no errors">
+                    <img src="validationImages/Feedback_ST3.jpg" alt="W3C validation result for Feedback page showing no errors">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="home.html" target="_blank">Open the Homepage</a></p>
+                <p><a href="feedback.html" target="_blank">Open the Feedback Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST1.html#home">Go to Homepage section in Page Editor</a></p>
+                <p><a href="pageEditor_ST3.html#feedback">Go to Feedback section in Page Editor</a></p>
             </section>
 
-            <!-- ===== GALLERY PAGE VALIDATION ===== -->
+            <!-- ===== TEAM PAGE VALIDATION ===== -->
             <section>
-                <h2 id="galleryVal">Gallery Page</h2>
+                <h2 id="team-validation">Team Page</h2>
                 <h3>Validation Result</h3>
-                <p>The Gallery Page was validated using the W3C HTML Validator. The page passed with no errors on the first attempt. The document utilizes a clean HTML structure with custom <code>data-index</code> attributes to support JavaScript interactivity. Form dropdowns (<code>&lt;select&gt;</code>) within the modal are correctly paired with <code>&lt;label&gt;</code> elements for accessibility, and all gallery images include proper <code>alt</code> text.</p>
+                <p>The Team Page was validated using the W3C HTML Validator. The validator returned nine
+                informational messages about trailing slashes on void elements (<code>&lt;meta&gt;</code>,
+                <code>&lt;link&gt;</code>, and <code>&lt;img&gt;</code> tags), which I cleaned up since HTML5
+                does not require them. It also raised a warning that my <code>&lt;section class="team-grid"&gt;</code>
+                lacked a direct identifying heading, even though each team card had its own nested
+                <code>&lt;h2&gt;</code>. I fixed this by adding a visually hidden <code>&lt;h2&gt;</code> as the
+                first child of the section, satisfying the accessibility outline without altering the visible
+                card layout. The page now passes with no errors or warnings.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Gallery_ST1.jpg" alt="W3C validation result for Gallery page showing no errors">
+                    <img src="validationImages/Team_ST3.jpg" alt="W3C validation result for Team page showing no errors">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="gallery.html" target="_blank">Open the Gallery Page</a></p>
+                <p><a href="team.html" target="_blank">Open the Team Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST1.html#gallery">Go to Gallery section in Page Editor</a></p>
+                <p><a href="pageEditor_ST3.html#team">Go to Team section in Page Editor</a></p>
             </section>
 
             <!-- ===== CONTENT PAGE VALIDATION ===== -->
             <section>
-                <h2 id="contentVal">Content Page (Student 1)</h2>
+                <h2 id="content-validation">Content Page (Student 3)</h2>
                 <h3>Validation Result</h3>
-                <p>The Content Page was validated using the W3C HTML Validator. 
-                    Initially, I received a warning because my <code>&lt;article&gt;</code> 
-                    element lacked a direct identifying heading. I fixed this by adding a 
-                    visually hidden <code>&lt;h2&gt;</code> to satisfy semantic rules 
-                    without breaking the visual design. I maintained a strict heading 
-                    hierarchy (<code>&lt;h1&gt;</code> to <code>&lt;h2&gt;</code>) for screen 
-                    readers and used semantic tags to logically separate the sticky 
-                    <code>&lt;aside&gt;</code> from the main text.</p>
+                <p>The Content Page was validated using the W3C HTML Validator. The validator returned five
+                informational messages about trailing slashes on void elements (<code>&lt;meta&gt;</code>,
+                <code>&lt;link&gt;</code>, and <code>&lt;img&gt;</code> tags), which I removed. It also raised a
+                warning because my <code>&lt;article&gt;</code> element lacked a direct identifying heading,
+                even though each of its six sections had its own <code>&lt;h2&gt;</code>. I fixed this by adding
+                a visually hidden <code>&lt;h2&gt;</code> directly inside the article to satisfy semantic rules
+                without affecting the visual design. The page now passes with no errors or warnings.</p>
                 <div class="screenshot-box">
-                    <img src="validationImages/Content_ST1.jpg" alt="W3C validation result for Content page showing no errors">
+                    <img src="validationImages/Content_ST3.jpg" alt="W3C validation result for Content page showing no errors">
                 </div>
                 <h3>Link to page</h3>
-                <p><a href="content_ST1.html" target="_blank">Open the Content Page</a></p>
+                <p><a href="content_ST3.html" target="_blank">Open the Content Page</a></p>
                 <h3>Back to Page Editor</h3>
-                <p><a href="pageEditor_ST1.html#content">Go to Content section in Page Editor</a></p>
+                <p><a href="pageEditor_ST3.html#content">Go to Content section in Page Editor</a></p>
             </section>
-            
+
             <!-- ===== REFLECTION ===== -->
             <section>
                 <h2 id="reflection">Reflection on Validation</h2>
-                <p>Using the W3C Validator was an eye-opening experience because it caught outdated habits and structural issues that I couldn't see just by looking at the visual layout. For instance, it flagged numerous messages across my pages for using trailing slashes (<code>/&gt;</code>) on void elements like <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, and <code>&lt;meta&gt;</code> tags. While this used to be standard practice, the validator taught me that modern HTML5 no longer requires them, prompting me to clean up my syntax globally.</p>
+                <p>Running my pages through the W3C Validator surfaced several issues that weren't visible just
+                by looking at the rendered layout. Across all three pages, the validator flagged trailing
+                slashes (<code>/&gt;</code>) on void elements like <code>&lt;meta&gt;</code>,
+                <code>&lt;link&gt;</code>, and <code>&lt;img&gt;</code>, which used to be common practice but is
+                unnecessary in HTML5. Cleaning this up globally made my markup more consistent with modern
+                standards.</p>
 
-                <p>It also caught a structural warning on my Content Page where my <code>&lt;article&gt;</code> element lacked a direct identifying heading. Even though my layout looked perfect and my sections had nested <code>&lt;h2&gt;</code> tags, the validator reminded me that strict semantic HTML requires clear document outlines. I fixed this by adding a visually hidden <code>&lt;h2&gt;</code> to satisfy the accessibility outline without breaking my CSS design.</p>
+                <p>On the Feedback Page, the validator caught two comments using double hyphens, which made the
+                document unmappable to XML, and an <code>aria-label</code> attribute used on <code>&lt;div&gt;</code>
+                and <code>&lt;span&gt;</code> elements without a matching ARIA role. Adding <code>role="img"</code>
+                to the star-rating elements resolved this while keeping the star ratings visually identical.</p>
 
-                <p>Ultimately, this process proved that just because a page renders correctly in a browser doesn't mean the code is structurally sound under the hood. Validating the pages forced me to write cleaner, more professional HTML that is accessible to screen readers and fully compliant with modern web standards.</p>
+                <p>Both the Team Page and Content Page raised a heading-outline warning: the
+                <code>&lt;section class="team-grid"&gt;</code> and <code>&lt;article&gt;</code> elements each
+                lacked a direct identifying heading, even though nested sections and cards had their own
+                headings. In both cases I added a visually hidden heading to satisfy the accessibility outline
+                without changing the visible design.</p>
+
+                <p>I also ran into a heading-level issue on my Page Editor document itself, where the student
+                name heading and the "Pages Developed" sidebar heading were skipping levels once a proper
+                <code>&lt;h1&gt;</code> was introduced. Rather than changing the visible name heading (to keep
+                the same format as the rest of the team), I added an invisible <code>&lt;h1&gt;</code> so the
+                document had a valid outline without altering what readers actually see.</p>
+
+                <p>Overall, this process reinforced that a page can look correct in the browser while still
+                having structural issues underneath. Validating my pages pushed me to write cleaner,
+                more accessible HTML that holds up to modern web standards.</p>
             </section>
 
             <a href="#top" class="go-top">Back to Top</a>
@@ -139,9 +171,9 @@
                 <h3>Team CORAL</h3>
                 <div class="footer-links">
                     <a href="pageEditor_ST3.html">ST3: Page Editor</a>
-                    <a href="validation_ST3.html">ST3: Validation</a>
+                    <a href="validation_ST3.html" class="active">ST3: Validation</a>
                     <a href="pageEditor_ST4.html">ST4: Page Editor</a>
-                    <a href="validation_ST4.html" class="active">ST4: Validation</a>
+                    <a href="validation_ST4.html">ST4: Validation</a>
                     <a href="accessibility.html" class="accessibility-link">
                         Accessibility / Compliance
                     </a>
