@@ -77,21 +77,20 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- Directory panel ---- */
-.header {
-    background-color: var(--primary-blue);
-    min-height: 72px;
-    padding: 0 4%;
+.directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-    }
+.directory-header h2 {
+  color: var(--navy);
+  margin: 0;
+  font-size: 1.6rem;
+}
 
 .sort-dropdown {
   padding: 10px 16px;
@@ -815,35 +814,59 @@ document.addEventListener('DOMContentLoaded', function () {
 </main>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-col">
-      <div class="logo footer-logo">
-        <span class="logo-icon" aria-hidden="true">🌊</span>
-        <span class="logo-text">BlueFuture</span>
-      </div>
-      <p>Protect marine ecosystems, reduce pollution, conserve biodiversity, and promote sustainable use of oceans.</p>
+    <div class="footer-container">
+
+        <!-- Website information -->
+        <div class="footer-column footer-brand">
+            <a href="home.html" class="footer-logo">
+                <img src="assets/images/logo.svg" alt="BlueFuture logo">
+                <span>BlueFuture</span>
+            </a>
+
+            <p>
+                Protect marine ecosystems, reduce pollution,
+                conserve biodiversity, and promote sustainable
+                use of oceans.
+            </p>
+        </div>
+
+        <!-- Coursework links -->
+        <div class="footer-column">
+            <h3>Coursework Links</h3>
+
+            <div class="footer-links">
+                <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+                <a href="validation_ST1.html">ST1: Validation</a>
+
+                <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+                <a href="validation_ST2.html">ST2: Validation</a>
+            </div>
+        </div>
+
+        <!-- Team links -->
+        <div class="footer-column">
+            <h3>Team CORAL</h3>
+
+            <div class="footer-links">
+                <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+                <a href="validation_ST3.html">ST3: Validation</a>
+
+                <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+                <a href="validation_ST4.html">ST4: Validation</a>
+
+                <a href="accessibility.html" class="accessibility-link">
+                    Accessibility / Compliance
+                </a>
+            </div>
+        </div>
+
     </div>
-    <div class="footer-col">
-      <h3>Coursework Links</h3>
-      <ul>
-        <li><a href="pageEditor_ST1.html">ST1: Page Editor</a></li>
-        <li><a href="validation_ST1.html">ST1: Validation</a></li>
-        <li><a href="pageEditor_ST2.html">ST2: Page Editor</a></li>
-        <li><a href="validation_ST2.html">ST2: Validation</a></li>
-      </ul>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.
+        </p>
     </div>
-    <div class="footer-col">
-      <h3>Team CORAL</h3>
-      <ul>
-        <li><a href="pageEditor_ST3.html">ST3: Page Editor</a></li>
-        <li><a href="validation_ST3.html">ST3: Validation</a></li>
-        <li><a href="pageEditor_ST4.html">ST4: Page Editor</a></li>
-        <li><a href="validation_ST4.html">ST4: Validation</a></li>
-      </ul>
-      <a href="#" class="accessibility-link">Accessibility / Compliance</a>
-    </div>
-  </div>
-  <p class="footer-bottom">&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
 </footer>
 </body>
 </html>
