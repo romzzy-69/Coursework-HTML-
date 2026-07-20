@@ -5,625 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlueFuture</title>
     <link rel="stylesheet" href="style.css"/>
-    <style>
-/* =========================================================
-   BlueFuture — Team CORAL — Global-style CSS (Feedback Page)
-   SDG 14: Life Below Water
-   ========================================================= */
-
-:root {
-  --navy: #14335c;
-  --navy-dark: #0e2647;
-  --blue: #2f7bd6;
-  --teal: #1fb6c9;
-  --gold: #e8b93a;
-  --bg-light: #eef5fb;
-  --white: #ffffff;
-  --text-dark: #1c2b3a;
-  --text-muted: #6b7c8f;
-  --border: #dfe8f2;
-  --shadow: 0 4px 14px rgba(20, 51, 92, 0.08);
-  --radius: 14px;
-  --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: var(--font-main);
-  color: var(--text-dark);
-  background: var(--bg-light);
-  line-height: 1.5;
-}
-
-img { max-width: 100%; display: block; }
-
-.visually-hidden {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
-/* ================= HEADER / NAV ================= */
-.site-header {
-  background: var(--primary-blue);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.4rem;
-}
-
-.logo-icon { font-size: 1.6rem; }
-
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 34px;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav a {
-  color: #cfe0f5;
-  text-decoration: none;
-  font-weight: 500;
-  padding-bottom: 6px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.main-nav a:hover,
-.main-nav a:focus {
-  color: var(--white);
-  border-bottom-color: var(--teal);
-}
-
-.main-nav a.active {
-  color: var(--white);
-  border-bottom-color: var(--teal);
-}
-
-/* ================= PAGE HERO ================= */
-.page-hero {
-  text-align: center;
-  padding: 64px 24px 40px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.page-hero h1 {
-  color: var(--navy);
-  font-size: 2.6rem;
-  margin-bottom: 14px;
-}
-
-.page-hero p {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-/* ================= LAYOUT: DIRECTORY + FORM ================= */
-.feedback-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 32px;
-  max-width: 1200px;
-  margin: 0 auto 60px;
-  padding: 0 32px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .feedback-layout { grid-template-columns: 1fr; }
-}
-
-/* ---- Directory panel ---- */
-.directory-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.directory-header h2 {
-  color: var(--navy);
-  margin: 0;
-  font-size: 1.6rem;
-}
-
-.sort-dropdown {
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  font-size: 0.95rem;
-  color: var(--text-dark);
-  cursor: pointer;
-}
-
-.directory-scroll {
-  max-height: 640px;
-  overflow-y: auto;
-  padding-right: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.directory-scroll:focus-visible {
-  outline: 3px solid var(--teal);
-  outline-offset: 2px;
-}
-
-/* thin styled scrollbar */
-.directory-scroll::-webkit-scrollbar { width: 8px; }
-.directory-scroll::-webkit-scrollbar-thumb {
-  background: #c3d5e8;
-  border-radius: 8px;
-}
-
-.program-card {
-  display: flex;
-  gap: 16px;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.program-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(20, 51, 92, 0.14);
-}
-
-.program-card img {
-  width: 120px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-.program-card-body { flex: 1; }
-
-.program-card-title-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.program-card h3 {
-  margin: 0 0 6px;
-  color: var(--navy);
-  font-size: 1.1rem;
-}
-
-.program-card p {
-  margin: 0 0 10px;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-.tag-blue { background: #dceaff; color: var(--blue); }
-.tag-teal { background: #d5f4f6; color: #0e828f; }
-.tag-gold { background: #fbeecb; color: #9a7411; }
-
-.card-link {
-  color: var(--blue);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.card-link:hover { text-decoration: underline; }
-
-/* ---- Form panel ---- */
-.form-panel {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 32px;
-}
-
-.form-panel h2 {
-  color: var(--navy);
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 1.6rem;
-}
-
-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0 0 26px;
-}
-
-legend {
-  color: var(--navy);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  padding: 0;
-}
-
-.field { margin-bottom: 18px; }
-
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-@media (max-width: 500px) {
-  .field-row { grid-template-columns: 1fr; }
-}
-
-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 6px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="datetime-local"],
-select,
-textarea {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  background: var(--white);
-  color: var(--text-dark);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(47, 123, 214, 0.15);
-}
-
-textarea { resize: vertical; }
-
-.submit-btn {
-  width: 100%;
-  background: var(--navy);
-  color: var(--white);
-  border: none;
-  padding: 15px;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.submit-btn:hover { background: var(--navy-dark); }
-.submit-btn:active { transform: scale(0.99); }
-
-/* ================= REVIEWS SECTION ================= */
-.reviews-section {
-  max-width: 1200px;
-  margin: 0 auto 60px;
-  padding: 0 32px;
-}
-
-.reviews-section > h2 {
-  color: var(--navy);
-  font-size: 1.6rem;
-  margin-bottom: 22px;
-}
-
-.reviews-layout {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 800px) {
-  .reviews-layout { grid-template-columns: 1fr; }
-}
-
-.rating-summary {
-  background: var(--navy);
-  color: var(--white);
-  border-radius: var(--radius);
-  padding: 28px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.rating-number { font-size: 3rem; font-weight: 800; }
-
-.stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; }
-.stars.small { font-size: 1rem; }
-.star-dim { color: rgba(255,255,255,0.35); }
-
-.rating-label { margin: 4px 0 2px; font-weight: 700; }
-.rating-count { margin: 0; font-size: 0.85rem; color: #c7d6ea; }
-
-.review-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.review-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-}
-
-.review-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.review-card h3 {
-  margin: 0;
-  color: var(--navy);
-  font-size: 1.05rem;
-}
-
-.review-card p {
-  margin: 0 0 8px;
-  color: var(--text-dark);
-  font-size: 0.92rem;
-}
-
-.review-card a { color: var(--blue); text-decoration: none; font-weight: 600; }
-.review-card a:hover { text-decoration: underline; }
-
-.review-meta {
-  color: var(--text-muted);
-  font-size: 0.82rem;
-}
-
-/* ================= FOOTER ================= */
-.site-footer {
-  background: var(--navy);
-  color: #cfe0f5;
-  padding: 50px 32px 20px;
-}
-
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 40px;
-}
-
-@media (max-width: 700px) {
-  .footer-inner { grid-template-columns: 1fr; }
-}
-
-.footer-logo { color: var(--white); margin-bottom: 12px; }
-
-.footer-col h3 {
-  color: var(--white);
-  font-size: 1rem;
-  margin-bottom: 14px;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-col a {
-  color: #cfe0f5;
-  text-decoration: none;
-  font-size: 0.92rem;
-}
-.footer-col a:hover { color: var(--white); text-decoration: underline; }
-
-.accessibility-link {
-  display: inline-block;
-  margin-top: 14px;
-  text-decoration: underline;
-}
-
-.footer-bottom {
-  text-align: center;
-  color: #93a9c4;
-  font-size: 0.85rem;
-  margin-top: 40px;
-}
-
-/* ================= CONTENT PAGE (Student 3) ================= */
-
-.content-hero {
-  background: var(--navy);
-  color: var(--white);
-  text-align: center;
-  padding: 70px 24px;
-}
-
-.content-eyebrow {
-  color: #7fc4e0;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin: 0 0 18px;
-}
-
-.content-hero h1 {
-  margin: 0;
-  font-size: 2.6rem;
-  line-height: 1.25;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.content-layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 56px 32px 80px;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .content-layout { grid-template-columns: 1fr; }
-}
-
-.toc-panel {
-  background: var(--bg-light);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  position: sticky;
-  top: 100px;
-}
-
-.toc-panel h2 {
-  color: var(--navy);
-  font-size: 1.3rem;
-  margin: 0 0 18px;
-}
-
-.toc-panel ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.toc-panel a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-size: 0.98rem;
-  line-height: 1.4;
-}
-
-.toc-panel a:hover {
-  color: var(--blue);
-  text-decoration: underline;
-}
-
-.content-article section {
-  margin-bottom: 48px;
-  scroll-margin-top: 100px;
-}
-
-.content-article h2 {
-  color: var(--navy);
-  font-size: 1.8rem;
-  margin: 0 0 18px;
-}
-
-.content-article p {
-  color: var(--text-dark);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin: 0 0 24px;
-}
-
-.content-article figure {
-  margin: 0;
-}
-
-.content-article figure img {
-  width: 100%;
-  max-height: 480px;
-  object-fit: cover;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.content-article figcaption {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-style: italic;
-  margin-top: 14px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Go to Top — HTML/CSS only, always visible, fixed position */
-.go-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  text-decoration: none;
-  box-shadow: 0 6px 18px rgba(47, 123, 214, 0.4);
-  transition: background 0.2s ease, transform 0.2s ease;
-  z-index: 200;
-}
-
-.go-to-top:hover {
-  background: var(--navy);
-  transform: translateY(-3px);
-}
-    </style>
   </head>
   <body>
     <header>
@@ -648,7 +29,7 @@ textarea { resize: vertical; }
       <!-- Page title section -->
       <section class="content-hero">
         <p>SDG 14 EDUCATIONAL RESOURCE • STUDENT 3</p>
-        <h1>Marine Biodiversity & Endangered Species</h1>
+        <h1>Marine Biodiversity &amp; Endangered Species</h1>
       </section>
 
       <!-- Sidebar + article -->
@@ -656,133 +37,113 @@ textarea { resize: vertical; }
         <aside class="article-sidebar">
           <div class="article-menu">
             <h2>In this article</h2>
-
             <ol>
-              <li><a href="#what-are-corals">What is marine biodiversity?</a></li>
-              <li><a href="#why-they-matter">Coral reefs and food chains</a></li>
-              <li><a href="#threats">Sea turtles</a></li>
-              <li><a href="#sri-lanka">Dolphins and whales</a></li>
-              <li><a href="#conservation">Why biodiversity matters</a></li>
-              <li><a href="#conservation">How to protect endangered marine species</a></li>
+              <li><a href="#marine-biodiversity">What is marine biodiversity?</a></li>
+              <li><a href="#coral-food-chain">Coral reefs and food chains</a></li>
+              <li><a href="#sea-turtles">Sea turtles</a></li>
+              <li><a href="#dolphins-whales">Dolphins and whales</a></li>
+              <li><a href="#why-important">Why biodiversity matters</a></li>
+              <li><a href="#protect">How to protect endangered marine species</a></li>
             </ol>
           </div>
         </aside>
 
-        <article class="article-content">
-   <section id="marine-biodiversity">
+        <article class="article-content" id="top">
 
-<h2>1. What is marine biodiversity?</h2>
+          <section id="marine-biodiversity">
+            <h2>1. What is marine biodiversity?</h2>
+            <p>
+              Marine biodiversity refers to the variety of life found in oceans and seas.
+              It includes every living organism, from microscopic plankton to giant whales,
+              as well as the ecosystems they form together. Healthy marine biodiversity
+              maintains ecological balance and supports food chains that sustain both marine
+              life and human communities.
+            </p>
+            <div class="callout">
+              <p>The ocean is home to an estimated 700,000 to 1 million marine species, and scientists believe many more remain undiscovered.</p>
+            </div>
+            <img src="assets/images/biodiversity_thesa.jpg" alt="Marine biodiversity">
+            <p class="image-caption">Figure: Healthy marine ecosystem containing diverse marine species.</p>
+          </section>
 
-<p>
-Marine biodiversity refers to the variety of life found in oceans and seas.
-It includes every living organism, from microscopic plankton to giant whales,
-as well as the ecosystems they form together. Healthy marine biodiversity
-maintains ecological balance and supports food chains that sustain both marine
-life and human communities.
-</p>
+          <section id="coral-food-chain">
+            <h2>2. Coral reefs and food chains</h2>
+            <p>
+              Coral reefs are among the most diverse ecosystems on Earth.
+              Although they cover only a small part of the ocean floor,
+              they provide food and shelter for thousands of marine species.
+              These reefs form the foundation of complex marine food webs and
+              help maintain healthy ocean ecosystems.
+            </p>
+            <div class="callout">
+              <p>Coral reefs cover less than 1% of the ocean floor, yet they support roughly a quarter of all known marine species.</p>
+            </div>
+            <img src="assets/images/coralReef2.jpg" alt="Coral reef ecosystem">
+            <p class="image-caption">Figure: Vibrant coral reef ecosystem.</p>
+          </section>
 
-<img src="assets/images/biodiversity_thesa.jpg"
-alt="Marine biodiversity">
-
-<p class="image-caption">
-Figure: Healthy marine ecosystem containing diverse marine species.
-</p>
-
-<section id="coral-food-chain">
-
-<h2>2. Coral reefs and food chains</h2>
-
-<p>
-Coral reefs are among the most diverse ecosystems on Earth.
-Although they cover only a small part of the ocean floor,
-they provide food and shelter for thousands of marine species.
-These reefs form the foundation of complex marine food webs and
-help maintain healthy ocean ecosystems.
-</p>
-
-<img src="assets/images/coralReef2.jpg"
-alt="Coral reef ecosystem">
-
-<p class="image-caption">
-Figure: Vibrant coral reef ecosystem.
-</p>
-
-</section>
-
-   <section id="sea-turtles">
-
-<h2>3. Sea turtles</h2>
-
-<p>
-Sea turtles are ancient marine reptiles that have lived in the world's oceans
-for millions of years. Today they face serious threats from plastic pollution,
-illegal hunting, habitat destruction, and climate change.
-Conservation programmes around the world work to protect nesting beaches and
-reduce human impacts on these endangered animals.
-</p>
-
-<img src="assets/images/greensea_turtle_thesa.jpg"
-alt="Green sea turtle">
-
-<p class="image-caption">
-Figure: A green sea turtle swimming in the ocean.
-</p>
-
-</section>
+          <section id="sea-turtles">
+            <h2>3. Sea turtles</h2>
+            <p>
+              Sea turtles are ancient marine reptiles that have lived in the world's oceans
+              for millions of years. Today they face serious threats from plastic pollution,
+              illegal hunting, habitat destruction, and climate change.
+              Conservation programmes around the world work to protect nesting beaches and
+              reduce human impacts on these endangered animals.
+            </p>
+            <div class="quick-fact">
+              <p>Six of the seven sea turtle species are currently classified as threatened or endangered by the IUCN.</p>
+            </div>
+            <img src="assets/images/greensea_turtle_thesa.jpg" alt="Green sea turtle">
+            <p class="image-caption">Figure: A green sea turtle swimming in the ocean.</p>
+          </section>
 
           <section id="dolphins-whales">
+            <h2>4. Dolphins and whales</h2>
+            <p>
+              Dolphins and whales are intelligent marine mammals that play important roles
+              within ocean ecosystems. They are threatened by ship strikes,
+              noise pollution, fishing nets, and plastic waste.
+              Protecting these animals helps preserve healthy marine biodiversity.
+            </p>
+            <div class="callout">
+              <p>Whale waste fertilises ocean plankton, which in turn produces a significant share of the oxygen we breathe.</p>
+            </div>
+            <img src="assets/images/whale.jpg" alt="Whale underwater">
+            <p class="image-caption">Figure: A large whale swimming beneath the ocean surface.</p>
+          </section>
 
-<h2>4. Dolphins and whales</h2>
+          <section id="why-important">
+            <h2>5. Why biodiversity matters</h2>
+            <p>
+              Marine biodiversity supports global food security, regulates Earth's climate,
+              protects coastlines, and provides livelihoods for millions of people.
+              A healthy ocean is essential for sustainable development and the well-being of
+              future generations.
+            </p>
+            <div class="callout">
+              <p>Over 3 billion people rely on the ocean as their primary source of protein and livelihood.</p>
+            </div>
+            <img src="assets/images/why_biodiversity_thesa.jpg" alt="Biodiversity in the ocean">
+            <p class="image-caption">Figure: A diverse array of marine species coexisting in a healthy ocean ecosystem.</p>
+          </section>
 
-<p>
-Dolphins and whales are intelligent marine mammals that play important roles
-within ocean ecosystems. They are threatened by ship strikes,
-noise pollution, fishing nets, and plastic waste.
-Protecting these animals helps preserve healthy marine biodiversity.
-</p>
+          <section id="protect">
+            <h2>6. How to protect endangered marine species</h2>
+            <p>
+              Everyone can contribute to protecting marine life by reducing plastic waste,
+              supporting marine protected areas, practising responsible tourism,
+              participating in beach clean-ups, and choosing sustainable seafood.
+              Small individual actions can collectively make a significant difference in
+              preserving ocean biodiversity.
+            </p>
+            <div class="callout">
+              <p>Marine protected areas currently cover less than 8% of the world's oceans, short of the 30% target set for 2030.</p>
+            </div>
+            <img src="assets/images/marine_species_thesa.jpg" alt="Protected marine species">
+            <p class="image-caption">Figure: Marine species living in a protected ocean habitat.</p>
+          </section>
 
-<img src="assets/images/whale.jpg"
-alt="Whale underwater">
-
-<p class="image-caption">
-Figure: A large whale swimming beneath the ocean surface.
-</p>
-
-</section>
-
-  <section id="why-important">
-
-<h2>5. Why biodiversity matters</h2>
-
-<p>
-Marine biodiversity supports global food security, regulates Earth's climate,
-protects coastlines, and provides livelihoods for millions of people.
-A healthy ocean is essential for sustainable development and the well-being of
-future generations.
-</p>
-
-</section>
-
-<section id="protect">
-
-<h2>6. How to protect endangered marine species</h2>
-
-<p>
-Everyone can contribute to protecting marine life by reducing plastic waste,
-supporting marine protected areas, practising responsible tourism,
-participating in beach clean-ups, and choosing sustainable seafood.
-Small individual actions can collectively make a significant difference in
-preserving ocean biodiversity.
-</p>
-
-<img src="assets/images/marine_species_thesa.jpg"
-alt="Protected marine species">
-
-<p class="image-caption">
-Figure: Marine species living in a protected ocean habitat.
-</p>
-
-</section>
         </article>
       </div>
     </main>
@@ -795,48 +156,40 @@ Figure: Marine species living in a protected ocean habitat.
             <img src="assets/images/logo.svg" alt="BlueFuture logo" />
             <span>BlueFuture</span>
           </a>
-
           <p>
             Protect marine ecosystems, reduce pollution, conserve biodiversity,
             and promote sustainable use of oceans.
           </p>
         </div>
-
         <!-- Coursework links -->
         <div class="footer-column">
           <h3>Coursework Links</h3>
-
           <div class="footer-links">
             <a href="pageEditor_ST1.html">ST1: Page Editor</a>
             <a href="validation_ST1.html">ST1: Validation</a>
-
             <a href="pageEditor_ST2.html">ST2: Page Editor</a>
             <a href="validation_ST2.html">ST2: Validation</a>
           </div>
         </div>
-
         <!-- Team links -->
         <div class="footer-column">
           <h3>Team CORAL</h3>
-
           <div class="footer-links">
             <a href="pageEditor_ST3.html">ST3: Page Editor</a>
             <a href="validation_ST3.html">ST3: Validation</a>
-
             <a href="pageEditor_ST4.html">ST4: Page Editor</a>
             <a href="validation_ST4.html">ST4: Validation</a>
-
             <a href="accessibility.html" class="accessibility-link">
               Accessibility / Compliance
             </a>
           </div>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
       </div>
     </footer>
-    <a href="#top" class="go-top">Back to top</a>
+
+    <a href="#top" class="go-top">Back to Top</a>
   </body>
 </html>

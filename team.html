@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet the Team | BlueFuture - SDG 14</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+:root {
+  --navy: #14335c;
+  --navy-dark: #0e2647;
+  --blue: #2f7bd6;
+  --teal: #1fb6c9;
+  --gold: #e8b93a;
+  --purple: #6c5ce7;
+  --bg-light: #eef5fb;
+  --white: #ffffff;
+  --text-dark: #1c2b3a;
+  --text-muted: #6b7c8f;
+  --border: #dfe8f2;
+  --shadow: 0 4px 14px rgba(20, 51, 92, 0.08);
+  --radius: 14px;
+  --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.5;
+}
+img { max-width: 100%; display: block; }
+
+/* ================= HEADER / NAV ================= */
+header {
+    background-color: var(--primary-blue);
+    min-height: 72px;
+    padding: 0 4%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.logo img { height: 28px; width: 28px; }
+nav ul.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 34px;
+  margin: 0;
+  padding: 0;
+}
+nav ul.nav-links a {
+  color: #cfe0f5;
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+nav ul.nav-links a:hover,
+nav ul.nav-links a:focus {
+  color: var(--white);
+  border-bottom-color: var(--teal);
+}
+nav ul.nav-links a.active {
+  color: var(--white);
+  border-bottom-color: var(--teal);
+}
+
+/* ================= TEAM PAGE ================= */
+.team-hero {
+  text-align: center;
+  padding: 64px 24px 48px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.team-hero h1 {
+  color: var(--navy);
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+}
+.team-hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.team-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .team-grid { grid-template-columns: 1fr; }
+}
+
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px 28px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.team-card:hover,
+.team-card:focus-visible,
+.team-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(20, 51, 92, 0.18);
+  border-color: var(--teal);
+}
+
+.team-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: transform 0.25s ease;
+}
+
+.team-card:hover .team-icon,
+.team-card:focus-within .team-icon {
+  transform: scale(1.08);
+}
+
+.icon-blue { background: var(--blue); }
+.icon-teal { background: #16b39a; }
+.icon-purple { background: var(--purple); }
+.icon-cyan { background: #29a8cf; }
+
+.team-icon svg { width: 34px; height: 34px; }
+
+.team-card h2 {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+}
+
+.team-role {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 18px;
+}
+
+.team-hint {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  transition: opacity 0.2s ease;
+}
+
+.team-card:hover .team-hint,
+.team-card:focus-within .team-hint {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* ---- Expandable details: pushes layout (footer) down, not an overlay ---- */
+.team-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  text-align: left;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+}
+
+.team-card:hover .team-details,
+.team-card:focus-within .team-details {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 18px;
+}
+
+.team-details hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 16px;
+}
+
+.team-details h3 {
+  color: var(--navy);
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+
+.team-details p {
+  color: var(--text-dark);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 0;
+    }
+
+    .site-footer .footer-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 42px 8%;
+
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 70px;
+
+    align-items: start;
+    }
+
+    .footer-column h3 {
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+    max-width: 230px;
+    margin-top: 14px;
+    margin-bottom: 0;
+
+    color: #c5d9eb;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    }
+
+    .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    }
+
+    .footer-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    }
+
+    .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    }
+
+    .site-footer .footer-links a {
+    color: #b8d2e8;
+    text-decoration: none;
+    font-size: 0.84rem;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .site-footer .footer-links a:hover {
+    color: var(--white);
+    transform: translateX(3px);
+    }
+
+    .site-footer .accessibility-link {
+    margin-top: 6px;
+    text-decoration: underline;
+    }
+
+    .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px 8%;
+    text-align: center;
+    }
+
+    .footer-bottom p {
+    margin: 0;
+    color: #8fb3d1;
+    font-size: 0.78rem;
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="home.html" class="logo">
+        <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+        <span>BlueFuture</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="ais.html">AIS</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html" class="active" aria-current="page">Team</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="team-hero">
+        <h1>Meet Team CORAL</h1>
+        <p>We are a group of dedicated students working together to promote SDG 14: Life Below Water through modern web technologies.</p>
+      </section>
+
+      <section class="team-grid">
+
+        <article class="team-card" tabindex="0">
+          <div class="team-icon icon-blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h2>Student 1</h2>
+          <p class="team-role">Lead Developer / Architect</p>
+          <p class="team-hint">Hover or focus to view details</p>
+          <div class="team-details">
+            <hr>
+            <h3>Contribution:</h3>
+            <p>Designed the shared website skeleton, global CSS style direction, header, navbar, footer, and reusable components. Developed the Home page, Gallery page, and the Coral Reefs content page.</p>
+          </div>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <div class="team-icon icon-teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            </svg>
+          </div>
+          <h2>Student 2</h2>
+          <p class="team-role">Interaction Specialist</p>
+          <p class="team-hint">Hover or focus to view details</p>
+          <div class="team-details">
+            <hr>
+            <h3>Contribution:</h3>
+            <p>Built the Splash Screen with animated loading and countdown, and developed the SDG Action Impact Simulator, including the scoring logic and dynamic background changes.</p>
+          </div>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <div class="team-icon icon-purple" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3Z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <h2>Student 3</h2>
+          <p class="team-role">Community &amp; Data Lead</p>
+          <p class="team-hint">Hover or focus to view details</p>
+          <div class="team-details">
+            <hr>
+            <h3>Contribution:</h3>
+            <p>Developed the Feedback &amp; Program Directory page with a JavaScript-validated form, this Team page with accessible hover interactions, and the Marine Biodiversity &amp; Endangered Species content page.</p>
+          </div>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <div class="team-icon icon-cyan" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13.5" cy="6.5" r=".5"></circle>
+              <circle cx="17.5" cy="10.5" r=".5"></circle>
+              <circle cx="8.5" cy="7.5" r=".5"></circle>
+              <circle cx="6.5" cy="12.5" r=".5"></circle>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.4 0-1.1.9-2 2-2h2.4c2.3 0 4.1-1.8 4.1-4.1C21.5 6.4 17.3 2 12 2Z"></path>
+            </svg>
+          </div>
+          <h2>Student 4</h2>
+          <p class="team-role">User Experience Engineer</p>
+          <p class="team-hint">Hover or focus to view details</p>
+          <div class="team-details">
+            <hr>
+            <h3>Contribution:</h3>
+            <p>Built the progressive User Profile page using JavaScript prompts and DOM manipulation, and created the accessible SVG Sitemap linking every page in the site.</p>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-column footer-brand">
+          <a href="home.html" class="footer-logo">
+            <img src="assets/images/logo.svg" alt="BlueFuture logo" />
+            <span>BlueFuture</span>
+          </a>
+          <p>
+            Protect marine ecosystems, reduce pollution, conserve biodiversity,
+            and promote sustainable use of oceans.
+          </p>
+        </div>
+        <div class="footer-column">
+          <h3>Coursework Links</h3>
+          <div class="footer-links">
+            <a href="pageEditor_ST1.html">ST1: Page Editor</a>
+            <a href="validation_ST1.html">ST1: Validation</a>
+            <a href="pageEditor_ST2.html">ST2: Page Editor</a>
+            <a href="validation_ST2.html">ST2: Validation</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Team CORAL</h3>
+          <div class="footer-links">
+            <a href="pageEditor_ST3.html">ST3: Page Editor</a>
+            <a href="validation_ST3.html">ST3: Validation</a>
+            <a href="pageEditor_ST4.html">ST4: Page Editor</a>
+            <a href="validation_ST4.html">ST4: Validation</a>
+            <a href="accessibility.html" class="accessibility-link">
+              Accessibility / Compliance
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Team CORAL. SDG 14: Life Below Water Coursework.</p>
+      </div>
+    </footer>
+  </body>
+</html>
